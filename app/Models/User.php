@@ -12,15 +12,22 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $casts = [
+      'id' => 'string',
+      ];
+
+    protected $primaryKey = "id";
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
+        'personal_data_id',
+        'role_id',
+        'is_deleted',
     ];
 
     /**
@@ -33,12 +40,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function personalData()
+    {
+      return $this->belongsTo('App\Models\PersonalData', 'personal_data_id');
+    }
+
 }
