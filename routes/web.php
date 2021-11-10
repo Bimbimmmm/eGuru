@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdministratorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,14 +13,33 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
+Route::get('public/news', [PublicNewsController::class, 'index'])->name('publicnewsindex');
+Route::get('public/news/view/{idEn}', [PublicNewsController::class, 'show'])->name('publicnewsshow');
+Route::post('/public/news/store', [PublicNewsController::class, 'store'])->middleware('can:isGuest')->name('usernewscomment');
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 require __DIR__.'/auth.php';
+
+Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
+
+//ADMINISTRATOR ROUTES
+Route::get('/administrator', [AdministratorController::class, 'index'])->middleware('can:isAdmin')->name('administrator');
+
+//TEACHER ROUTES
+
+//PRINCIPAL ROUTES
+
+//DIVISION HEAD ROUTES
+
+//OFFICE HEAD ROUTES
+
+//OPERATOR ROUTES
+
+//ASSESOR ROUTES
+
+//EXECUTIVE ROUTES

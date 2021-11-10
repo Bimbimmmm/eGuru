@@ -45,4 +45,9 @@ class User extends Authenticatable
       return $this->belongsTo('App\Models\PersonalData', 'personal_data_id');
     }
 
+    public function role()
+    {
+      return $this->belongsTo('App\Models\Roles', 'role_id');
+    }
+
 }
