@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
           $table->uuid('id')->primary();
           $table->string('email')->unique();
           $table->string('password');
-          $table->uuid('personal_data_id');
+          $table->uuid('personal_data_id')->nullable();
           $table->foreign('personal_data_id')->references('id')->on('personal_datas');
           $table->uuid('role_id');
           $table->foreign('role_id')->references('id')->on('roles');
