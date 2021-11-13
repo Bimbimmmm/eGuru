@@ -16,8 +16,8 @@ class ReferenceWorkUnitsSeeder extends Seeder
     {
       \DB::table('reference_work_units')->insert([
           [
-              'name' => 'Dinas Pendidikan Kabupaten Tana Tidung',
-              'address' => 'Jl. Perintis RT. 07',
+              'name' => 'SDN 1 Tideng Pale',
+              'address' => 'Jl. Poros KTT - Malinau',
               'province' => 'KALIMANTAN UTARA',
               'city' => 'KABUPATEN TANA TIDUNG',
               'district' => 'SESAYAP',

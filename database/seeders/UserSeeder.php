@@ -17,9 +17,10 @@ class UserSeeder extends Seeder
     {
       \DB::table('users')->insert([
           [
+              'registration_number' => '1927182816336176773',
               'email' => 'admin@guru.tanatidungkab.go.id',
-              'password' => Hash::make('@dm1n3guru'),
-              'personal_data_id' => '838d5824-6760-4597-8a46-0fd84bb6e771',
+              'password' => Hash::make('namamuji'),
+              'personal_data_id' => '2ea37923-c8d6-460d-8cc5-1ac1f5f8dc0a',
               'role_id' => '818ba4b5-83d1-4a93-b125-dd22e85678cb',
               'is_deleted' => FALSE,
               'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

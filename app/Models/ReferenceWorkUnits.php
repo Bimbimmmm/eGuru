@@ -10,10 +10,6 @@ class ReferenceWorkUnits extends Model
     use HasFactory;
     protected $table = 'reference_work_units';
 
-    protected $casts = [
-      'id' => 'string',
-      ];
-
     protected $primaryKey = "id";
 
     protected $fillable = [

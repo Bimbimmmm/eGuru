@@ -6,12 +6,14 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>eGuru</title>
+  <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
 
   <!-- Styles -->
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
   <link rel="stylesheet" href="{{ asset('css/materialicons.css') }}">
   <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
@@ -20,6 +22,8 @@
   <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
   <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
   <script src="{{ asset('js/axios.min.js') }}"></script>
+  <script src="{{ asset('js/jquery-3.6.0.js') }}"></script>
+  <script src="{{ asset('js/jquery-ui.js') }}"></script>
 
 </head>
 <body class="font-roboto">

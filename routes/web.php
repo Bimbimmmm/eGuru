@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\TeacherLeavePermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +53,11 @@ Route::get('/administrator/users/create', [AdminUserController::class, 'create']
 Route::post('/administrator/users/store', [AdminUserController::class, 'store'])->middleware('can:isAdmin')->name('adminuserstore');
 
 //TEACHER ROUTES
+Route::get('/teacher', [TeacherController::class, 'index'])->middleware('can:isTeacher')->name('teacher');
+
+Route::get('/teacher/leavepermission', [TeacherLeavePermissionController::class, 'index'])->middleware('can:isTeacher')->name('teacherlp');
+Route::get('/teacher/leavepermission/create', [TeacherLeavePermissionController::class, 'create'])->middleware('can:isTeacher')->name('teacherlpcreate');
+
 
 //PRINCIPAL ROUTES
 

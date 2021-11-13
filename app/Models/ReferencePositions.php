@@ -10,10 +10,6 @@ class ReferencePositions extends Model
     use HasFactory;
     protected $table = 'reference_positions';
 
-    protected $casts = [
-      'id' => 'string',
-      ];
-
     protected $primaryKey = "id";
 
     protected $fillable = [

@@ -10,10 +10,6 @@ class ReferenceReligions extends Model
     use HasFactory;
     protected $table = 'reference_religions';
 
-    protected $casts = [
-      'id' => 'string',
-      ];
-
     protected $primaryKey = "id";
 
     protected $fillable = [

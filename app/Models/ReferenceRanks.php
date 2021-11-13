@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ReferenceRanks extends Model
 {
     use HasFactory;
-    protected $table = 'reference_status';
+    protected $table = 'reference_ranks';
 
     protected $casts = [
       'id' => 'string',

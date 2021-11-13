@@ -10,10 +10,6 @@ class ReferenceStatus extends Model
     use HasFactory;
     protected $table = 'reference_status';
 
-    protected $casts = [
-      'id' => 'string',
-      ];
-
     protected $primaryKey = "id";
 
     protected $fillable = [

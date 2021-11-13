@@ -27,7 +27,7 @@ class PersonalDataSeeder extends Seeder
               'religion_id' => 1,
               'rank_id' => 9,
               'work_unit_id' => 1,
-              'position_id' => 1,
+              'position_id' => 10,
               'status_id' => 4,
               'education_id' => 3,
               'cs_year' => Carbon::now()->format('Y-m-d'),

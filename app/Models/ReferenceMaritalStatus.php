@@ -10,10 +10,6 @@ class ReferenceMaritalStatus extends Model
     use HasFactory;
     protected $table = 'reference_marital_status';
 
-    protected $casts = [
-      'id' => 'string',
-      ];
-
     protected $primaryKey = "id";
 
     protected $fillable = [

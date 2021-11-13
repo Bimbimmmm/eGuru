@@ -40,6 +40,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function leavePermissions()
+    {
+      return $this->hasMany('App\Models\LeavePermissions', 'id');
+    }
+
     public function personalData()
     {
       return $this->belongsTo('App\Models\PersonalData', 'personal_data_id');

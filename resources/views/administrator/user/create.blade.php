@@ -20,114 +20,167 @@
         @csrf
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Nama Lengkap
             </label>
-            <input name="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" required>
+            <input name="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"    type="text" required>
           </div>
           <div class="w-full md:w-1/2 px-3">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Nomor Induk Pegawai (NIP)
             </label>
-            <input name="registration_number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" required>
+            <input name="registration_number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"   type="text" required>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Nomor Induk Kependudukan (NIK)
             </label>
-            <input name="id_number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" required>
+            <input name="id_number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"    type="text" required>
           </div>
           <div class="w-full md:w-1/2 px-3">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               NUPTK
             </label>
-            <input name="registration_number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" required>
+            <input name="educator_number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"   type="text" required>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Tempat Lahir
             </label>
-            <input name="birth_place" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" required>
+            <input name="birth_place" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"    type="text" required>
           </div>
           <div class="w-full md:w-1/2 px-3">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Tanggal Lahir
             </label>
-            <input name="birth_date" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" required>
+            <input id="birth_date" name="birth_date" class="datepicker input appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"    type="text" required>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Jenis Kelamin
             </label>
-            <input name="gender" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" required>
+            <select name="gender" id="gender" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <option value="">Pilih Jenis Kelamin</option>
+              <option value="Laki-laki">Laki-laki</option>
+              <option value="Perempuan">Perempuan</option>
+            </select>
           </div>
           <div class="w-full md:w-1/2 px-3">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Status Perkawinan
             </label>
-            <input name="marital_status_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" required>
-          </div>
+            <select name="marital_status_id" id="marital_status_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <option value="">Pilih Status Pernikahan</option>
+              @foreach($maritals as $marital)
+              <option value={{$marital->id}}>{{$marital->name}}</option>
+              @endforeach
+            </select>
+            </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Agama
             </label>
-            <input name="religion_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" required>
+            <select name="religion_id" id="religion_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <option value="">Pilih Agama</option>
+              @foreach($religions as $religion)
+              <option value={{$religion->id}}>{{$religion->name}}</option>
+              @endforeach
+            </select>
           </div>
           <div class="w-full md:w-1/2 px-3">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Pangkat dan Golongan
             </label>
-            <input name="rank_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" required>
+            <select name="rank_id" id="rank_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <option value="">Pilih Pangkat dan Golongan</option>
+              @foreach($ranks as $rank)
+              <option value={{$rank->id}}>{{$rank->rank}} / {{$rank->group}}</option>
+              @endforeach
+            </select>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Jabatan
             </label>
-            <input name="position_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" required>
+            <select name="position_id" id="position_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <option value="">Pilih Jabatan</option>
+              @foreach($positions as $position)
+              <option value={{$position->id}}>{{$position->name}} / {{$position->echelon}}</option>
+              @endforeach
+            </select>
           </div>
           <div class="w-full md:w-1/2 px-3">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Status Kepegawaian
             </label>
-            <input name="status_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" required>
+            <select name="status_id" id="status_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <option value="">Pilih Status Kepegawaian</option>
+              @foreach($statuss as $status)
+              <option value={{$status->id}}>{{$status->name}}</option>
+              @endforeach
+            </select>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
+              Unit Kerja
+            </label>
+            <select name="work_unit_id" id="position_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <option value="">Pilih Unit Kerja</option>
+              @foreach($workUnits as $workUnit)
+              <option value={{$workUnit->id}}>{{$workUnit->name}}</option>
+              @endforeach
+            </select>
+          </div>
+          <div class="w-full md:w-1/2 px-3">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
+              Pendidikan
+            </label>
+            <select name="education_id" id="position_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <option value="">Pilih Pendidikan</option>
+              @foreach($educations as $education)
+              <option value={{$education->id}}>{{$education->name}}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               T.M.T CPNS
             </label>
-            <input name="cs_candidate_year" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" required>
+            <input id="cs_candidate_year" name="cs_candidate_year" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"    type="text" required>
           </div>
           <div class="w-full md:w-1/2 px-3">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               T.M.T PNS
             </label>
-            <input name="cs_year" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" required>
+            <input id="cs_year" name="cs_year" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"   type="text" required>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               NPWP
             </label>
-            <input name="tax_number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" required>
+            <input name="tax_number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"    type="text" required>
           </div>
           <div class="w-full md:w-1/2 px-3">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Jenis Guru / Pegawai
             </label>
-            <input name="cs_year" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" required>
+            <input name="teacher_type" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"   type="text" required>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -140,30 +193,43 @@
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Password
             </label>
-            <input name="password" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="password" required>
+            <input name="password" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="password" required>
           </div>
           <div class="w-full md:w-1/2 px-3">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"    >
               Confirm Password
             </label>
-            <input name="password_confirmation" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" required>
+            <input name="password_confirmation" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"  type="password" required>
+          </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+              Role
+            </label>
+            <select name="role_id" id="role_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+              <option value="">Pilih Role</option>
+              @foreach($roles as $role)
+              <option value={{$role->id}}>{{$role->name}}</option>
+              @endforeach
+            </select>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Alamat
             </label>
-            <input name="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" required>
+            <input name="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" required>
           </div>
           <div class="w-full md:w-1/2 px-3">
-            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               Kode POS
             </label>
-            <input name="zip_code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" required>
+            <input name="zip_code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"   type="text" required>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -302,6 +368,35 @@ $(document).ready(function() {
     }else{
       $('#village').empty();
     }
+  });
+});
+</script>
+<script>
+$( function() {
+  $( "#birth_date" ).datepicker({
+    dateFormat: "dd-mm-yy",
+    changeMonth: true,
+    changeYear: true,
+  });
+
+} );
+</script>
+<script>
+$( function() {
+  $( "#cs_candidate_year" ).datepicker({
+    dateFormat: "dd-mm-yy",
+    changeMonth: true,
+    changeYear: true,
+  });
+
+} );
+</script>
+<script>
+$( function() {
+  $( "#cs_year" ).datepicker({
+    dateFormat: "dd-mm-yy",
+    changeMonth: true,
+    changeYear: true,
   });
 });
 </script>

@@ -10,10 +10,6 @@ class ReferenceEducations extends Model
     use HasFactory;
     protected $table = 'reference_educations';
 
-    protected $casts = [
-      'id' => 'string',
-      ];
-
     protected $primaryKey = "id";
 
     protected $fillable = [
