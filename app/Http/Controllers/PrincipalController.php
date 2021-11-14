@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\LeavePermissions;
 
 class PrincipalController extends Controller
 {
@@ -13,7 +15,10 @@ class PrincipalController extends Controller
      */
     public function index()
     {
-        return view('principal/index');
+      $user_id = auth()->user()->id;
+      $is_integration=User::where(['id' => $user_id, 'personal_data_id' => NULL])->count();
+      $leavepermission=LeavePermissions::where('user_id', $user_id)->count();
+      return view('principal/index', compact('is_integration', 'leavepermission'));
     }
 
     /**

@@ -4,7 +4,7 @@
   <div class="px-5 mx-auto max-w-7x1">
     <h1 class="mb-12 text-center text-4xl text-black font-bold">Form Pengajuan Cuti</h1>
     <div class="md:flex md:justify-center md:space-x-8 md:px-14">
-      <form action="/public/mail/store" method="POST" class="w-full max-w-lg" enctype="multipart/form-data">
+      <form action="/teacher/leavepermission/store" method="POST" class="w-full max-w-lg" enctype="multipart/form-data">
         @csrf
         @if(session('errors'))
         @foreach ($errors->all() as $error)
@@ -100,44 +100,42 @@
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-              Jabatan Pengirim Surat
+              Alasan Cuti
             </label>
-            <input name="position" id="position" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
+            <textarea name="leave_excuse" id="leave_excuse" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required></textarea>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-              Judul Surat
+              Tanggal Mulai Cuti
             </label>
-            <input name="title" id="title" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
-          </div>
-        </div>
-        <div class="flex flex-wrap -mx-3 mb-6">
-          <div class="w-full px-3">
-            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-              Prioritas Surat
-            </label>
-            <select name="importance_level" id="importance_level" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-              <option value="">== Pilih Prioritas Surat ==</option>
-              <option value="Tinggi">Tinggi</option>
-              <option value="Sedang">Sedang</option>
-              <option value="Rendah">Rendah</option>
-            </select>
+            <input name="start_date" id="start_date" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-              Kontak Pengirim (Nomor HP / e-Mail)
+              Tanggal Selesai Cuti
             </label>
-            <input name="contact" id="contact" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
+            <input name="end_date" id="end_date" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
+          </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+              Alamat Selama Cuti
+            </label>
+            <input name="leave_address" id="leave_address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
           </div>
         </div>
         <div class="md:flex md:items-center">
           <div class="md:w-1/3">
             <button class="shadow bg-green-600 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
               Submit
+            </button>
+            <button onclick="window.location='{{ url ('/teacher/leavepermission') }}'" class="shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+              Cancel
             </button>
           </div>
           <div class="md:w-2/3"></div>
@@ -146,6 +144,29 @@
     </div>
   </div>
 </div>
+<script>
+$( function() {
+  $( "#start_date" ).datepicker({
+    dateFormat: "dd-mm-yy",
+    changeMonth: true,
+  });
+});
+</script>
+<script>
+$( function() {
+  $( "#end_date" ).datepicker({
+    dateFormat: "dd-mm-yy",
+    changeMonth: true,
+  });
+});
+</script>
+<script>
+   var konten = document.getElementById("leave_excuse");
+     CKEDITOR.replace(konten,{
+     language:'en-gb'
+   });
+   CKEDITOR.config.allowedContent = true;
+</script>
 <script>
     $('#leave_type_id').on('change', function () {
         if (this.value === '1'){

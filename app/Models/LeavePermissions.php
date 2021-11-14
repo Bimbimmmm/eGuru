@@ -9,7 +9,6 @@ class LeavePermissions extends Model
 {
     use HasFactory;
     protected $table = 'leave_permissions';
-
     protected $casts = [
       'id' => 'string',
       ];
@@ -24,6 +23,7 @@ class LeavePermissions extends Model
         'leave_address',
         'is_direct_supervisor_approved',
         'direct_supervisor_note',
+        'school_official_id',
         'is_official_approve',
         'official_note',
         'file_recommendation_letter',
@@ -47,5 +47,10 @@ class LeavePermissions extends Model
   public function user()
   {
     return $this->belongsTo('App\Models\User', 'user_id');
+  }
+
+  public function schoolOfficial()
+  {
+    return $this->belongsTo('App\Models\SchoolOfficial', 'school_official_id');
   }
 }

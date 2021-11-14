@@ -23,8 +23,37 @@
           <div class="flex-auto p-4">
             <div class="flex flex-wrap">
               <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                <h5 class="text-blueGray-400 uppercase font-bold text-xl">Data Terpusat</h5>
+                @if($is_integration == 0)
+                <span class="mt-1 inline-block rounded-full text-white bg-green-500 px-2 py-1 text-xs font-bold mr-3">Sudah Integrasi</span>
+                @else
+                <span class="mt-1 inline-block rounded-full text-white bg-red-500 px-2 py-1 text-xs font-bold mr-3">Belum Integrasi</span>
+                @endif
+            </div>
+            <div class="relative w-auto pl-4 flex-initial">
+              <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-black">
+                <i>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                  </svg>
+                </i>
+              </div>
+            </div>
+          </div>
+          <p class="text-sm text-blueGray-400 mt-4">
+            <span class="text-emerald-500 mr-2">0</span>
+            <span class="whitespace-nowrap">Total Data Integrasi</span></p>
+          </div>
+        </div>
+      </a>
+
+      <a href="/teacher/leavepermission" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 mb-4 transition duration-500 transform hover:translate-y-3 cursor-pointer">
+        <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-3 xl:mb-0 shadow-lg">
+          <div class="flex-auto p-4">
+            <div class="flex flex-wrap">
+              <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                 <h5 class="text-blueGray-400 uppercase font-bold text-xl">PENGAJUAN CUTI</h5>
-                <span class="font-semibold text-xl text-blueGray-700">334,100</span>
+                <span class="font-semibold text-xl text-blueGray-700">{{$leavepermission}}</span>
               </div>
               <div class="relative w-auto pl-4 flex-initial">
                 <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-red-500">
@@ -43,7 +72,7 @@
           </div>
         </a>
 
-        <a href="" class=" mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 transition duration-500 transform hover:translate-y-3 cursor-pointer">
+        <a href="/teacher/performance" class=" mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 transition duration-500 transform hover:translate-y-3 cursor-pointer">
           <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-4 xl:mb-0 shadow-lg">
             <div class="flex-auto p-4">
               <div class="flex flex-wrap">
@@ -68,7 +97,7 @@
             </div>
           </a>
 
-          <a href="" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 transition duration-500 transform hover:translate-y-3 cursor-pointer">
+          <a href="/teacher/creditscore" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 transition duration-500 transform hover:translate-y-3 cursor-pointer">
             <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
               <div class="flex-auto p-4">
                 <div class="flex flex-wrap">
@@ -93,7 +122,7 @@
               </div>
             </a>
 
-            <a href="" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 transition duration-500 transform hover:translate-y-3 cursor-pointer">
+            <a href="/teacher/promotion" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 transition duration-500 transform hover:translate-y-3 cursor-pointer">
               <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                 <div class="flex-auto p-4">
                   <div class="flex flex-wrap">
@@ -118,7 +147,7 @@
                 </div>
               </a>
 
-              <a href="" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 transition duration-500 transform hover:translate-y-3 cursor-pointer">
+              <a href="/teacher/salaryincrease" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 transition duration-500 transform hover:translate-y-3 cursor-pointer">
                 <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                   <div class="flex-auto p-4">
                     <div class="flex flex-wrap">
@@ -143,7 +172,7 @@
                   </div>
                 </a>
 
-                <a href="" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 transition duration-500 transform hover:translate-y-3 cursor-pointer">
+                <a href="/teacher/solutioncorner" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 transition duration-500 transform hover:translate-y-3 cursor-pointer">
                   <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
                     <div class="flex-auto p-4">
                       <div class="flex flex-wrap">

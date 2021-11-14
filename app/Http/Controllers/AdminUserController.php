@@ -181,10 +181,10 @@ class AdminUserController extends Controller
         $save2 = $user->save();
 
         if($save2){
-            Alert::success('Berhasil', 'Berita Berhasil Dibuat');
+            Alert::success('Berhasil', 'Akun Berhasil Dibuat');
             return redirect()->route('adminuserindex');
         } else {
-            Alert::error('Gagal', 'Gagal Membuat Berita! Silahkan ulangi beberapa saat lagi');
+            Alert::error('Gagal', 'Gagal Membuat Akun! Silahkan ulangi beberapa saat lagi');
             return redirect()->route('adminusercreate');
         }
     }

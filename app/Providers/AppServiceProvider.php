@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
       });
 
       Gate::define('isDivisionHead', function($user) {
-          $getisdivisionheadid=Roles::where('name', 'Kepala Bagian')->first();
+          $getisdivisionheadid=Roles::where('name', 'Kepala Bidang')->first();
           return $user->role_id == $getisdivisionheadid->id;
       });
 

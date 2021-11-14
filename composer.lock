@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ab83da60818d44360fa796a5c6fe598e",
+    "content-hash": "5cda665ec8296dde5a4ce7b8fd8400a5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -957,6 +957,71 @@
                 }
             ],
             "time": "2021-10-06T17:43:30+00:00"
+        },
+        {
+            "name": "irfa/php-hari-libur",
+            "version": "v1.21",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/irfaardy/php-hari-libur.git",
+                "reference": "29e6982c2b7940563bacd118dab624ee479a8441"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/irfaardy/php-hari-libur/zipball/29e6982c2b7940563bacd118dab624ee479a8441",
+                "reference": "29e6982c2b7940563bacd118dab624ee479a8441",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.0"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "Irfa\\HariLibur\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Irfa Ardiansyah",
+                    "email": "irfa.backend@protonmail.com"
+                }
+            ],
+            "description": "\"Plugin ini berfungsi untuk mengecek hari libur nasional\"",
+            "homepage": "https://github.com/irfaardy/php-hari-libur",
+            "keywords": [
+                "hari libur",
+                "holidays",
+                "hris",
+                "laravel",
+                "php",
+                "plugin",
+                "plugin hari libur"
+            ],
+            "support": {
+                "issues": "https://github.com/irfaardy/php-hari-libur/issues",
+                "source": "https://github.com/irfaardy/php-hari-libur/tree/v1.21"
+            },
+            "funding": [
+                {
+                    "url": "https://buymeacoff.ee/irfaardy",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://ko-fi.com/irfaardy",
+                    "type": "ko_fi"
+                },
+                {
+                    "url": "https://www.patreon.com/irfa",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2021-05-28T02:58:08+00:00"
         },
         {
             "name": "laravel/framework",

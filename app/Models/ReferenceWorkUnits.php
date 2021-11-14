@@ -26,4 +26,9 @@ class ReferenceWorkUnits extends Model
     {
       return $this->hasMany('App\Models\PersonalData', 'id');
     }
+
+    public function schoolOfficials()
+    {
+      return $this->hasMany('App\Models\SchoolOfficial', 'id');
+    }
 }
