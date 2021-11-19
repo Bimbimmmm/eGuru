@@ -60,4 +60,19 @@ class User extends Authenticatable
       return $this->belongsTo('App\Models\Roles', 'role_id');
     }
 
+    public function performanceTarget()
+    {
+      return $this->hasMany('App\Models\PerformanceTarget', 'id');
+    }
+
+    public function positionMappingPrincipal()
+    {
+      return $this->hasMany('App\Models\PositionMapping', 'id');
+    }
+
+    public function positionMappingSupervisor()
+    {
+      return $this->hasMany('App\Models\PositionMapping', 'id');
+    }
+
 }

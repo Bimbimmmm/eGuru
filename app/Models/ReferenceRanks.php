@@ -10,10 +10,6 @@ class ReferenceRanks extends Model
     use HasFactory;
     protected $table = 'reference_ranks';
 
-    protected $casts = [
-      'id' => 'string',
-      ];
-
     protected $primaryKey = "id";
 
     protected $fillable = [
@@ -24,5 +20,10 @@ class ReferenceRanks extends Model
     public function personalDatas()
     {
       return $this->hasMany('App\Models\PersonalData', 'id');
+    }
+
+    public function performanceTarget()
+    {
+      return $this->hasMany('App\Models\PerformanceTarget', 'id');
     }
 }

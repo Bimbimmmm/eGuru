@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SchoolOfficial;
+use App\Models\PositionMapping;
 use App\Models\ReferenceWorkUnits;
 use App\Models\User;
+use App\Models\Roles;
 use Validator;
 use Alert;
 class AdminSchoolOfficialController extends Controller
@@ -17,7 +18,7 @@ class AdminSchoolOfficialController extends Controller
      */
     public function index()
     {
-        $datas=SchoolOfficial::where('is_deleted', FALSE)->get();
+        $datas=PositionMapping::where('is_deleted', FALSE)->get();
         return view('administrator/references/schoolofficial/index', compact('datas'));
     }
 
@@ -29,8 +30,11 @@ class AdminSchoolOfficialController extends Controller
     public function create()
     {
         $workunits=ReferenceWorkUnits::all();
-        $principals=User::where('role_id', '3a0bb24e-e922-4c99-95ea-7b5346a70742')->get();
-        return view('administrator/references/schoolofficial/create', compact('workunits', 'principals'));
+        $principal_role=Roles::where('name', 'Kepala Sekolah')->first();
+        $official_role=Roles::where('name', 'Kepala Bidang')->first();
+        $principals=User::where('role_id', $principal_role->id)->get();
+        $officials=User::where('role_id', $official_role->id)->get();
+        return view('administrator/references/schoolofficial/create', compact('workunits', 'principals', 'officials'));
     }
 
     /**
@@ -42,13 +46,15 @@ class AdminSchoolOfficialController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'user_id'        => 'required',
+            'principal_id'   => 'required',
             'work_unit_id'   => 'required',
+            'supervisor_id'  => 'required'
         ];
 
         $messages = [
-            'user_id.required'       => 'Nama Wajib Diisi',
+            'principal_id.required'  => 'Nama Kepala Sekolah Wajib Diisi',
             'work_unit_id.required'  => 'Unit Kerja wajib diisi',
+            'supervisor_id.required' => 'Nama Kepala Bidang wajib diisi'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -57,9 +63,10 @@ class AdminSchoolOfficialController extends Controller
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
 
-        $data = new SchoolOfficial;
-        $data->user_id = $request->user_id;
+        $data = new PositionMapping;
+        $data->principal_id = $request->principal_id;
         $data->work_unit_id = $request->work_unit_id;
+        $data->supervisor_id = $request->supervisor_id;
         $data->is_active = TRUE;
         $data->is_deleted = FALSE;
         $save = $data->save();

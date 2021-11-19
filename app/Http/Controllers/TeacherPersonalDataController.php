@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\LeavePermissions;
-use App\Models\PerformanceTarget;
 
-class TeacherController extends Controller
+class TeacherPersonalDataController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +13,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->user()->id;
-        $is_integration=User::where(['id' => $user_id, 'personal_data_id' => NULL])->count();
-        $leavepermission=LeavePermissions::where('user_id', $user_id)->count();
-        $leavepermissionall=LeavePermissions::all()->count();
-        $performancetarget=PerformanceTarget::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
-        $performancetargetall=PerformanceTarget::all()->count();
-        return view('teacher/index', compact('is_integration', 'leavepermission', 'leavepermissionall', 'performancetarget', 'performancetargetall'));
+        return view('teacher/personaldata/index');
     }
 
     /**

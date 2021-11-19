@@ -31,4 +31,14 @@ class ReferenceWorkUnits extends Model
     {
       return $this->hasMany('App\Models\SchoolOfficial', 'id');
     }
+
+    public function performanceTarget()
+    {
+      return $this->hasMany('App\Models\PerformanceTarget', 'id');
+    }
+
+    public function positionMapping()
+    {
+      return $this->hasMany('App\Models\PositionMapping', 'id');
+    }
 }
