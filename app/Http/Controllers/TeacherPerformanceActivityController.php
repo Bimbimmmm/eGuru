@@ -15,9 +15,15 @@ use Alert;
 class TeacherPerformanceActivityController extends Controller
 {
     public function createpbt($id){
-      $datas=ReferenceActivityCreditScore::where('sub_element', 'PEMBELAJARAN/BIMBINGAN DAN TUGAS TERTENTU')->get();
-      $count=PerformanceTargetScore::where('performance_target_id', $id)->count();
-      return view('teacher/performance/activity/createpbt', compact('id', 'datas', 'count'));
+      $check=PerformanceTarget::where('id', $id)->count();
+      if($check > 0){
+        Alert::error('Gagal', 'SKP Sudah Dikunci');
+        return redirect()->back();
+      }else{
+        $datas=ReferenceActivityCreditScore::where('sub_element', 'PEMBELAJARAN/BIMBINGAN DAN TUGAS TERTENTU')->get();
+        $count=PerformanceTargetScore::where('performance_target_id', $id)->count();
+        return view('teacher/performance/activity/createpbt', compact('id', 'datas', 'count'));
+      }
     }
 
     public function storepbt(Request $request, $id){
@@ -212,9 +218,15 @@ class TeacherPerformanceActivityController extends Controller
     }
 
     public function createpkb($id){
-      $uuid=ReferenceActivityCreditScore::where('activity_item', 'Mengikuti pelatihan prajabatan')->first();
-      $datas=ReferenceActivityCreditScore::where('sub_element', 'PENGEMBANGAN KEPROFESIAN BERKELANJUTAN')->get();
-      return view('teacher/performance/activity/createpkb', compact('id', 'datas'));
+      $check=PerformanceTarget::where('id', $id)->count();
+      if($check > 0){
+        Alert::error('Gagal', 'SKP Sudah Dikunci');
+        return redirect()->back();
+      }else{
+        $uuid=ReferenceActivityCreditScore::where('activity_item', 'Mengikuti pelatihan prajabatan')->first();
+        $datas=ReferenceActivityCreditScore::where('sub_element', 'PENGEMBANGAN KEPROFESIAN BERKELANJUTAN')->get();
+        return view('teacher/performance/activity/createpkb', compact('id', 'datas'));
+      }
     }
 
     public function store(Request $request, $id){
@@ -268,12 +280,68 @@ class TeacherPerformanceActivityController extends Controller
     }
 
     public function createup($id){
-      $datas=ReferenceActivityCreditScore::where('sub_element', 'PENUNJANG TUGAS GURU')->get();
-      return view('teacher/performance/activity/createup', compact('id', 'datas'));
+      $check=PerformanceTarget::where('id', $id)->count();
+      if($check > 0){
+        Alert::error('Gagal', 'SKP Sudah Dikunci');
+        return redirect()->back();
+      }else{
+        $datas=ReferenceActivityCreditScore::where('sub_element', 'PENUNJANG TUGAS GURU')->get();
+        return view('teacher/performance/activity/createup', compact('id', 'datas'));
+      }
     }
 
     public function show($id, $idpt){
       $data=PerformanceTargetScore::where(['id' => $id, 'is_deleted' => FALSE])->first();
       return view('teacher/performance/activity/show', compact('id', 'idpt', 'data'));
+    }
+
+    public function uploadproof(Request $request, $id, $idpt){
+      $rules = [
+          'file'    => 'required',
+          'file.*'  => 'mimes:pdf|max:2048'
+      ];
+
+      $messages = [
+          'file.required'   => 'File Bukti Wajib Diisi',
+          'file.mimes'      => 'File Bukti wajib berekstensi .pdf'
+      ];
+
+      $validator = Validator::make($request->all(), $rules, $messages);
+
+      if($validator->fails()){
+          return redirect()->back()->withErrors($validator)->withInput($request->all);
+      }
+
+      $original_name = $request->file->getClientOriginalName();
+      $file = 'file_bukti_kegiatan_skp_' . time() . '_' . $original_name;
+      $request->file->move(public_path('storage/performancetarget/activity'), $file);
+
+      $data = PerformanceTargetScore::findOrFail($id);
+      $data->update([
+          'file'            => $file
+      ]);
+
+      if($data){
+            Alert::success('Berhasil', 'File Bukti Sudah Diupload');
+            return redirect()->route('teacherptshow', $idpt);
+      } else {
+            Alert::error('Gagal', 'Gagal Mengupload File Bukti! Silahkan ulangi beberapa saat lagi');
+            return redirect()->back();
+      }
+    }
+
+    public function delete($id){
+      $data = PerformanceTargetScore::findOrFail($id);
+      $data->update([
+          'is_deleted'            => TRUE
+      ]);
+
+      if($data){
+            Alert::success('Berhasil', 'Kegiatan Sudah Dihapus');
+            return redirect()->back();
+      } else {
+            Alert::error('Gagal', 'Gagal Menghapus Kegiatan! Silahkan ulangi beberapa saat lagi');
+            return redirect()->back();
+      }
     }
 }

@@ -9,6 +9,7 @@ use App\Models\PerformanceTargetWorkBehavior;
 use App\Models\ReferenceWorkBehavior;
 use App\Models\ReferenceActivityCreditScore;
 use App\Models\PositionMapping;
+use App\Models\User;
 use Validator;
 use Alert;
 
@@ -27,16 +28,6 @@ class TeacherPerformanceController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('teacher/performance/create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -44,7 +35,11 @@ class TeacherPerformanceController extends Controller
      */
     public function store(Request $request)
     {
-
+      $check=PerformanceTarget::where(['assessment_year' => $request->assessment_year, 'is_deleted' => FALSE])->count();
+      if($check > 0){
+        Alert::error('Gagal', 'Tahun SKP Sudah Ada');
+        return redirect()->back();
+      }else{
         $rules = [
             'assessment_year'       => 'required',
             'period'                => 'required',
@@ -116,6 +111,7 @@ class TeacherPerformanceController extends Controller
             Alert::error('Gagal', 'Gagal Membuat SKP! Silahkan ulangi beberapa saat lagi');
             return redirect()->route('teacherptcreate');
         }
+      }
     }
 
     /**
@@ -132,27 +128,19 @@ class TeacherPerformanceController extends Controller
         return view('teacher/performance/show', compact('data', 'count', 'activities'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    public function lock($id){
+      $data = PerformanceTarget::findOrFail($id);
+      $data->update([
+          'is_ready'            => TRUE
+      ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+      if($data){
+            Alert::success('Berhasil', 'SKP Berhasil Dikunci');
+            return redirect()->back();
+      } else {
+            Alert::error('Gagal', 'Gagal Mengunci SKP! Silahkan ulangi beberapa saat lagi');
+            return redirect()->back();
+      }
     }
 
     /**
@@ -163,6 +151,85 @@ class TeacherPerformanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $data = PerformanceTarget::findOrFail($id);
+      $data->update([
+          'is_deleted'            => TRUE
+      ]);
+
+      if($data){
+            Alert::success('Berhasil', 'SKP Sudah Dihapus');
+            return redirect()->back();
+      } else {
+            Alert::error('Gagal', 'Gagal Menghapus SKP! Silahkan ulangi beberapa saat lagi');
+            return redirect()->back();
+      }
+    }
+
+    public function showdp3($id){
+      $user_id = auth()->user()->id;
+      $getdatas=PerformanceTarget::where('id', $id)->first();
+      $getboss=PositionMapping::where('id', $getdatas->position_mapping_id)->first();
+
+      $get1=ReferenceWorkBehavior::where('name', 'Orientasi Pelayanan')->first();
+      $get2=ReferenceWorkBehavior::where('name', 'Integritas')->first();
+      $get3=ReferenceWorkBehavior::where('name', 'Komitmen')->first();
+      $get4=ReferenceWorkBehavior::where('name', 'Disiplin')->first();
+      $get5=ReferenceWorkBehavior::where('name', 'Kerjasama')->first();
+
+      $scoreget1=PerformanceTargetWorkBehavior::where(['performance_target_id' => $id, 'reference_work_behavior_id'=> $get1->id])->first();
+      $scoreget2=PerformanceTargetWorkBehavior::where(['performance_target_id' => $id, 'reference_work_behavior_id'=> $get2->id])->first();
+      $scoreget3=PerformanceTargetWorkBehavior::where(['performance_target_id' => $id, 'reference_work_behavior_id'=> $get3->id])->first();
+      $scoreget4=PerformanceTargetWorkBehavior::where(['performance_target_id' => $id, 'reference_work_behavior_id'=> $get4->id])->first();
+      $scoreget5=PerformanceTargetWorkBehavior::where(['performance_target_id' => $id, 'reference_work_behavior_id'=> $get5->id])->first();
+
+      $final= $scoreget1->score + $scoreget2->score + $scoreget3->score + $scoreget4->score + $scoreget5->score;
+      $average=$final/5;
+      $wb40=$average*40/100;
+      $count=PerformanceTargetScore::where(['performance_target_id' => $id, 'is_deleted' => FALSE])->count();
+      $getperformancetargetscores=PerformanceTargetScore::where(['performance_target_id' => $id, 'is_deleted' => FALSE])->get();
+      $getwbscores=PerformanceTargetWorkBehavior::where(['performance_target_id' => $id, 'is_deleted' => FALSE])->get();
+      $countwb=PerformanceTargetWorkBehavior::where(['performance_target_id' => $id, 'is_deleted' => FALSE])->count();
+      (float)$score=0;
+      foreach ($getperformancetargetscores as $getperformancetargetscore) {
+          $score=$score+$getperformancetargetscore->performance_value;
+      }
+      (float)$scorewb=0;
+      foreach ($getwbscores as $getwbscore) {
+          $scorewb=$scorewb+$getwbscore->score;
+      }
+      (float)$finalscore=($score/$count)*60/100;
+      (float)$finalskpscore=($score/$count);
+      (float)$secondscore=($scorewb/$countwb)*40/100;
+      (float)$finalwbscore=($scorewb/$countwb);
+
+      $selfdatas=User::where('id', $user_id)->first();
+      $directsup=User::where('id', $getboss->principal_id)->first();
+      $official=User::where('id', $getboss->supervisor_id)->first();
+
+      $userqrcode="Nama : {$selfdatas->personalData->name}\nNIP : {$selfdatas->personalData->registration_number}\nUnit Kerja : {$selfdatas->personalData->workUnit->name}";
+      $directspvqrcode="Nama : {$directsup->personalData->name}\nNIP : {$directsup->personalData->registration_number}\nJabatan : {$directsup->personalData->position->name}\nUnit Kerja : {$directsup->personalData->workUnit->name}";
+      $officialqrcode="Nama : {$official->personalData->name}\nNIP : {$official->personalData->registration_number}\nJabatan : {$official->personalData->position->name}\nUnit Kerja : {$official->personalData->workUnit->name}";
+
+      return view ('teacher/performance/result/dp3', compact(
+        'getdatas',
+        'userqrcode',
+        'directspvqrcode',
+        'officialqrcode',
+        'directsup',
+        'official',
+        'selfdatas',
+        'finalskpscore',
+        'finalscore',
+        'finalwbscore',
+        'finalwbscore',
+        'scoreget1',
+        'scoreget2',
+        'scoreget3',
+        'scoreget4',
+        'scoreget5',
+        'final',
+        'average',
+        'wb40'
+      ));
     }
 }

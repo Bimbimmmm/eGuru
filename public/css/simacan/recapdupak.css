@@ -1,0 +1,52 @@
+@page {
+    size: landscape;
+}
+
+body {
+    color: #4a4a4a;
+    font-family: Arial;
+    font-size: 0.70em;
+    font-weight: 300;
+    line-height: 1.0;
+}
+
+.titlef {
+    font-size: 1.3em;
+    font-weight: 300;
+    line-height: 1.125;
+}
+
+.subtitlef {
+    font-size: 1.0em;
+    font-weight: 300;
+    line-height: 1.125;
+}
+
+.subtitleff {
+    font-size: 0.8em;
+    font-weight: 300;
+    line-height: 1.125;
+}
+
+.is-lined {
+    border: 1px solid black;
+}
+hr {
+width: 100%;
+height: 1px;
+background-color: black;
+margin-right: auto;
+margin-left: auto;
+margin-top: 5px;
+border-width: 2px;
+}
+
+* {
+    -webkit-print-color-adjust: exact !important;   /* Chrome, Safari */
+    color-adjust: exact !important;                 /*Firefox*/
+}
+.square { height: 250px;}
+
+.squaree { height: 297.5px;}
+
+.custom_table, .custom_table tr, .custom_table td{border: none !important;}

@@ -16,8 +16,11 @@ use App\Http\Controllers\TeacherSolutionCornerController;
 use App\Http\Controllers\TeacherPersonalDataController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\PrincipalLeavePermissionController;
+use App\Http\Controllers\PrincipalPerformanceController;
+use App\Http\Controllers\PrincipalPerformanceWorkBehaviorController;
 use App\Http\Controllers\HeadDivisionController;
 use App\Http\Controllers\DivisionHeadLeavePermissionController;
+use App\Http\Controllers\DivisionHeadPerformanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +86,13 @@ Route::get('/teacher/performance', [TeacherPerformanceController::class, 'index'
 Route::get('/teacher/performance/create', [TeacherPerformanceController::class, 'create'])->middleware('can:isTeacher')->name('teacherptcreate');
 Route::post('/teacher/performance/store', [TeacherPerformanceController::class, 'store'])->middleware('can:isTeacher')->name('teacherptstore');
 Route::get('/teacher/performance/show/{id}', [TeacherPerformanceController::class, 'show'])->middleware('can:isTeacher')->name('teacherptshow');
+Route::post('/teacher/performance/lock/{id}', [TeacherPerformanceController::class, 'lock'])->middleware('can:isTeacher')->name('teacherptlock');
+Route::get('/teacher/performance/destroy/{id}', [TeacherPerformanceController::class, 'destroy'])->middleware('can:isTeacher')->name('teacherptdestroy');
+//Teacher Performance Files Routes
+Route::get('/teacher/performance/show/planning/{id}', [TeacherPerformanceController::class, 'showplanning'])->middleware('can:isTeacher')->name('teacherptshowplan');
+Route::get('/teacher/performance/show/realization/{id}', [TeacherPerformanceController::class, 'showrealization'])->middleware('can:isTeacher')->name('teacherptshowreal');
+Route::get('/teacher/performance/show/dp3/{id}', [TeacherPerformanceController::class, 'showdp3'])->middleware('can:isTeacher')->name('teacherptshowdp3');
+
 //Teacher Performance Activity Routes
 Route::get('/teacher/performance/activity/create/pbt/{id}', [TeacherPerformanceActivityController::class, 'createpbt'])->middleware('can:isTeacher')->name('teacherptapbt');
 Route::post('/teacher/performance/activity/create/pbt/store/{id}', [TeacherPerformanceActivityController::class, 'storepbt'])->middleware('can:isTeacher')->name('teacherptastorepbt');
@@ -90,7 +100,8 @@ Route::get('/teacher/performance/activity/create/pkb/{id}', [TeacherPerformanceA
 Route::post('/teacher/performance/activity/create/store/{id}', [TeacherPerformanceActivityController::class, 'store'])->middleware('can:isTeacher')->name('teacherptastoreactivity');
 Route::get('/teacher/performance/activity/create/up/{id}', [TeacherPerformanceActivityController::class, 'createup'])->middleware('can:isTeacher')->name('teacherptaup');
 Route::get('/teacher/performance/activity/show/{id}/{idpt}', [TeacherPerformanceActivityController::class, 'show'])->middleware('can:isTeacher')->name('teacherptactshow');
-Route::post('/teacher/performance/activity/store/{id}', [TeacherPerformanceActivityController::class, 'uploadproof'])->middleware('can:isTeacher')->name('teacherptproof');
+Route::post('/teacher/performance/activity/store/{id}/{idpt}', [TeacherPerformanceActivityController::class, 'uploadproof'])->middleware('can:isTeacher')->name('teacherptproof');
+Route::get('/teacher/performance/activity/delete/{id}', [TeacherPerformanceActivityController::class, 'delete'])->middleware('can:isTeacher')->name('teacherptactdelete');
 
 //Teacher Credit Score Routes
 Route::get('/teacher/creditscore', [TeacherCreditScoreController::class, 'index'])->middleware('can:isTeacher')->name('teachercs');
@@ -110,21 +121,33 @@ Route::get('/teacher/personaldata', [TeacherPersonalDataController::class, 'inde
 
 //PRINCIPAL ROUTES
 Route::get('/principal', [PrincipalController::class, 'index'])->middleware('can:isPrincipal')->name('principal');
-//Principal Leave Permission
+//Principal Leave Permission Routes
 Route::get('/principal/leavepermission', [PrincipalLeavePermissionController::class, 'index'])->middleware('can:isPrincipal')->name('principallp');
 Route::get('/principal/leavepermission/show/{id}', [PrincipalLeavePermissionController::class, 'show'])->middleware('can:isPrincipal')->name('principallpshow');
 Route::post('/principal/leavepermission/approve/{id}', [PrincipalLeavePermissionController::class, 'approve'])->middleware('can:isPrincipal')->name('principallpapprove');
 Route::post('/principal/leavepermission/reject/{id}', [PrincipalLeavePermissionController::class, 'reject'])->middleware('can:isPrincipal')->name('principallpreject');
+//Principal Performance Target Routes
+Route::get('/principal/performance', [PrincipalPerformanceController::class, 'index'])->middleware('can:isPrincipal')->name('principalpt');
+Route::get('/principal/performance/show/{id}', [PrincipalPerformanceController::class, 'show'])->middleware('can:isPrincipal')->name('principalptshow');
+Route::post('/principal/performance/done/{id}', [PrincipalPerformanceController::class, 'done'])->middleware('can:isPrincipal')->name('principalptdone');
+Route::get('/principal/performance/score/{id}/{idpt}', [PrincipalPerformanceController::class, 'score'])->middleware('can:isPrincipal')->name('principalptscore');
+Route::post('/principal/performance/scoreact/{id}/{idpt}', [PrincipalPerformanceController::class, 'scoreact'])->middleware('can:isPrincipal')->name('principalptscoreact');
+//Principal Performance Target Work Behavior Routes
+Route::post('/principal/performance/workbehavior/create/{id}', [PrincipalPerformanceWorkBehaviorController::class, 'create'])->middleware('can:isPrincipal')->name('principalptwbcreate');
+Route::get('/principal/performance/workbehavior/show/{id}/{idpt}', [PrincipalPerformanceWorkBehaviorController::class, 'show'])->middleware('can:isPrincipal')->name('principalptwbshow');
+Route::post('/principal/performance/workbehavior/score/{id}/{idpt}', [PrincipalPerformanceWorkBehaviorController::class, 'score'])->middleware('can:isPrincipal')->name('principalptwbscore');
 
 //DIVISION HEAD ROUTES
 Route::get('/divisionhead', [HeadDivisionController::class, 'index'])->middleware('can:isDivisionHead')->name('divisionhead');
-//Division Head Leave Permission
+//Division Head Leave Permission Routes
 Route::get('/divisionhead/leavepermission', [DivisionHeadLeavePermissionController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadlp');
 Route::get('/divisionhead/leavepermission/show/{id}', [DivisionHeadLeavePermissionController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadlpshow');
 Route::post('/divisionhead/leavepermission/approve/{id}', [DivisionHeadLeavePermissionController::class, 'approve'])->middleware('can:isDivisionHead')->name('divheadlpapprove');
 Route::post('/divisionhead/leavepermission/reject/{id}', [DivisionHeadLeavePermissionController::class, 'reject'])->middleware('can:isDivisionHead')->name('divheadlpreject');
-
-
+//Division Head Performance Routes
+Route::get('/divisionhead/performance', [DivisionHeadPerformanceController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadpt');
+Route::get('/divisionhead/performance/show/{id}', [DivisionHeadPerformanceController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadptshow');
+Route::post('/divisionhead/performance/done/{id}', [DivisionHeadPerformanceController::class, 'done'])->middleware('can:isDivisionHead')->name('divheadptdone');
 //OFFICE HEAD ROUTES
 
 //OPERATOR ROUTES

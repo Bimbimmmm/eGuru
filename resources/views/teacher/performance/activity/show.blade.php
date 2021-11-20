@@ -43,7 +43,7 @@
       </div>
       <div class="flex items-center justify-center mt-10">
         <div class="w-full max-w-md mr-4">
-          <form action="{{ route('teacherptproof', $data->id)}}" method="POST" class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border-2 border-red-500">
+          <form action="{{ route('teacherptproof', array($data->id, $idpt))}}" enctype="multipart/form-data" method="POST" class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border-2 border-green-500">
             @csrf
             <div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4">
               Upload File Bukti
@@ -61,7 +61,7 @@
               </div>
             </div>
           <div class="flex items-center justify-center mt-6">
-            <button class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+            <button class="shadow bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
               Upload
             </button>
           </div>

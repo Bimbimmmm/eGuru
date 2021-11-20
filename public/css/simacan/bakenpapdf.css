@@ -1,0 +1,47 @@
+@page {
+    size: portrait;
+}
+
+body {
+   color: #4a4a4a;
+   font-family: "Times New Roman", Times, serif;
+   font-size: 0.74em;
+   font-weight: 300;
+   line-height: 1.0;
+ }
+
+ .titlef {
+   font-size: 1.7em;
+   font-weight: 300;
+   line-height: 1.125;
+ }
+
+ .is-lined {
+     border: 1px solid black;
+   }
+   .subtitlef {
+       font-size: 1.0em;
+       font-weight: 300;
+       line-height: 1.125;
+   }
+
+   .subtitleff {
+       font-size: 0.9em;
+       font-weight: 300;
+       line-height: 1;
+   }
+   .subtitlefff {
+       font-size: 0.8em;
+       font-weight: 200;
+       line-height: 0;
+   }
+
+   .is-lined {
+       border: 1px solid black;
+   }
+
+   .square { height: 250px;}
+
+   .squaree { height: 297.5px;}
+
+   .custom_table, .custom_table tr, .custom_table td{border: none !important;}

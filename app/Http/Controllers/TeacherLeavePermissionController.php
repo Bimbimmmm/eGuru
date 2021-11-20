@@ -47,13 +47,17 @@ class TeacherLeavePermissionController extends Controller
     {
 
         $rules = [
-            'leave_type_id'               => 'required',
-            'leave_excuse'                => 'required',
-            'start_date'                  => 'required',
-            'end_date'                    => 'required',
-            'leave_address'               => 'required',
-            'file_recommendation_letter'  => 'required',
-            'file_leave_application'      => 'required'
+            'leave_type_id'                 => 'required',
+            'leave_excuse'                  => 'required',
+            'start_date'                    => 'required',
+            'end_date'                      => 'required',
+            'leave_address'                 => 'required',
+            'file_recommendation_letter'    => 'required',
+            'file_recommendation_letter.*'  => 'mimes:pdf|max:2048',
+            'file_leave_application'        => 'required',
+            'file_leave_application.*'      => 'mimes:pdf|max:2048',
+            'file_temporary_permission.*'   => 'mimes:pdf|max:2048',
+            'file_proof.*'                  => 'mimes:pdf|max:2048'
         ];
 
         $messages = [
@@ -63,7 +67,11 @@ class TeacherLeavePermissionController extends Controller
             'end_date.required'                       => 'Tanggal Selesai Cuti Wajib Diisi',
             'leave_address.required'                  => 'Alamat Selama Cuti Wajib Diisi',
             'file_recommendation_letter.required'     => 'File Rekomendasi Wajib Diupload',
-            'file_leave_application.required'         => 'File Permohonan Cuti Wajib Diupload'
+            'file_recommendation_letter.mimes'        => 'File Rekomendasi wajib berekstensi .pdf',
+            'file_leave_application.required'         => 'File Permohonan Cuti Wajib Diupload',
+            'file_leave_application.mimes'            => 'File Permohonan Cuti wajib berekstensi .pdf',
+            'file_temporary_permission.mimes'         => 'File Ijin Sementara wajib berekstensi .pdf',
+            'file_proof.mimes'                        => 'File Bukti Lainnya wajib berekstensi .pdf'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
