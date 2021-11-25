@@ -69,4 +69,9 @@ class PerformanceTarget extends Model
       return $this->hasMany('App\Models\PerformanceTargetWorkBehavior', 'id');
     }
 
+    public function assesmentCredit()
+    {
+      return $this->hasMany('App\Models\AssesmentCredit', 'id');
+    }
+
 }

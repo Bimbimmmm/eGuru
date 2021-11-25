@@ -50,6 +50,11 @@ class User extends Authenticatable
       return $this->hasMany('App\Models\SchoolOfficial', 'id');
     }
 
+    public function assesmentCredit()
+    {
+      return $this->hasMany('App\Models\AssesmentCredit', 'id');
+    }
+
     public function personalData()
     {
       return $this->belongsTo('App\Models\PersonalData', 'personal_data_id');
