@@ -338,8 +338,14 @@ class TeacherCreditScoreController extends Controller
      */
     public function edit($id, $idc)
     {
+        $check=AssesmentCredit::where(['id'=> $idc, 'is_ready' => TRUE])->count();
         $data=AssesmentCreditScore::where('id' , $id)->first();
-        return view('teacher/creditscore/edit', compact('data', 'idc'));
+        if($check > 0){
+          Alert::error('Gagal', 'Pengajuan PAK Sudah Dikunci!');
+          return redirect()->back();
+        }else{
+          return view('teacher/creditscore/edit', compact('data', 'idc'));
+        }
     }
 
     /**
@@ -369,8 +375,14 @@ class TeacherCreditScoreController extends Controller
 
     public function createold($id)
     {
-        $adtivities=ReferenceAssesmentCreditScoreActivity::all();
-        return view('teacher/creditscore/oldactivity', compact('adtivities', 'id'));
+        $check=AssesmentCredit::where(['id'=> $id, 'is_ready' => TRUE])->count();
+        $activities=ReferenceAssesmentCreditScoreActivity::all();
+        if($check > 0){
+          Alert::error('Gagal', 'Pengajuan PAK Sudah Dikunci!');
+          return redirect()->back();
+        }else{
+            return view('teacher/creditscore/oldactivity', compact('activities', 'id'));
+        }
     }
 
     public function storeold(Request $request, $id)
@@ -419,8 +431,19 @@ class TeacherCreditScoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function lock($id)
     {
-        //
+      $data = AssesmentCredit::findOrFail($id);
+      $data->update([
+        'is_ready' => TRUE
+      ]);
+
+      if($data){
+          Alert::success('Berhasil', 'Pengajuan PAK Berhasil Dikunci');
+          return redirect()->route('teachercs');
+      } else {
+          Alert::error('Gagal', 'Gagal Mengunci Pengajuan PAK! Silahkan ulangi beberapa saat lagi');
+          return redirect()->back();
+      }
     }
 }

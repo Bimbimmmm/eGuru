@@ -23,7 +23,7 @@
             </label>
             <select name="reference_assesment_credit_score_activity_id" id="reference_assesment_credit_score_activity_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
               <option>Pilih Kegiatan</option>
-              @foreach($adtivities as $activity)
+              @foreach($activities as $activity)
               <option value="{{$activity->id}}">{{$activity->activity_item}}</option>
               @endforeach
             </select>

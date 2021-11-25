@@ -21,6 +21,8 @@ use App\Http\Controllers\PrincipalPerformanceWorkBehaviorController;
 use App\Http\Controllers\HeadDivisionController;
 use App\Http\Controllers\DivisionHeadLeavePermissionController;
 use App\Http\Controllers\DivisionHeadPerformanceController;
+use App\Http\Controllers\AssesorController;
+use App\Http\Controllers\AssesorCreditController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +114,7 @@ Route::get('/teacher/creditscore/edit/{id}/{idc}', [TeacherCreditScoreController
 Route::post('/teacher/creditscore/update/{id}/{idc}', [TeacherCreditScoreController::class, 'update'])->middleware('can:isTeacher')->name('teachercsupdate');
 Route::get('/teacher/creditscore/create/oldactivity/{id}', [TeacherCreditScoreController::class, 'createold'])->middleware('can:isTeacher')->name('teachercscrold');
 Route::post('/teacher/creditscore/create/oldactivity/store/{id}', [TeacherCreditScoreController::class, 'storeold'])->middleware('can:isTeacher')->name('teachercscrstoreold');
+Route::post('/teacher/creditscore/lock/{id}', [TeacherCreditScoreController::class, 'lock'])->middleware('can:isTeacher')->name('teachercslock');
 
 //Teacher Promotion Routes
 Route::get('/teacher/promotion', [TeacherPromotionController::class, 'index'])->middleware('can:isTeacher')->name('teacherpm');
@@ -160,5 +163,9 @@ Route::post('/divisionhead/performance/done/{id}', [DivisionHeadPerformanceContr
 //OPERATOR ROUTES
 
 //ASSESOR ROUTES
-
+Route::get('/assesor', [AssesorController::class, 'index'])->middleware('can:isAssesor')->name('assesor');
+//Assesor Credit Controller
+Route::get('/assesor/creditscore', [AssesorCreditController::class, 'index'])->middleware('can:isAssesor')->name('assesorcr');
+Route::get('/assesor/creditscore/show/{id}', [AssesorCreditController::class, 'show'])->middleware('can:isAssesor')->name('assesorcrshow');
+Route::get('/assesor/creditscore/score/{id}/{idc}', [AssesorCreditController::class, 'score'])->middleware('can:isAssesor')->name('assesorcrscore');
 //EXECUTIVE ROUTES
