@@ -34,9 +34,9 @@ class AssesmentCreditScoreRejected extends Model
     return $this->belongsTo('App\Models\AssesmentCreditScore', 'assesment_credit_score_id');
   }
 
-  public function performanceTarget()
+  public function performanceTargetScore()
   {
-    return $this->belongsTo('App\Models\PerformanceTarget', 'performance_target_score_id');
+    return $this->belongsTo('App\Models\PerformanceTargetScore', 'performance_target_score_id');
   }
 
 }

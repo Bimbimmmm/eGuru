@@ -1,31 +1,33 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Berita Acara Penilaian Angka Kredit {{$get_yearly_assessment_data->personalData->name}}</title>
+  <title>Penetapan Angka Kredit {{$get_assesment_credit_data->user->personalData->name}}</title>
 
   <link rel="shortcut icon" href="/image/kaltara.png" />
   <!-- Styles -->
-  <link rel="stylesheet" type="text/css" href= "/css/bulma.min.css">
-  <link rel="stylesheet" type="text/css" href= "/css/bulma.css">
-  <link rel="stylesheet" type="text/css" href= "/css/app.css">
-  <link rel="stylesheet" type="text/css" href= "/css/all.css">
-  <link rel="stylesheet" type="text/css" href= "/css/bappdf.css">
-  <link rel="stylesheet" type="text/css" href= "/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href= "/css/fontawesome.min.css">
+  <link rel="stylesheet" type="text/css" href= "/css/simacan/bulma.min.css">
+  <link rel="stylesheet" type="text/css" href= "/css/simacan/bulma.css">
+  <link rel="stylesheet" type="text/css" href= "/css/simacan/app.css">
+  <link rel="stylesheet" type="text/css" href= "/css/simacan/all.css">
+  <link rel="stylesheet" type="text/css" href= "/css/simacan/bappdf.css">
+  <link rel="stylesheet" type="text/css" href= "/css/simacan/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href= "/css/simacan/fontawesome.min.css">
 
 </head>
 <body>
   <main class="py-4">
     <div class="container">
       <div class="box is-box">
-        <h1 align="center" class="titlef is-5"><b>BERITA ACARA PENILAIAN ANGKA KREDIT</b></h1>
-        <h1 align="center" class="titlef is-5"><b>TAHUN {{$get_yearly_assessment_data->performanceTarget->assessment_year}}</b></h1>
+        <h1 align="center" class="titlef is-5"><b>PENETAPAN ANGKA KREDIT</b></h1>
+        <h1 align="center" class="titlef is-5"><b>DINAS PENDIDIKAN KABUPATEN TANA TIDUNG</b></h1>
+        <h1 align="center" class="titlef is-5"><b>PROVINSI KALIMANTAN UTARA</b></h1>
+        <h1 align="center" class="titlef is-5"><b>TAHUN {{$get_assesment_credit_data->performanceTarget->assessment_year}}</b></h1>
         <div class="columns">
           <div class="column">
-            <h1 align="center" class="subtitleff"><b>Instansi: Dinas Pendidikan dan Kebudayaan Provinsi Kalimantan Utara</b></h1>
+            <h1 align="center" class="subtitleff"><b>Instansi: Dinas Pendidikan Kabupaten Tana Tidung</b></h1>
           </div>
           <div class="column">
-            <h1 align="center" class="subtitleff">Masa Penilaian 01 Januari {{$get_yearly_assessment_data->performanceTarget->assessment_year}} s/d 31 Desember {{$get_yearly_assessment_data->performanceTarget->assessment_year}}</h1>
+            <h1 align="center" class="subtitleff">Masa Penilaian 01 Januari {{$get_assesment_credit_data->performanceTarget->assessment_year}} s/d 31 Desember {{$get_assesment_credit_data->performanceTarget->assessment_year}}</h1>
           </div>
         </div>
         <table class="table is-bordered is-fullwidth">
@@ -36,72 +38,84 @@
           <tr>
             <td>1</td>
             <td colspan="2">Nama</td>
-            <td colspan="2">{{$get_yearly_assessment_data->personalData->name}}</td>
+            <td colspan="2">{{$get_assesment_credit_data->user->personalData->name}}</td>
           </tr>
           <tr>
             <td>2</td>
             <td colspan="2">NIP</td>
-            <td colspan="2">{{$get_yearly_assessment_data->personalData->civil_servant_reg_number}}</td>
+            <td colspan="2">{{$get_assesment_credit_data->user->personalData->registration_number}}</td>
           </tr>
           <tr>
             <td>3</td>
             <td colspan="2">NUPTK</td>
-            <td colspan="2">{{$get_yearly_assessment_data->cs_unique_number}}</td>
+            <td colspan="2">{{$get_assesment_credit_data->user->personalData->educator_number}}</td>
           </tr>
           <tr>
             <td>4</td>
             <td colspan="2">Tempat dan Tanggal Lahir</td>
-            <td colspan="2">{{$get_yearly_assessment_data->personalData->place_of_birth}}, {{$get_yearly_assessment_data->personalData->date_of_birth->isoFormat('D MMMM Y')}}</td>
+            <td colspan="2">{{$get_assesment_credit_data->user->personalData->birth_place}}, {{$get_assesment_credit_data->user->personalData->birth_date->isoFormat('DD MMMM Y')}}</td>
           </tr>
           <tr>
             <td>5</td>
             <td colspan="2">Jenis Kelamin</td>
-            <td colspan="2">{{$get_yearly_assessment_data->personalData->gender->name}}</td>
+            <td colspan="2">{{$get_assesment_credit_data->user->personalData->gender}}</td>
           </tr>
           <tr>
             <td>6</td>
             <td colspan="2">Pendidikan yang telah diperhitungkan angka kreditnya</td>
-            <td colspan="2">{{$get_yearly_assessment_data->education->grain_item}}</td>
+            <td colspan="2">{{$get_assesment_credit_data->refEduCreditScore->name}}</td>
           </tr>
           <tr>
             <td>7</td>
             <td colspan="2">Pangkat / Golongan ruang / TMT</td>
-            <td colspan="2">{{$get_yearly_assessment_data->personalData->rankGroup->rank}} / {{$get_yearly_assessment_data->personalData->rankGroup->group}}</td>
+            <td colspan="2">{{$get_assesment_credit_data->user->personalData->rank->rank}} / {{$get_assesment_credit_data->user->personalData->rank->group}}</td>
           </tr>
           <tr>
             <td>8</td>
             <td colspan="2">Jabatan Guru / TMT</td>
-            <td colspan="2">{{$get_yearly_assessment_data->personalData->functionalPosition->name}}</td>
+            <td colspan="2">{{$get_assesment_credit_data->user->personalData->position->name}}</td>
           </tr>
           <tr>
             <td rowspan="2">9</td>
             <td rowspan="2">Masa Kerja Golongan</td>
             <td>Lama</td>
-            <td colspan="2">{{$get_yearly_assessment_data->old_work_year}}</td>
+            <td colspan="2">{{$get_assesment_credit_data->old_work_year}}</td>
           </tr>
           <tr>
             <td>Baru</td>
-            <td colspan="2">{{$get_yearly_assessment_data->new_work_year}}</td>
+            <td colspan="2">{{$get_assesment_credit_data->new_work_year}}</td>
           </tr>
           <tr>
             <td>10</td>
             <td colspan="2">Jenis Guru</td>
-            <td colspan="2">{{$get_yearly_assessment_data->cs_type}}</td>
+            <td colspan="2">{{$get_assesment_credit_data->user->personalData->teacher_type}}</td>
           </tr>
           <tr>
             <td>11</td>
             <td colspan="2">Unit Kerja</td>
-            <td colspan="2">{{$get_yearly_assessment_data->personalData->workUnit->name}}</td>
+            <td colspan="2">{{$get_assesment_credit_data->user->personalData->workUnit->name}}</td>
           </tr>
           <tr>
             <td rowspan="2">12</td>
             <td rowspan="2">Alamat</td>
             <td>Sekolah</td>
-            <td colspan="2"></td>
+            <td colspan="2">
+              {{$get_assesment_credit_data->user->personalData->workUnit->address}},
+              {{$get_assesment_credit_data->user->personalData->workUnit->village}},
+              {{$get_assesment_credit_data->user->personalData->workUnit->district}},
+              {{$get_assesment_credit_data->user->personalData->workUnit->city}},
+              {{$get_assesment_credit_data->user->personalData->workUnit->province}}
+            </td>
           </tr>
           <tr>
             <td>Rumah</td>
-            <td colspan="2">{{$get_yearly_assessment_data->address}}</td>
+              <td colspan="2">
+                {{$get_assesment_credit_data->user->personalData->address}},
+                {{$get_assesment_credit_data->user->personalData->village}},
+                {{$get_assesment_credit_data->user->personalData->district}},
+                {{$get_assesment_credit_data->user->personalData->city}},
+                {{$get_assesment_credit_data->user->personalData->province}}
+              </td>
           </tr>
           <tr>
             <td rowspan="19"><b>II</b></td>
@@ -238,39 +252,86 @@
   <div class="column">
     <div class="columns">
       <div class="column">
-        Nama : {{$get_yearly_assessment_data->personalData->name}}
+        <div class="colums">
+          KEPADA :
+        </div>
+        <div class="colums">
+          Nama : {{$get_assesment_credit_data->user->personalData->name}}
+        </div>
+        <div class="colums">
+          NIP : {{$get_assesment_credit_data->user->personalData->registration_number}}
+        </div>
+        <div class="colums">
+          Alamat : {{$get_assesment_credit_data->user->personalData->address}}
+        </div>
       </div>
     </div>
     <div class="columns">
       <div class="column">
-        NIP : {{$get_yearly_assessment_data->personalData->civil_servant_reg_number}}
+        <div class="colums">
+          ASLI disampaikan kepada Kepala Badan Kepegawaian Negara
+        </div>
+        <div class="colums">
+          Kantor Regional VIII Banjarmasin di Banjarbaru
+        </div>
       </div>
     </div>
     <div class="columns">
       <div class="column">
-        Alamat : {{$get_yearly_assessment_data->address}}
+        <div class="colums">
+          <b><u><i>Tembusan Yth,</i></u></b>
+        </div>
+        <div class="colums">
+          1. Bupati Tana Tidung di Tideng Pale
+        </div>
+        <div class="colums">
+          2. BKD Kab. Tana Tidung di Tideng Pale
+        </div>
+        <div class="colums">
+          3. Kepala {{$get_assesment_credit_data->user->personalData->workUnit->name}}
+        </div>
+        <div class="colums">
+          4. {{$get_assesment_credit_data->user->personalData->name}}
+        </div>
       </div>
     </div>
   </div>
   <div class="column">
     <div class="columns">
       <div class="column">
-        Nunukan, {{$get_yearly_assessment_data->assessment_date->isoFormat('D MMMM Y')}}
+        <div class="columns">
+          DITETAPKAN DI : Tideng Pale
+        </div>
+        <div class="columns">
+          PADA TANGGAL : {{$get_assesment_credit_data->updated_at->isoFormat('DD MMMM Y')}}
+        </div>
       </div>
     </div>
     <div class="columns">
       <div class="column">
-        Penilai,
+        <div class="columns">
+          Kepala Dinas,
+        </div>
       </div>
     </div>
     <div class="columns">
       <div class="column">
-        {!! QrCode::size(75)->generate($assesorqrcode); !!}
+        <div class="columns">
+          {!! QrCode::size(75)->generate($assesorqrcode); !!}
+        </div>
       </div>
     </div>
     <div class="columns">
       <div class="column">
-        Tim Penilai
+        <div class="columns">
+          <b><u>Jafar Sidik, SE.</u></b>
+        </div>
+        <div class="columns">
+          <b>Pembina Utama Muda</b>
+        </div>
+        <div class="columns">
+          <b>NIP. 19620815 198602 1 005</b>
+        </div>
       </div>
     </div>
   </div>
@@ -279,42 +340,32 @@
 
 <div class="box is-box">
   <h1 align="center" class="titlef is-5"><b>LEMBAR PENILAIAN PENGEMBANGAN KEPROFESIAN (PKB) GURU</b></h1>
-  <h1 align="center" class="titlef is-5"><b>PERIODE TAHUN {{$get_yearly_assessment_data->performanceTarget->assessment_year}}</b></h1>
+  <h1 align="center" class="titlef is-5"><b>PERIODE TAHUN {{$get_assesment_credit_data->performanceTarget->assessment_year}}</b></h1>
 <div class="columns">
   <div class="column">
     <div class="columns">
     <div class="column">
-      Nomor / Tgl Usul :
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column">
-      Pengusulan Ke :
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column">
-      Nama : {{$get_yearly_assessment_data->personalData->name}}
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column">
-      NIP : {{$get_yearly_assessment_data->personalData->civil_servant_reg_number}}
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column">
-      Tempat, Tanggal Lahir : {{$get_yearly_assessment_data->personalData->place_of_birth}}, {{$get_yearly_assessment_data->personalData->date_of_birth->isoFormat('D MMMM Y')}}
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column">
-      Pangkat/Gol/Ruang : {{$get_yearly_assessment_data->personalData->rankGroup->rank}} / {{$get_yearly_assessment_data->personalData->rankGroup->group}}
-    </div>
-  </div>
-  <div class="columns">
-    <div class="column">
-      Unit Kerja : {{$get_yearly_assessment_data->personalData->workUnit->name}}
+      <div class="columns">
+        Nomor / Tgl Usul :
+      </div>
+      <div class="columns">
+        Pengusulan Ke :
+      </div>
+      <div class="columns">
+        Nama : {{$get_assesment_credit_data->user->personalData->name}}
+      </div>
+      <div class="columns">
+        NIP : {{$get_assesment_credit_data->user->personalData->registration_number}}
+      </div>
+      <div class="columns">
+        Tempat, Tanggal Lahir : {{$get_assesment_credit_data->user->personalData->birth_place}}, {{$get_assesment_credit_data->user->personalData->birth_date->isoFormat('DD MMMM Y')}}
+      </div>
+      <div class="columns">
+        Pangkat/Gol/Ruang : {{$get_assesment_credit_data->user->personalData->rank->rank}} / {{$get_assesment_credit_data->user->personalData->rank->group}}
+      </div>
+      <div class="columns">
+        Unit Kerja : {{$get_assesment_credit_data->user->personalData->workUnit->name}}
+      </div>
     </div>
   </div>
 </div>
@@ -327,12 +378,13 @@ $num=1;
   <tr class="is-centered">
     <th rowspan="2">No</th>
     <th rowspan="2">Kegiatan PKB</th>
-    <th colspan="4">Hasil Penilaian</th>
+    <th colspan="5">Hasil Penilaian</th>
   </tr>
   <tr class="is-centered">
     <th>Kriteria</th>
     <th>No. Alasan Penolakan</th>
-    <th>Alasan Penolakan dan Saran</th>
+    <th>Alasan Penolakan</th>
+    <th>Saran</th>
     <th>Nilai</th>
   </tr>
 </thead>
@@ -340,11 +392,12 @@ $num=1;
 @foreach($get_rejected_datas as $get_rejected_data)
 <tr>
   <td>{{$num++}}</td>
-  <td>{{$get_rejected_data->performanceTarget->activityReference->grain_item}}</td>
+  <td>{{$get_rejected_data->performanceTargetScore->refActivityCreditScore->grain_item}} {{$get_rejected_data->performanceTargetScore->refActivityCreditScore->sub_grain_item}}</td>
   <td></td>
-  <td></td>
+  <td>{{$get_rejected_data->id}}</td>
   <td>{{$get_rejected_data->reason}}</td>
-  <td>{{$get_rejected_data->performanceTarget->realization_credit_score}}</td>
+  <td>{{$get_rejected_data->suggestion}}</td>
+  <td>{{$get_rejected_data->performanceTargetScore->realization_credit_score}}</td>
 </tr>
 @endforeach
 </tbody>
