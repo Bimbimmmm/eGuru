@@ -55,5 +55,10 @@ class AssesmentCredit extends Model
     return $this->hasMany('App\Models\AssesmentCreditScore', 'id');
   }
 
+  public function assesmentCreditScoreRejected()
+  {
+    return $this->hasMany('App\Models\AssesmentCreditScoreRejected', 'id');
+  }
+
 
 }

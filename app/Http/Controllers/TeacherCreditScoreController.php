@@ -446,4 +446,8 @@ class TeacherCreditScoreController extends Controller
           return redirect()->back();
       }
     }
+
+    public function pdf($id){
+      
+    }
 }

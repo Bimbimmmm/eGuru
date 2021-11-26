@@ -21,6 +21,7 @@ use App\Http\Controllers\PrincipalPerformanceWorkBehaviorController;
 use App\Http\Controllers\HeadDivisionController;
 use App\Http\Controllers\DivisionHeadLeavePermissionController;
 use App\Http\Controllers\DivisionHeadPerformanceController;
+use App\Http\Controllers\DivisionHeadCreditScoreController;
 use App\Http\Controllers\AssesorController;
 use App\Http\Controllers\AssesorCreditController;
 
@@ -115,6 +116,7 @@ Route::post('/teacher/creditscore/update/{id}/{idc}', [TeacherCreditScoreControl
 Route::get('/teacher/creditscore/create/oldactivity/{id}', [TeacherCreditScoreController::class, 'createold'])->middleware('can:isTeacher')->name('teachercscrold');
 Route::post('/teacher/creditscore/create/oldactivity/store/{id}', [TeacherCreditScoreController::class, 'storeold'])->middleware('can:isTeacher')->name('teachercscrstoreold');
 Route::post('/teacher/creditscore/lock/{id}', [TeacherCreditScoreController::class, 'lock'])->middleware('can:isTeacher')->name('teachercslock');
+Route::get('/teacher/creditscore/pdf/{id}', [TeacherCreditScoreController::class, 'pdf'])->middleware('can:isTeacher')->name('teachercspdf');
 
 //Teacher Promotion Routes
 Route::get('/teacher/promotion', [TeacherPromotionController::class, 'index'])->middleware('can:isTeacher')->name('teacherpm');
@@ -158,6 +160,11 @@ Route::post('/divisionhead/leavepermission/reject/{id}', [DivisionHeadLeavePermi
 Route::get('/divisionhead/performance', [DivisionHeadPerformanceController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadpt');
 Route::get('/divisionhead/performance/show/{id}', [DivisionHeadPerformanceController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadptshow');
 Route::post('/divisionhead/performance/done/{id}', [DivisionHeadPerformanceController::class, 'done'])->middleware('can:isDivisionHead')->name('divheadptdone');
+//Division Head Credit Score Routes
+Route::get('/divisionhead/creditscore', [DivisionHeadCreditScoreController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadcr');
+Route::get('/divisionhead/creditscore/show/{id}', [DivisionHeadCreditScoreController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadcrshow');
+Route::post('/divisionhead/creditscore/lock/{id}', [DivisionHeadCreditScoreController::class, 'lock'])->middleware('can:isDivisionHead')->name('divheadcrlock');
+
 //OFFICE HEAD ROUTES
 
 //OPERATOR ROUTES
@@ -168,4 +175,9 @@ Route::get('/assesor', [AssesorController::class, 'index'])->middleware('can:isA
 Route::get('/assesor/creditscore', [AssesorCreditController::class, 'index'])->middleware('can:isAssesor')->name('assesorcr');
 Route::get('/assesor/creditscore/show/{id}', [AssesorCreditController::class, 'show'])->middleware('can:isAssesor')->name('assesorcrshow');
 Route::get('/assesor/creditscore/score/{id}/{idc}', [AssesorCreditController::class, 'score'])->middleware('can:isAssesor')->name('assesorcrscore');
+Route::post('/assesor/creditscore/scorestore/{id}', [AssesorCreditController::class, 'scorestore'])->middleware('can:isAssesor')->name('assesorcrscorestore');
+Route::get('/assesor/creditscore/reject/{idperformancescore}/{idassesmentscore}/{idassesment}', [AssesorCreditController::class, 'reject'])->middleware('can:isAssesor')->name('assesorcrreject');
+Route::post('/assesor/creditscore/rejectstore/{idperformancescore}/{idassesmentscore}/{idassesment}', [AssesorCreditController::class, 'rejectstore'])->middleware('can:isAssesor')->name('assesorcrrejectstore');
+Route::post('/assesor/creditscore/scoring/{id}/{idc}', [AssesorCreditController::class, 'scoring'])->middleware('can:isAssesor')->name('assesorcrscoring');
+Route::post('/assesor/creditscore/lock/{id}', [AssesorCreditController::class, 'lock'])->middleware('can:isAssesor')->name('assesorcrlock');
 //EXECUTIVE ROUTES

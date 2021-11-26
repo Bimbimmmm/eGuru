@@ -74,4 +74,9 @@ class PerformanceTarget extends Model
       return $this->hasMany('App\Models\AssesmentCredit', 'id');
     }
 
+    public function assesmentCreditScoreRejected()
+    {
+      return $this->hasMany('App\Models\AssesmentCreditScoreRejected', 'id');
+    }
+
 }

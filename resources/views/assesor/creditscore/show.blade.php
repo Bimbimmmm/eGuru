@@ -136,26 +136,32 @@
                 </p>
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                @if($data->total_evaluator_credit_score == NULL)
                 <a href="/assesor/creditscore/score/{{$data->id}}/{{$assesment->id}}" class="text-green-600 hover:text-green-400 ml-2">
                   <i class="material-icons-round text-base">visibility</i>
                 </a>
+                @else
+                <a class="text-red-600 ml-2">
+                  <i class="material-icons">lock_outline</i>
+                </a>
+                @endif
               </td>
             </tr>
             @endforeach
           </tbody>
         </table>
       </div>
-      @if($assesment->is_ready == FALSE)
+      @if($assesment->is_finished == FALSE)
       <div class="flex items-center justify-center mt-10">
         <div class="w-full max-w-md mr-4">
-          <form action="{{ route('teachercslock', array("$assesment->id"))}}" method="POST" class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border-2 border-red-500">
+          <form action="{{ route('assesorcrlock', array("$assesment->id"))}}" method="POST" class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border-2 border-red-500">
             @csrf
             <div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4">
-              Kunci Pengajuan
+              Kunci Penilaian
             </div>
             <div class="mb-6 text-center">
               <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
-                Jika Pengajuan Sudah Dikunci, Perubahan Sudah Tidak Dapat Dilakukan
+                Jika Penilaian Sudah Dikunci, Perubahan Sudah Tidak Dapat Dilakukan
               </label>
             </div>
             <div class="flex items-center justify-center">

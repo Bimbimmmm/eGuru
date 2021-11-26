@@ -35,4 +35,9 @@ class AssesmentCreditScore extends Model
     return $this->belongsTo('App\Models\ReferenceAssesmentCreditScoreActivity', 'reference_assesment_credit_score_activity_id');
   }
 
+  public function assesmentCreditScoreRejected()
+  {
+    return $this->hasMany('App\Models\AssesmentCreditScoreRejected', 'id');
+  }
+
 }

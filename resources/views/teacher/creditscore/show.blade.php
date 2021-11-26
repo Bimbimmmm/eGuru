@@ -38,6 +38,16 @@
                 </a>
               </td>
             </tr>
+            @if($assesment->is_official_approve == TRUE)
+            <tr class="text-gray-700 text-center">
+              <td class="px-4 py-3 text-ms border font-semibold">File PAK {{$assesment->performanceTarget->assessment_year}}</td>
+              <td class="px-4 py-3 text-ms border">
+                <a href="/teacher/creditscore/pdf/{{$assesment->id}}">
+                    <span class="inline-block rounded-min text-white bg-green-500 px-2 py-1 text-xs font-bold mr-3">Download</span>
+                </a>
+              </td>
+            </tr>
+            @endif
           </tbody>
         </table>
       </div>
