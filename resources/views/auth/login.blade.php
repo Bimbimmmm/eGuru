@@ -133,7 +133,7 @@
         <div class="absolute bg-gradient-to-b from-blue-300 to-blue-500 opacity-50 inset-0 z-0"></div>
         <div class="w-full  max-w-md z-10">
           <div class="sm:text-4xl xl:text-5xl font-bold leading-tight mb-6">E-GURU</div>
-          <div class="sm:text-sm xl:text-md text-gray-200 font-normal capitalize">
+          <div class="sm:text-xl xl:text-md text-gray-200 font-normal capitalize">
               aplikasi e-Guru adalah salah satu aplikasi yang terdapat dalam SIDIK (Sistem Informasi Dinas Pendidikan KTT)
               dan memiliki fungsi sebagai pusat layanan administrasi bagi guru
           </div>
