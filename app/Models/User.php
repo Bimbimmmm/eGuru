@@ -80,4 +80,9 @@ class User extends Authenticatable
       return $this->hasMany('App\Models\PositionMapping', 'id');
     }
 
+    public function promotion()
+    {
+      return $this->hasMany('App\Models\Promotion', 'id');
+    }
+
 }

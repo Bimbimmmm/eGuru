@@ -120,6 +120,18 @@ Route::get('/teacher/creditscore/pdf/{id}', [TeacherCreditScoreController::class
 
 //Teacher Promotion Routes
 Route::get('/teacher/promotion', [TeacherPromotionController::class, 'index'])->middleware('can:isTeacher')->name('teacherpm');
+Route::get('/teacher/promotion/create', [TeacherPromotionController::class, 'create'])->middleware('can:isTeacher')->name('teacherpmcreate');
+Route::post('/teacher/promotion/store', [TeacherPromotionController::class, 'store'])->middleware('can:isTeacher')->name('teacherpmstore');
+Route::get('/teacher/promotion/show/{id}', [TeacherPromotionController::class, 'show'])->middleware('can:isTeacher')->name('teacherpmshow');
+Route::get('/teacher/promotion/score/edit/{id}/{pmid}', [TeacherPromotionController::class, 'edit'])->middleware('can:isTeacher')->name('teacherpmedit');
+Route::get('/teacher/promotion/upload/{id}/{pmid}', [TeacherPromotionController::class, 'upload'])->middleware('can:isTeacher')->name('teacherpmupload');
+Route::post('/teacher/promotion/update/{id}/{pmid}', [TeacherPromotionController::class, 'update'])->middleware('can:isTeacher')->name('teacherpmupdate');
+Route::post('/teacher/promotion/uploadfile/{id}/{pmid}', [TeacherPromotionController::class, 'uploadfile'])->middleware('can:isTeacher')->name('teacherpmuploadfile');
+Route::post('/teacher/promotion/lock/{id}', [TeacherPromotionController::class, 'lock'])->middleware('can:isTeacher')->name('teacherpmlock');
+Route::get('/teacher/promotion/create/oldactivity/{id}', [TeacherPromotionController::class, 'oldactivity'])->middleware('can:isTeacher')->name('teacherpmoldact');
+Route::post('/teacher/promotion/storeold/{id}', [TeacherPromotionController::class, 'storeold'])->middleware('can:isTeacher')->name('teacherpmstoreold');
+Route::get('/teacher/promotion/score/destroy/{id}', [TeacherPromotionController::class, 'destroy'])->middleware('can:isTeacher')->name('teacherpmdestroy');
+Route::get('/teacher/promotion/lock/{id}', [TeacherPromotionController::class, 'lock'])->middleware('can:isTeacher')->name('teacherpmlock');
 
 //Teacher Salary Increase Routes
 Route::get('/teacher/salaryincrease', [TeacherSalaryIncreaseController::class, 'index'])->middleware('can:isTeacher')->name('teachersi');
