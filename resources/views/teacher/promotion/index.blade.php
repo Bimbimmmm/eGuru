@@ -45,17 +45,26 @@
             <td class="px-4 py-3 text-sm border">
               <span class="inline-block rounded-full text-white bg-yellow-500 px-2 py-1 text-xs font-bold mr-3">Belum Dikunci</span>
             </td>
-            @elseif($data->is_locked == TRUE && $data->is_finished == FALSE && $data->is_rejected == FALSE)
+            @elseif($data->is_locked == TRUE && $data->is_finish == FALSE && $data->is_rejected == FALSE)
             <td class="px-4 py-3 text-sm border">
               <span class="inline-block rounded-full text-white bg-indigo-500 px-2 py-1 text-xs font-bold mr-3">Menunggu Penilaian</span>
+              @if($data->is_assesed == FALSE)
+              <span class="inline-block rounded-full text-white bg-indigo-500 px-2 py-1 text-xs font-bold mr-3">Tim Penilai</span>
+              @else
+              <span class="inline-block rounded-full text-white bg-indigo-500 px-2 py-1 text-xs font-bold mr-3">Kepala Dinas</span>
+              @endif
             </td>
-            @elseif($data->is_finished == TRUE && $data->is_rejected == FALSE)
+            @elseif($data->is_finish == TRUE && $data->is_rejected == FALSE)
             <td class="px-4 py-3 text-sm border">
               <span class="inline-block rounded-full text-white bg-green-500 px-2 py-1 text-xs font-bold mr-3">Sudah Dinilai</span>
+              <a href="{{ url ('/teacher/promotion/pdf', array("$data->id")) }}">
+                <span class="inline-block rounded-full text-white bg-green-500 px-2 py-1 text-xs font-bold mr-3">Lihat Hasil</span>
+              </a>
             </td>
             @elseif($data->is_rejected == TRUE)
             <td class="px-4 py-3 text-sm border">
               <span class="inline-block rounded-full text-white bg-red-500 px-2 py-1 text-xs font-bold mr-3">Pengajuan Ditolak</span>
+              <span class="inline-block rounded-full text-white bg-red-500 px-2 py-1 text-xs font-bold mr-3 mt-1">{{$data->rejected_reason}}</span>
             </td>
             @endif
             <td class="px-4 py-3 text-sm border">

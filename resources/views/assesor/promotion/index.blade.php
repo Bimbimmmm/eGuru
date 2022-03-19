@@ -9,7 +9,7 @@
         </svg>
       </button>
     </a>
-    <h1 class="mb-12 text-center text-4xl text-gray-500 font-bold">Penilaian Angka Kredit</h1>
+    <h1 class="mb-12 text-center text-4xl text-gray-500 font-bold">Pengajuan Kenaikan Pangkat</h1>
     <div class="my-2 flex sm:flex-row flex-col">
     </div>
     <div class="mx-4 sm:mx-8 px-4 sm:px-8 py-4 overflow-x-auto ">
@@ -30,10 +30,13 @@
                 Unit Kerja
               </th>
               <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                Tahun PAK
+                Jenis Pengajuan
               </th>
               <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                Jenjang Pendidikan
+                Tahun dan Periode Pengajuan
+              </th>
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                File PAK KENPA Terakhir
               </th>
               <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 Aksi
@@ -43,7 +46,7 @@
           <tbody>
             @foreach($datas as $data)
             <tr>
-              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center text-center">
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <p class="text-gray-900 whitespace-no-wrap">
                   {{$loop->iteration}}
                 </p>
@@ -65,16 +68,21 @@
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <p class="text-gray-900 whitespace-no-wrap">
-                  {{$data->performanceTarget->assessment_year}}
+                  {{$data->refPromotionCreditScore->current_rank}} ke {{$data->refPromotionCreditScore->promotion_rank}}
                 </p>
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <p class="text-gray-900 whitespace-no-wrap">
-                  {{$data->refEduCreditScore->name}}
+                  {{$data->assementCredit->performanceTarget->assessment_year}} - {{$data->promotion_period}}
                 </p>
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-                <a href="/assesor/creditscore/show/{{$data->id}}" class="text-green-600 hover:text-green-400 ml-2">
+                <a href="{{ asset('storage/promotion/' . $data->file) }}" class="text-blue-900 underline hover:text-blue-800">
+                  {{$data->file}}
+                </a>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+                <a href="/assesor/promotion/show/{{$data->id}}" class="text-green-600 hover:text-green-400 ml-2">
                   <i class="material-icons-round text-base">visibility</i>
                 </a>
               </td>

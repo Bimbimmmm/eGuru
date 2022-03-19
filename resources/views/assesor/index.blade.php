@@ -24,7 +24,7 @@
             <div class="flex flex-wrap">
               <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                 <h5 class="text-blueGray-400 uppercase font-bold text-xl">PEMBUATAN PAK</h5>
-                <span class="font-semibold text-xl text-blueGray-700">901</span>
+                <span class="font-semibold text-xl text-blueGray-700">{{$count_ac_nf}}</span>
               </div>
               <div class="relative w-auto pl-4 flex-initial">
                 <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-lightBlue-500">
@@ -37,7 +37,7 @@
               </div>
             </div>
             <p class="text-sm text-blueGray-400 mt-4">
-              <span class="text-emerald-500 mr-2">0</span>
+              <span class="text-emerald-500 mr-2">{{$count_ac_f}}</span>
               <span class="whitespace-nowrap">Total PAK Diproses</span></p>
             </div>
           </div>
@@ -49,7 +49,7 @@
               <div class="flex flex-wrap">
                 <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                   <h5 class="text-blueGray-400 uppercase font-bold text-xl">PENGAJUAN KENPA</h5>
-                  <span class="font-semibold text-xl text-blueGray-700">51</span>
+                  <span class="font-semibold text-xl text-blueGray-700">{{$count_pr_nf}}</span>
                 </div>
                 <div class="relative w-auto pl-4 flex-initial">
                   <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-emerald-500">
@@ -62,7 +62,7 @@
                 </div>
               </div>
               <p class="text-sm text-blueGray-400 mt-4">
-                <span class="text-emerald-500 mr-2">0</span>
+                <span class="text-emerald-500 mr-2">{{$count_pr_f}}</span>
                 <span class="whitespace-nowrap">Total KENPA Diproses</span></p>
               </div>
             </div>

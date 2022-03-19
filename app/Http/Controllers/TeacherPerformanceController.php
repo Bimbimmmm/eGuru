@@ -27,6 +27,12 @@ class TeacherPerformanceController extends Controller
         return view('teacher/performance/index', compact('datas'));
     }
 
+    public function create()
+    {
+    //
+    return view('teacher/performance/create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

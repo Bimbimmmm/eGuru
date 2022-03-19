@@ -22,10 +22,12 @@ class Promotion extends Model
       'assesment_credit_id',
       'last_promotion_credit_score',
       'old_work_year',
+      'new_work_year',
       'file',
       'is_locked',
-      'is_finish',
+      'is_assesed',
       'asseseed_by',
+      'is_finish',
       'is_rejected',
       'rejected_reason',
       'is_deleted'

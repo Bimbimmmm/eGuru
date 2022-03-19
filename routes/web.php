@@ -24,6 +24,9 @@ use App\Http\Controllers\DivisionHeadPerformanceController;
 use App\Http\Controllers\DivisionHeadCreditScoreController;
 use App\Http\Controllers\AssesorController;
 use App\Http\Controllers\AssesorCreditController;
+use App\Http\Controllers\AssesorPromotionController;
+use App\Http\Controllers\HeadOfficeController;
+use App\Http\Controllers\HeadOfficePromotionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,6 +135,7 @@ Route::get('/teacher/promotion/create/oldactivity/{id}', [TeacherPromotionContro
 Route::post('/teacher/promotion/storeold/{id}', [TeacherPromotionController::class, 'storeold'])->middleware('can:isTeacher')->name('teacherpmstoreold');
 Route::get('/teacher/promotion/score/destroy/{id}', [TeacherPromotionController::class, 'destroy'])->middleware('can:isTeacher')->name('teacherpmdestroy');
 Route::get('/teacher/promotion/lock/{id}', [TeacherPromotionController::class, 'lock'])->middleware('can:isTeacher')->name('teacherpmlock');
+Route::get('/teacher/promotion/pdf/{id}', [TeacherPromotionController::class, 'pdf'])->middleware('can:isTeacher')->name('teacherpmpdf');
 
 //Teacher Salary Increase Routes
 Route::get('/teacher/salaryincrease', [TeacherSalaryIncreaseController::class, 'index'])->middleware('can:isTeacher')->name('teachersi');
@@ -178,6 +182,11 @@ Route::get('/divisionhead/creditscore/show/{id}', [DivisionHeadCreditScoreContro
 Route::post('/divisionhead/creditscore/lock/{id}', [DivisionHeadCreditScoreController::class, 'lock'])->middleware('can:isDivisionHead')->name('divheadcrlock');
 
 //OFFICE HEAD ROUTES
+Route::get('/officehead', [HeadOfficeController::class, 'index'])->middleware('can:isOfficeHead')->name('officehead');
+//Head Office Promotion
+Route::get('/officehead/promotion', [HeadOfficePromotionController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadpr');
+Route::get('/officehead/promotion/show/{id}', [HeadOfficePromotionController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadprshow');
+Route::post('/officehead/promotion/approve/{id}', [HeadOfficePromotionController::class, 'approve'])->middleware('can:isOfficeHead')->name('officeheadprapprove');
 
 //OPERATOR ROUTES
 
@@ -192,4 +201,9 @@ Route::get('/assesor/creditscore/reject/{idperformancescore}/{idassesmentscore}/
 Route::post('/assesor/creditscore/rejectstore/{idperformancescore}/{idassesmentscore}/{idassesment}', [AssesorCreditController::class, 'rejectstore'])->middleware('can:isAssesor')->name('assesorcrrejectstore');
 Route::post('/assesor/creditscore/scoring/{id}/{idc}', [AssesorCreditController::class, 'scoring'])->middleware('can:isAssesor')->name('assesorcrscoring');
 Route::post('/assesor/creditscore/lock/{id}', [AssesorCreditController::class, 'lock'])->middleware('can:isAssesor')->name('assesorcrlock');
+//Assesor Promotion Controller
+Route::get('/assesor/promotion', [AssesorPromotionController::class, 'index'])->middleware('can:isAssesor')->name('assesorpr');
+Route::get('/assesor/promotion/show/{id}', [AssesorPromotionController::class, 'show'])->middleware('can:isAssesor')->name('assesorprshow');
+Route::post('/assesor/promotion/rejected/{id}/{reason}', [AssesorPromotionController::class, 'rejected'])->middleware('can:isAssesor')->name('assesorprreject');
+Route::post('/assesor/promotion/accepted/{id}', [AssesorPromotionController::class, 'accepted'])->middleware('can:isAssesor')->name('assesorpracc');
 //EXECUTIVE ROUTES

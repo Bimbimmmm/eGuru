@@ -19,7 +19,7 @@
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-              Jenis Cuti
+              Jenis Cuti <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
             <select name="leave_type_id" id="leave_type_id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
               <option value="0">Pilih Jenis Cuti</option>
@@ -32,7 +32,7 @@
         <div id="leave_year" class="flex flex-wrap -mx-3 mb-6" style="display:none;">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-              Tahun Cuti
+              Tahun Cuti <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
             <input name="leave_year" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
           </div>
@@ -40,7 +40,7 @@
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
-              File Surat Rekomendasi
+              File Surat Rekomendasi <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
             <label class="w-64 flex flex-col w-full items-center px-4 py-6 bg-yellow-400 text-white rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-yellow-500 hover:text-white">
               <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -50,12 +50,22 @@
               <input type='file' id="file_recommendation_letter" name="file_recommendation_letter" hidden>
             </label>
             <span id="file_recommendation_letter_name"></span>
+            <div class="container mt-3" id="alertbox">
+              <div class="container bg-red-500 flex items-center text-white text-sm font-bold px-4 py-3 relative"
+              role="alert">
+              <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+              </svg>
+              <p>File Berekstensi *.pdf Dengan Maksimal Size 2MB</p>
+            </div>
+          </div>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
-              File Surat Permohonan
+              File Surat Permohonan <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
             <label class="w-64 flex flex-col w-full items-center px-4 py-6 bg-yellow-400 text-white rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-yellow-500 hover:text-white">
               <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -65,12 +75,22 @@
               <input type='file' id="file_leave_application" name="file_leave_application" hidden>
             </label>
             <span id="file_leave_application_name"></span>
+            <div class="container mt-3" id="alertbox">
+              <div class="container bg-red-500 flex items-center text-white text-sm font-bold px-4 py-3 relative"
+              role="alert">
+              <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+              </svg>
+              <p>File Berekstensi *.pdf Dengan Maksimal Size 2MB</p>
+            </div>
+          </div>
           </div>
         </div>
         <div id="file_temporary_permission" class="flex flex-wrap -mx-3 mb-6" style="display:none;">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
-              File Surat Ijin Sementara
+              File Surat Ijin Sementara <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
             <label class="w-64 flex flex-col w-full items-center px-4 py-6 bg-yellow-400 text-white rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-yellow-500 hover:text-white">
               <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -80,12 +100,22 @@
               <input type='file' id="file_temporary_permission" name="file_temporary_permission" hidden>
             </label>
             <span id="file_temporary_permission_name"></span>
+            <div class="container mt-3" id="alertbox">
+              <div class="container bg-red-500 flex items-center text-white text-sm font-bold px-4 py-3 relative"
+              role="alert">
+              <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+              </svg>
+              <p>File Berekstensi *.pdf Dengan Maksimal Size 2MB</p>
+            </div>
+          </div>
           </div>
         </div>
         <div id="file_proof" class="flex flex-wrap -mx-3 mb-6" style="display:none;">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
-              File Bukti Lainnya
+              File Bukti Lainnya <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
             <label class="w-64 flex flex-col w-full items-center px-4 py-6 bg-yellow-400 text-white rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-yellow-500 hover:text-white">
               <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -95,12 +125,22 @@
               <input type='file' id="file_proof" name="file_proof" hidden>
             </label>
             <span id="file_proof_name"></span>
+            <div class="container mt-3" id="alertbox">
+              <div class="container bg-red-500 flex items-center text-white text-sm font-bold px-4 py-3 relative"
+              role="alert">
+              <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+              </svg>
+              <p>File Berekstensi *.pdf Dengan Maksimal Size 2MB</p>
+            </div>
+          </div>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-              Alasan Cuti
+              Alasan Cuti <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
             <textarea name="leave_excuse" id="leave_excuse" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required></textarea>
           </div>
@@ -108,25 +148,25 @@
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-              Tanggal Mulai Cuti
+              Tanggal Mulai Cuti <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
-            <input name="start_date" id="start_date" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
+            <input name="start_date" id="start_date" placeholder="Masukkan Tanggal Mulai Cuti" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-              Tanggal Selesai Cuti
+              Tanggal Selesai Cuti <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
-            <input name="end_date" id="end_date" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
+            <input name="end_date" id="end_date" placeholder="Masukkan Tanggal Selesai Cuti" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
-              Alamat Selama Cuti
+              Alamat Selama Cuti <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
-            <input name="leave_address" id="leave_address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
+            <input name="leave_address" id="leave_address" placeholder="Masukkan Alamat Selama Cuti" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
           </div>
         </div>
         <div class="md:flex md:items-center">

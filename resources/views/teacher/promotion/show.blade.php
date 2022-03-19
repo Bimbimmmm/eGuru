@@ -12,7 +12,7 @@
     <h1 class="mb-12 text-center text-4xl text-black font-bold">Pengajuan Kenaikan Pangkat</h1>
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
       <div class="w-full overflow-x-auto">
-        <table class="w-full">
+        <table class="w-full mb-8">
           <thead>
             <tr class="text-md text-center font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
               <th class="px-4 py-3">No</th>
