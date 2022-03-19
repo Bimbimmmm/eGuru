@@ -27,6 +27,7 @@ use App\Http\Controllers\AssesorCreditController;
 use App\Http\Controllers\AssesorPromotionController;
 use App\Http\Controllers\HeadOfficeController;
 use App\Http\Controllers\HeadOfficePromotionController;
+use App\Http\Controllers\HeadOfficeSalaryIncreaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -193,7 +194,11 @@ Route::get('/officehead', [HeadOfficeController::class, 'index'])->middleware('c
 Route::get('/officehead/promotion', [HeadOfficePromotionController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadpr');
 Route::get('/officehead/promotion/show/{id}', [HeadOfficePromotionController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadprshow');
 Route::post('/officehead/promotion/approve/{id}', [HeadOfficePromotionController::class, 'approve'])->middleware('can:isOfficeHead')->name('officeheadprapprove');
-
+//Head Office Salary Increase
+Route::get('/officehead/salaryincrease', [HeadOfficeSalaryIncreaseController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadsi');
+Route::get('/officehead/salaryincrease/show/{id}', [HeadOfficeSalaryIncreaseController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadsishow');
+Route::post('/officehead/salaryincrease/approve/{id}', [HeadOfficeSalaryIncreaseController::class, 'approve'])->middleware('can:isOfficeHead')->name('officeheadsiapprove');
+Route::post('/officehead/salaryincrease/reject/{id}', [HeadOfficeSalaryIncreaseController::class, 'reject'])->middleware('can:isOfficeHead')->name('officeheadsireject');
 //OPERATOR ROUTES
 
 //ASSESOR ROUTES
