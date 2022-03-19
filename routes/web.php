@@ -139,7 +139,13 @@ Route::get('/teacher/promotion/pdf/{id}', [TeacherPromotionController::class, 'p
 
 //Teacher Salary Increase Routes
 Route::get('/teacher/salaryincrease', [TeacherSalaryIncreaseController::class, 'index'])->middleware('can:isTeacher')->name('teachersi');
-
+Route::get('/teacher/salaryincrease/create', [TeacherSalaryIncreaseController::class, 'create'])->middleware('can:isTeacher')->name('teachersicreate');
+Route::post('/teacher/salaryincrease/store', [TeacherSalaryIncreaseController::class, 'store'])->middleware('can:isTeacher')->name('teachersistore');
+Route::get('/teacher/salaryincrease/show/{id}', [TeacherSalaryIncreaseController::class, 'show'])->middleware('can:isTeacher')->name('teachersishow');
+Route::get('/teacher/salaryincrease/pdf/{id}', [TeacherSalaryIncreaseController::class, 'pdf'])->middleware('can:isTeacher')->name('teachersipdf');
+Route::get('/teacher/salaryincrease/upload/{id}/{siid}', [TeacherSalaryIncreaseController::class, 'upload'])->middleware('can:isTeacher')->name('teachersiupload');
+Route::post('/teacher/salaryincrease/uploadfile/{id}/{siid}', [TeacherSalaryIncreaseController::class, 'uploadfile'])->middleware('can:isTeacher')->name('teachersiuploadfile');
+Route::post('/teacher/salaryincrease/lock/{id}', [TeacherSalaryIncreaseController::class, 'lock'])->middleware('can:isTeacher')->name('teachersilock');
 //Teacher Solution Corner Routes
 Route::get('/teacher/solutioncorner', [TeacherSolutionCornerController::class, 'index'])->middleware('can:isTeacher')->name('teachersc');
 

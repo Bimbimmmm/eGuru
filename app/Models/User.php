@@ -85,4 +85,9 @@ class User extends Authenticatable
       return $this->hasMany('App\Models\Promotion', 'id');
     }
 
+    public function salaryIncrease()
+    {
+      return $this->hasMany('App\Models\SalaryIncrease', 'id');
+    }
+
 }

@@ -82,7 +82,7 @@ class TeacherPromotionController extends Controller
     $check=Promotion::where(['assesment_credit_id' => $request->assesment_credit_id, 'promotion_period' => $request->promotion_period, 'is_deleted' => FALSE])->count();
     if($check > 0){
       Alert::error('Gagal', 'PAK Terakhir Sudah Pernah Diajukan!');
-      return redirect()->route('teachercs');
+      return redirect()->route('teacherpm');
     }else{
 
       $original_name = $request->file->getClientOriginalName();
