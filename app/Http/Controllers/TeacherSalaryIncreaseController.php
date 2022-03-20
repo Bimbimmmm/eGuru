@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SalaryIncrease;
 use App\Models\SalaryIncreaseFile;
 use App\Models\ReferenceSalaryIncreaseFile;
+use App\Models\DecreeNumber;
 use Validator;
 use Alert;
 use Carbon\Carbon;
@@ -199,6 +200,11 @@ class TeacherSalaryIncreaseController extends Controller
 
   public function pdf($id)
   {
-    return view('teacher/salaryincrease/pdf', compact('data', 'siid'));
+    $data=SalaryIncrease::where('id', $id)->first();
+    $get_decree_number=DecreeNumber::where('salary_increase_id', $id)->first();
+    $decree_head=str_pad($get_decree_number->id, 4, '0', STR_PAD_LEFT);
+    $next_tmt=date('Y', strtotime('+2 year', strtotime( $data->new_date )));
+    $officialqrcode="Nama Lengkap : Jafar Sidik, SE. | NIP : NIP. 19620815 198602 1 005 | Pembina Utama Muda | Kepala Dinas";
+    return view('teacher/salaryincrease/pdf', compact('data', 'decree_head', 'get_decree_number', 'next_tmt', 'officialqrcode'));
   }
 }
