@@ -90,4 +90,14 @@ class User extends Authenticatable
       return $this->hasMany('App\Models\SalaryIncrease', 'id');
     }
 
+    public function solutionCorner()
+    {
+      return $this->hasMany('App\Models\SolutionCorner', 'id');
+    }
+
+    public function solutionCornerHandle()
+    {
+      return $this->hasMany('App\Models\SolutionCorner', 'id');
+    }
+
 }

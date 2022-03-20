@@ -149,7 +149,9 @@ Route::post('/teacher/salaryincrease/uploadfile/{id}/{siid}', [TeacherSalaryIncr
 Route::post('/teacher/salaryincrease/lock/{id}', [TeacherSalaryIncreaseController::class, 'lock'])->middleware('can:isTeacher')->name('teachersilock');
 //Teacher Solution Corner Routes
 Route::get('/teacher/solutioncorner', [TeacherSolutionCornerController::class, 'index'])->middleware('can:isTeacher')->name('teachersc');
-
+Route::get('/teacher/solutioncorner/create', [TeacherSolutionCornerController::class, 'create'])->middleware('can:isTeacher')->name('teachersccreate');
+Route::get('/teacher/solutioncorner/show/{id}', [TeacherSolutionCornerController::class, 'show'])->middleware('can:isTeacher')->name('teacherscshow');
+Route::post('/teacher/solutioncorner/store', [TeacherSolutionCornerController::class, 'store'])->middleware('can:isTeacher')->name('teacherscstore');
 //Teacher Personal Data Routes
 Route::get('/teacher/personaldata', [TeacherPersonalDataController::class, 'index'])->middleware('can:isTeacher')->name('teacherpd');
 

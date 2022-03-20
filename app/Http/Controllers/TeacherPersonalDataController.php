@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\PersonalData;
 
 class TeacherPersonalDataController extends Controller
 {
@@ -13,7 +14,10 @@ class TeacherPersonalDataController extends Controller
      */
     public function index()
     {
-        return view('teacher/personaldata/index');
+        $reg = auth()->user()->registration_number;
+        $id = auth()->user()->personal_data_id;
+        $data=PersonalData::where(['registration_number' => $reg, 'id' => $id])->first();
+        return view('teacher/personaldata/index', compact('data'));
     }
 
     /**

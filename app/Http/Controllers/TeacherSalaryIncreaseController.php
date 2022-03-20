@@ -56,11 +56,11 @@ class TeacherSalaryIncreaseController extends Controller
     $messages = [
       'year.required'  => 'Tahun Pengajuan KGB Wajib Dipilih',
       'type.required'  => 'Tipe KGB Wajib Dipilih',
-      'old_salary' => 'Gaji Lama Wajib Dimasukkan',
-      'old_decree_date' => 'Tanggal SK Lama Wajib Dimasukkan',
-      'old_decree_number' => 'Nomor SK Lama Wajib Dimasukkan',
-      'old_date' => 'T.M.T Lama Wajib Dimasukkan',
-      'old_work_year' => 'Masa Kerja Golongan Lama Wajib Dimasukkan'
+      'old_salary.required' => 'Gaji Lama Wajib Dimasukkan',
+      'old_decree_date.required' => 'Tanggal SK Lama Wajib Dimasukkan',
+      'old_decree_number.required' => 'Nomor SK Lama Wajib Dimasukkan',
+      'old_date.required' => 'T.M.T Lama Wajib Dimasukkan',
+      'old_work_year.required' => 'Masa Kerja Golongan Lama Wajib Dimasukkan'
     ];
 
     $validator = Validator::make($request->all(), $rules, $messages);
