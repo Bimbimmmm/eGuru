@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\LeavePermissions;
-use App\Models\SchoolOfficial;
+use App\Models\PositionMapping;
 use Validator;
 use Alert;
 
@@ -19,8 +19,8 @@ class PrincipalLeavePermissionController extends Controller
   public function index()
   {
     $user_id = auth()->user()->id;
-    $myoffical=SchoolOfficial::where('user_id', $user_id)->first();
-    $datas=LeavePermissions::where(['school_official_id' => $myoffical->id, 'is_direct_supervisor_approve' => FALSE])->latest()->get();
+    $myoffical=PositionMapping::where('principal_id', $user_id)->first();
+    $datas=LeavePermissions::where(['position_mapping_id' => $myoffical->id, 'is_direct_supervisor_approve' => FALSE])->latest()->get();
     return view('principal/leavepermission/index', compact('datas'));
   }
 

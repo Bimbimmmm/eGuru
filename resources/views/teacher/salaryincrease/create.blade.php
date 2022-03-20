@@ -36,6 +36,46 @@
             </select>
           </div>
         </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+              Gaji Pokok Lama <span class="text-xs text-red-500"><i>*required</i>
+            </label>
+            <input name="old_salary" id="old_salary" placeholder="Masukkan Gaji Pokok Lama" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
+          </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+              Tanggal SK Lama <span class="text-xs text-red-500"><i>*required</i>
+            </label>
+            <input name="old_decree_date" id="old_decree_date" placeholder="Masukkan Tanggal SK Lama" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
+          </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+              Nomor SK Lama <span class="text-xs text-red-500"><i>*required</i>
+            </label>
+            <input name="old_decree_number" id="old_decree_number" placeholder="Masukkan Nomor SK Lama" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
+          </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+              T.M.T Lama <span class="text-xs text-red-500"><i>*required</i>
+            </label>
+            <input name="old_date" id="old_date" placeholder="Masukkan T.M.T Lama" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
+          </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <div class="w-full px-3">
+            <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+              Masa Kerja Golongan Lama <span class="text-xs text-red-500"><i>*required</i>
+            </label>
+            <input name="old_work_year" id="old_work_year" placeholder="XX Tahun XX Bulan" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
+          </div>
+        </div>
         <div class="md:flex md:items-center">
           <div class="md:w-1/3">
             <button class="shadow bg-green-600 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
@@ -52,14 +92,45 @@
   </div>
 </div>
 <script>
-let file = document.getElementById('file');
-let file_name = document.getElementById('file_name');
+var rupiah = document.getElementById('old_salary');
+rupiah.addEventListener('keyup', function(e){
+  // tambahkan 'Rp.' pada saat form di ketik
+  // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+  rupiah.value = formatRupiah(this.value, 'Rp. ');
+});
 
-file.addEventListener('change', function(){
-  if(this.files.length)
-      file_name.innerText = this.files[0].name;
-  else
-      file_name.innerText = '';
+/* Fungsi formatRupiah */
+function formatRupiah(angka, prefix){
+  var number_string = angka.replace(/[^,\d]/g, '').toString(),
+  split   		= number_string.split(','),
+  sisa     		= split[0].length % 3,
+  rupiah     		= split[0].substr(0, sisa),
+  ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+  // tambahkan titik jika yang di input sudah menjadi angka ribuan
+  if(ribuan){
+    separator = sisa ? '.' : '';
+    rupiah += separator + ribuan.join('.');
+  }
+
+  rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+  return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+}
+</script>
+<script>
+$( function() {
+  $( "#old_decree_date" ).datepicker({
+    dateFormat: "dd-mm-yy",
+    changeMonth: true,
+  });
+});
+</script>
+<script>
+$( function() {
+  $( "#old_date" ).datepicker({
+    dateFormat: "dd-mm-yy",
+    changeMonth: true,
+  });
 });
 </script>
 @endsection

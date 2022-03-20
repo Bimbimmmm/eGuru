@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\SalaryIncrease;
 use App\Models\SalaryIncreaseFile;
 use App\Models\ReferenceSalaryIncreaseFile;
+use App\Models\DecreeNumber;
 use Validator;
 use Alert;
+use Carbon\Carbon;
 
 class HeadOfficeSalaryIncreaseController extends Controller
 {
@@ -42,10 +44,73 @@ class HeadOfficeSalaryIncreaseController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
-  public function approve($id)
+  public function approve(Request $request, $id)
   {
+    $rules = [
+      'new_salary' => 'required',
+      'new_work_year' => 'required',
+      'new_date' => 'required'
+    ];
+
+    $messages = [
+      'new_salary.required' => 'Gaji Pokok Baru Wajib Diisi',
+      'new_work_year.required' => 'Masa Kerja Golongan Baru Wajib Diisi',
+      'new_date.required' => 'T.M.T Baru Wajib Diisi'
+    ];
+
+    $validator = Validator::make($request->all(), $rules, $messages);
+
+    if($validator->fails()){
+      return redirect()->back()->withErrors($validator)->withInput($request->all);
+    }
+
+    date_default_timezone_set('Asia/Makassar');
+    $month=date('m');
+    $year=date('Y');
+    $month_decree= "null";
+    if($month === 1){
+      $month_decree="I";
+    }else if($month == 2){
+      $month_decree="II";
+    }else if($month == 3){
+      $month_decree="III";
+    }else if($month == 4){
+      $month_decree="IV";
+    }else if($month == 5){
+      $month_decree="V";
+    }else if($month == 6){
+      $month_decree="VI";
+    }else if($month == 7){
+      $month_decree="VII";
+    }else if($month == 8){
+      $month_decree="VIII";
+    }else if($month == 9){
+      $month_decree="IX";
+    }else if($month == 10){
+      $month_decree="X";
+    }else if($month == 11){
+      $month_decree="XI";
+    }else if($month == 12){
+      $month_decree="XII";
+    }
+
+    $name = auth()->user()->personalData->name;
+
+    $data = new DecreeNumber;
+    $data->type = "Surat Pengajuan Kenaikan Gaji Berkala";
+    $data->salary_increase_id = $id;
+    $data->month = $month_decree;
+    $data->year = $year;
+    $data->assesed_by = $name;
+    $save = $data->save();
+
+    $new_date=Carbon::parse($request->new_date);
+
     DB::table('salary_increase')->whereId($id)->update([
-      'is_finish'        => TRUE
+      'is_finish'     => TRUE,
+      'new_salary'    => $request->new_salary,
+      'new_work_year' => $request->new_work_year,
+      'new_date'      => $new_date
     ]);
 
     Alert::success('Berhasil', 'Pengajuan Kenaikan Gaji Berkala Diterima');

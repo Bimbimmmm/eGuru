@@ -23,7 +23,7 @@ class LeavePermissions extends Model
         'leave_address',
         'is_direct_supervisor_approved',
         'direct_supervisor_note',
-        'school_official_id',
+        'position_mapping_id',
         'is_official_approve',
         'official_note',
         'file_recommendation_letter',
@@ -49,8 +49,13 @@ class LeavePermissions extends Model
     return $this->belongsTo('App\Models\User', 'user_id');
   }
 
-  public function schoolOfficial()
+  public function positionMapping()
   {
-    return $this->belongsTo('App\Models\SchoolOfficial', 'school_official_id');
+    return $this->belongsTo('App\Models\PositionMapping', 'position_mapping_id');
+  }
+
+  public function decreeNumber()
+  {
+    return $this->hasMany('App\Models\DecreeNumber', 'id');
   }
 }

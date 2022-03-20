@@ -26,10 +26,10 @@ class CreateLeavePermissionsTable extends Migration
           $table->date('start_date');
           $table->date('end_date');
           $table->string('leave_address');
+          $table->uuid('position_mapping_id');
+          $table->foreign('position_mapping_id')->references('id')->on('position_mapping');
           $table->boolean('is_direct_supervisor_approve');
           $table->string('direct_supervisor_note')->nullable();
-          $table->uuid('school_official_id');
-          $table->foreign('school_official_id')->references('id')->on('school_official');
           $table->boolean('is_official_approve');
           $table->string('official_note')->nullable();
           $table->string('file_recommendation_letter')->nullable();

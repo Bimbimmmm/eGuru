@@ -8,6 +8,7 @@ use App\Models\SalaryIncreaseFile;
 use App\Models\ReferenceSalaryIncreaseFile;
 use Validator;
 use Alert;
+use Carbon\Carbon;
 
 class TeacherSalaryIncreaseController extends Controller
 {
@@ -43,12 +44,22 @@ class TeacherSalaryIncreaseController extends Controller
   {
     $rules = [
       'year' => 'required',
-      'type' => 'required'
+      'type' => 'required',
+      'old_salary' => 'required',
+      'old_decree_date' => 'required',
+      'old_decree_number' => 'required',
+      'old_date' => 'required',
+      'old_work_year' => 'required'
     ];
 
     $messages = [
       'year.required'  => 'Tahun Pengajuan KGB Wajib Dipilih',
-      'type.required'  => 'Tipe KGB Wajib Dipilih'
+      'type.required'  => 'Tipe KGB Wajib Dipilih',
+      'old_salary' => 'Gaji Lama Wajib Dimasukkan',
+      'old_decree_date' => 'Tanggal SK Lama Wajib Dimasukkan',
+      'old_decree_number' => 'Nomor SK Lama Wajib Dimasukkan',
+      'old_date' => 'T.M.T Lama Wajib Dimasukkan',
+      'old_work_year' => 'Masa Kerja Golongan Lama Wajib Dimasukkan'
     ];
 
     $validator = Validator::make($request->all(), $rules, $messages);
@@ -66,9 +77,17 @@ class TeacherSalaryIncreaseController extends Controller
       return redirect()->route('teachersi');
     }else{
 
+      $old_date=Carbon::parse($request->old_date);
+      $old_decree_date=Carbon::parse($request->old_decree_date);
+
       $data = new SalaryIncrease;
       $data->year = $request->year;
       $data->type = $request->type;
+      $data->old_salary = $request->old_salary;
+      $data->old_decree_date = $old_decree_date;
+      $data->old_decree_number = $request->old_decree_number;
+      $data->old_date = $old_date;
+      $data->old_work_year = $request->old_work_year;
       $data->user_id = $user_id;
       $data->is_locked = FALSE;
       $data->is_finish = FALSE;
@@ -176,5 +195,10 @@ class TeacherSalaryIncreaseController extends Controller
 
     Alert::success('Berhasil', 'Pengajuan KGB Telah Dikunci');
     return redirect()->route('teachersi');
+  }
+
+  public function pdf($id)
+  {
+    return view('teacher/salaryincrease/pdf', compact('data', 'siid'));
   }
 }

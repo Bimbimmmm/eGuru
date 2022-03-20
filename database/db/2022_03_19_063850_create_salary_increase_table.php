@@ -20,6 +20,14 @@ class CreateSalaryIncreaseTable extends Migration
           $table->string('type');
           $table->uuid('user_id');
           $table->foreign('user_id')->references('id')->on('users');
+          $table->string('old_salary');
+          $table->date('old_decree_date');
+          $table->string('old_decree_number');
+          $table->date('old_date');
+          $table->string('old_work_year');
+          $table->string('new_salary')->nullable();
+          $table->string('new_work_year')->nullable();
+          $table->date('new_date')->nullable();
           $table->boolean('is_locked');
           $table->boolean('is_finish');
           $table->boolean('is_rejected');

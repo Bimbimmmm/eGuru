@@ -87,7 +87,7 @@ Route::get('/teacher/leavepermission', [TeacherLeavePermissionController::class,
 Route::get('/teacher/leavepermission/create', [TeacherLeavePermissionController::class, 'create'])->middleware('can:isTeacher')->name('teacherlpcreate');
 Route::post('/teacher/leavepermission/store', [TeacherLeavePermissionController::class, 'store'])->middleware('can:isTeacher')->name('teacherlpstore');
 Route::get('/teacher/leavepermission/show/{id}', [TeacherLeavePermissionController::class, 'show'])->middleware('can:isTeacher')->name('teacherlpshow');
-
+Route::get('/teacher/leavepermission/pdf/{id}', [TeacherLeavePermissionController::class, 'pdf'])->middleware('can:isTeacher')->name('teacherlppdf');
 //Teacher Performance Routes
 Route::get('/teacher/performance', [TeacherPerformanceController::class, 'index'])->middleware('can:isTeacher')->name('teacherpt');
 Route::get('/teacher/performance/create', [TeacherPerformanceController::class, 'create'])->middleware('can:isTeacher')->name('teacherptcreate');

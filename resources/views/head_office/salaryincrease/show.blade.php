@@ -34,6 +34,22 @@
               <td class="px-4 py-3 text-ms border font-semibold">Jenis Pengajuan</td>
               <td class="px-4 py-3 text-ms border">{{$data->type}}</td>
             </tr>
+            <tr class="text-gray-700 text-center">
+              <td class="px-4 py-3 text-ms border font-semibold">Gaji Pokok Lama</td>
+              <td class="px-4 py-3 text-ms border">{{$data->old_salary}}</td>
+            </tr>
+            <tr class="text-gray-700 text-center">
+              <td class="px-4 py-3 text-ms border font-semibold">Tanggal dan Nomor SK Lama</td>
+              <td class="px-4 py-3 text-ms border">{{$data->old_decree_date->isoFormat('D MMMM Y')}} - {{$data->old_decree_number}}</td>
+            </tr>
+            <tr class="text-gray-700 text-center">
+              <td class="px-4 py-3 text-ms border font-semibold">T.M.T Lama</td>
+              <td class="px-4 py-3 text-ms border">{{$data->old_date->isoFormat('D MMMM Y')}} </td>
+            </tr>
+            <tr class="text-gray-700 text-center">
+              <td class="px-4 py-3 text-ms border font-semibold">Masa Kerja Golongan Lama</td>
+              <td class="px-4 py-3 text-ms border">{{$data->old_work_year}}</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -83,12 +99,23 @@
           <div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4">
             Setujui Pengajuan
           </div>
-          <div class="mb-6 text-center">
+          <div class="mb-6">
             <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
-              Setelah Memeriksa dan Menimbang Bahwa Pengajuan Kenaikan Gaji Berkala Yang Diajukan Oleh Yang Bersangkutan
-              Telah Memenuhi Syarat Sesuai Dengan Peraturan Perundang-Undangan Yang Berlaku. Silahkan Mengklik Tombol Setuju Di Bawah Ini.
-              Setelah Mengklik Setuju, Perubahan Sudah Tidak Dapat Dilakukan
+              Gaji Pokok Baru
             </label>
+            <input name="new_salary" id="new_salary" placeholder="Masukkan Gaji Pokok Baru" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text"></input>
+          </div>
+          <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
+              Masa Kerja Baru
+            </label>
+            <input name="new_work_year" id="new_work_year" placeholder="XX Tahun XX Bulan" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text"></input>
+          </div>
+          <div class="mb-6">
+            <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
+              T.M.T Baru
+            </label>
+            <input name="new_date" id="new_date" placeholder="Masukkan T.M.T Baru" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text"></input>
           </div>
           <div class="flex items-center justify-center">
             <button class="shadow bg-green-600 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
@@ -130,4 +157,38 @@
   </div>
 </div>
 </div>
+<script>
+var rupiah = document.getElementById('new_salary');
+rupiah.addEventListener('keyup', function(e){
+  // tambahkan 'Rp.' pada saat form di ketik
+  // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+  rupiah.value = formatRupiah(this.value, 'Rp. ');
+});
+
+/* Fungsi formatRupiah */
+function formatRupiah(angka, prefix){
+  var number_string = angka.replace(/[^,\d]/g, '').toString(),
+  split   		= number_string.split(','),
+  sisa     		= split[0].length % 3,
+  rupiah     		= split[0].substr(0, sisa),
+  ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+  // tambahkan titik jika yang di input sudah menjadi angka ribuan
+  if(ribuan){
+    separator = sisa ? '.' : '';
+    rupiah += separator + ribuan.join('.');
+  }
+
+  rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+  return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+}
+</script>
+<script>
+$( function() {
+  $( "#new_date" ).datepicker({
+    dateFormat: "dd-mm-yy",
+    changeMonth: true,
+  });
+});
+</script>
 @endsection

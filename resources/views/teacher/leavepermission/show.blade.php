@@ -94,7 +94,7 @@
                 <a>
                   <span class="inline-block rounded-full text-white bg-green-500 px-2 py-1 text-xs font-bold mr-3">Pengajuan Disetujui</span>
                 </a>
-                <a href="">
+                <a href="{{ url ('/teacher/leavepermission/pdf', array("$data->id")) }}">
                   <span class="inline-block rounded-full text-white bg-green-500 px-2 py-1 text-xs font-bold mr-3">File PDF Tersedia</span>
                 </a>
               </td>

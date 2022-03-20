@@ -34,7 +34,7 @@
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
               Tahun Cuti <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
-            <input name="leave_year" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" required>
+            <input name="leave_year" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -87,7 +87,7 @@
           </div>
           </div>
         </div>
-        <div id="file_temporary_permission" class="flex flex-wrap -mx-3 mb-6" style="display:none;">
+        <div id="file_temporary_permissionn" class="flex flex-wrap -mx-3 mb-6" style="display:none;">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               File Surat Ijin Sementara <span class="text-xs text-red-500"><i>*required</i></span>
@@ -112,7 +112,7 @@
           </div>
           </div>
         </div>
-        <div id="file_proof" class="flex flex-wrap -mx-3 mb-6" style="display:none;">
+        <div id="file_prooff" class="flex flex-wrap -mx-3 mb-6" style="display:none;">
           <div class="w-full px-3">
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"   >
               File Bukti Lainnya <span class="text-xs text-red-500"><i>*required</i></span>
@@ -211,28 +211,28 @@ $( function() {
     $('#leave_type_id').on('change', function () {
         if (this.value === '1'){
             $("#leave_year").show();
-            $("#file_temporary_permission").hide();
-            $("#file_proof").hide();
+            $("#file_temporary_permissionn").hide();
+            $("#file_prooff").hide();
         } else if (this.value === '2'){
             $("#leave_year").show();
-            $("#file_temporary_permission").hide();
-            $("#file_proof").hide();
+            $("#file_temporary_permissionn").hide();
+            $("#file_prooff").hide();
         } else if (this.value === '3'){
             $("#leave_year").hide();
-            $("#file_temporary_permission").show();
-            $("#file_proof").show();
+            $("#file_temporary_permissionn").show();
+            $("#file_prooff").show();
         } else if (this.value === '4'){
             $("#leave_year").hide();
-            $("#file_temporary_permission").show();
-            $("#file_proof").show();
+            $("#file_temporary_permissionn").show();
+            $("#file_prooff").show();
         } else if (this.value === '5'){
             $("#leave_year").hide();
-            $("#file_temporary_permission").show();
-            $("#file_proof").show();
+            $("#file_temporary_permissionn").show();
+            $("#file_prooff").show();
         } else {
             $("#leave_year").hide();
-            $("#file_temporary_permission").hide();
-            $("#file_proof").hide();
+            $("#file_temporary_permissionn").hide();
+            $("#file_prooff").hide();
         }
     });
 </script>
@@ -247,17 +247,7 @@ file_recommendation_letter.addEventListener('change', function(){
       file_recommendation_letter_name.innerText = '';
 });
 </script>
-<script>
-let file_temporary_permission = document.getElementById('file_temporary_permission');
-let file_temporary_permission_name = document.getElementById('file_temporary_permission_name');
 
-file_temporary_permission.addEventListener('change', function(){
-  if(this.files.length)
-      file_temporary_permission_name.innerText = this.files[0].name;
-  else
-      file_temporary_permission_name.innerText = '';
-});
-</script>
 <script>
 let file_leave_application = document.getElementById('file_leave_application');
 let file_leave_application_name = document.getElementById('file_leave_application_name');
@@ -269,6 +259,19 @@ file_leave_application.addEventListener('change', function(){
       file_leave_application_name.innerText = '';
 });
 </script>
+
+<script>
+let file_temporary_permission = document.getElementById('file_temporary_permission');
+let file_temporary_permission_name = document.getElementById('file_temporary_permission_name');
+
+file_temporary_permission.addEventListener('change', function(){
+  if(this.files.length)
+      file_temporary_permission_name.innerText = this.files[0].name;
+  else
+      file_temporary_permission_name.innerText = '';
+});
+</script>
+
 <script>
 let file_proof = document.getElementById('file_proof');
 let file_proof_name = document.getElementById('file_proof_name');

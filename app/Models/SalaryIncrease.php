@@ -19,12 +19,23 @@ class SalaryIncrease extends Model
       'year',
       'type',
       'user_id',
+      'old_salary',
+      'old_decree_number',
+      'old_work_year',
+      'new_salary',
+      'new_work_year',
       'is_locked',
       'is_finish',
       'is_rejected',
       'rejected_reason',
       'is_deleted'
     ];
+
+    protected $dates = [
+      'old_decree_date',
+      'old_date',
+      'new_date'
+  ];
 
     public function user()
     {
@@ -34,5 +45,10 @@ class SalaryIncrease extends Model
     public function salaryIncreaseFile()
     {
       return $this->hasMany('App\Models\SalaryIncreaseFile', 'id');
+    }
+
+    public function decreeNumber()
+    {
+      return $this->hasMany('App\Models\DecreeNumber', 'id');
     }
 }
