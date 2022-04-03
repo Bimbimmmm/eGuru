@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\SolutionCorner;
 use App\Models\User;
 use Validator;
@@ -96,7 +97,8 @@ class TeacherSolutionCornerController extends Controller
      */
     public function show($id)
     {
-        //
+      $data=SolutionCorner::where('id', $id)->first();
+      return view('teacher/solutioncorner/show', compact('data'));
     }
 
     /**
@@ -117,19 +119,31 @@ class TeacherSolutionCornerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function feedback(Request $request, $id)
     {
-        //
+      $rules = [
+        'satisfaction_level'  => 'required',
+        'feedback'            => 'required'
+      ];
+
+      $messages = [
+        'satisfaction_level.required' => 'Tingkat Kepuasan Wajib Dipilih',
+        'feedback.required'           => 'Feedback Wajib Diisi'
+      ];
+
+      $validator = Validator::make($request->all(), $rules, $messages);
+
+      if($validator->fails()){
+        return redirect()->back()->withErrors($validator)->withInput($request->all);
+      }
+
+      DB::table('solution_corner')->whereId($id)->update([
+        'satisfaction_level'   => $request->satisfaction_level,
+        'feedback'             => $request->feedback
+      ]);
+
+      Alert::success('Berhasil', 'Pojok Solusi Selesai');
+      return redirect()->route('teachersc');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -22,12 +22,14 @@ use App\Http\Controllers\HeadDivisionController;
 use App\Http\Controllers\DivisionHeadLeavePermissionController;
 use App\Http\Controllers\DivisionHeadPerformanceController;
 use App\Http\Controllers\DivisionHeadCreditScoreController;
+use App\Http\Controllers\DivisionHeadSolutionCornerController;
 use App\Http\Controllers\AssesorController;
 use App\Http\Controllers\AssesorCreditController;
 use App\Http\Controllers\AssesorPromotionController;
 use App\Http\Controllers\HeadOfficeController;
 use App\Http\Controllers\HeadOfficePromotionController;
 use App\Http\Controllers\HeadOfficeSalaryIncreaseController;
+use App\Http\Controllers\HeadOfficeSolutionCornerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -152,6 +154,8 @@ Route::get('/teacher/solutioncorner', [TeacherSolutionCornerController::class, '
 Route::get('/teacher/solutioncorner/create', [TeacherSolutionCornerController::class, 'create'])->middleware('can:isTeacher')->name('teachersccreate');
 Route::get('/teacher/solutioncorner/show/{id}', [TeacherSolutionCornerController::class, 'show'])->middleware('can:isTeacher')->name('teacherscshow');
 Route::post('/teacher/solutioncorner/store', [TeacherSolutionCornerController::class, 'store'])->middleware('can:isTeacher')->name('teacherscstore');
+Route::post('/teacher/solutioncorner/feedback/{id}', [TeacherSolutionCornerController::class, 'feedback'])->middleware('can:isTeacher')->name('teacherscfeedback');
+
 //Teacher Personal Data Routes
 Route::get('/teacher/personaldata', [TeacherPersonalDataController::class, 'index'])->middleware('can:isTeacher')->name('teacherpd');
 
@@ -189,6 +193,10 @@ Route::post('/divisionhead/performance/done/{id}', [DivisionHeadPerformanceContr
 Route::get('/divisionhead/creditscore', [DivisionHeadCreditScoreController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadcr');
 Route::get('/divisionhead/creditscore/show/{id}', [DivisionHeadCreditScoreController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadcrshow');
 Route::post('/divisionhead/creditscore/lock/{id}', [DivisionHeadCreditScoreController::class, 'lock'])->middleware('can:isDivisionHead')->name('divheadcrlock');
+//Division Head Solution Corner Routes
+Route::get('/divisionhead/solutioncorner', [DivisionHeadSolutionCornerController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadsc');
+Route::get('/divisionhead/solutioncorner/show/{id}', [DivisionHeadSolutionCornerController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadscshow');
+Route::post('/divisionhead/solutioncorner/done/{id}', [DivisionHeadSolutionCornerController::class, 'update'])->middleware('can:isDivisionHead')->name('divheadscupdate');
 
 //OFFICE HEAD ROUTES
 Route::get('/officehead', [HeadOfficeController::class, 'index'])->middleware('can:isOfficeHead')->name('officehead');
@@ -201,6 +209,11 @@ Route::get('/officehead/salaryincrease', [HeadOfficeSalaryIncreaseController::cl
 Route::get('/officehead/salaryincrease/show/{id}', [HeadOfficeSalaryIncreaseController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadsishow');
 Route::post('/officehead/salaryincrease/approve/{id}', [HeadOfficeSalaryIncreaseController::class, 'approve'])->middleware('can:isOfficeHead')->name('officeheadsiapprove');
 Route::post('/officehead/salaryincrease/reject/{id}', [HeadOfficeSalaryIncreaseController::class, 'reject'])->middleware('can:isOfficeHead')->name('officeheadsireject');
+//Head Office Salary Increase
+Route::get('/officehead/solutioncorner', [HeadOfficeSolutionCornerController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadsc');
+Route::get('/officehead/solutioncorner/show/{id}', [HeadOfficeSolutionCornerController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadscshow');
+Route::post('/officehead/solutioncorner/done/{id}', [HeadOfficeSolutionCornerController::class, 'update'])->middleware('can:isOfficeHead')->name('officeheadscupdate');
+
 //OPERATOR ROUTES
 
 //ASSESOR ROUTES

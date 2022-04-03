@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\LeavePermissions;
 use App\Models\PerformanceTarget;
+use App\Models\AssesmentCredit;
+use App\Models\Promotion;
+use App\Models\SalaryIncrease;
+use App\Models\SolutionCorner;
 
 class TeacherController extends Controller
 {
@@ -22,7 +26,20 @@ class TeacherController extends Controller
         $leavepermissionall=LeavePermissions::all()->count();
         $performancetarget=PerformanceTarget::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
         $performancetargetall=PerformanceTarget::all()->count();
-        return view('teacher/index', compact('is_integration', 'leavepermission', 'leavepermissionall', 'performancetarget', 'performancetargetall'));
+        $creditscore=AssesmentCredit::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
+        $creditscoreall=AssesmentCredit::all()->count();
+        $promotion=Promotion::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
+        $promotionall=Promotion::all()->count();
+        $salaryincrease=SalaryIncrease::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
+        $salaryincreaseall=SalaryIncrease::all()->count();
+        $solutioncorner=SolutionCorner::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
+        $solutioncornerall=SolutionCorner::all()->count();
+        return view('teacher/index', compact(
+        'is_integration', 'leavepermission', 'leavepermissionall',
+        'performancetarget', 'performancetargetall', 'creditscore',
+        'creditscoreall', 'promotion', 'promotionall',
+        'salaryincrease', 'salaryincreaseall', 'solutioncorner', 'solutioncornerall'
+      ));
     }
 
     /**
