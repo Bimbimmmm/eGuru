@@ -117,10 +117,11 @@
       </div>
     </div>
 
+    <h1 class="text-left text-base text-black text-gray-900 font-bold">1. Pendidikan Formal</h1>
     <div class="w-48">
       <div class="my-2 flex sm:flex-row flex-col">
         <div class="block relative">
-          <a class="text-white" href="/teacher/leavepermission/create">
+          <a class="text-white" href="/teacher/personaldata/formaleducation/create">
             <div class="flex items-center p-4 bg-green-500 rounded-lg shadow-xs cursor-pointer hover:bg-green-400 hover:text-gray-100">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -135,7 +136,6 @@
         </div>
       </div>
     </div>
-    <h1 class="text-left text-base text-black text-gray-900 font-bold">1. Pendidikan Formal</h1>
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
       <div class="w-full overflow-x-auto">
         <table class="w-full">
@@ -151,20 +151,33 @@
             </tr>
           </thead>
           <tbody class="bg-white">
-
-            <tr class="text-gray-700 text-center">
-              <td class="px-4 py-3 text-ms border font-semibold">1</td>
-              <td class="px-4 py-3 text-ms border">content</td>
-
+              @foreach($fehdatas as $fehdata)
+              <tr class="text-gray-700 text-center">
+                <td class="px-4 py-3 text-ms border font-semibold">{{$loop->iteration}}</td>
+                <td class="px-4 py-3 text-ms border">{{$fehdata->education_level}}</td>
+                <td class="px-4 py-3 text-ms border">{{$fehdata->name}}</td>
+                <td class="px-4 py-3 text-ms border">{{$fehdata->graduation_date->isoFormat('DD MMMM YYYY')}}</td>
+                <td class="px-4 py-3 text-ms border">{{$fehdata->diploma_number}}</td>
+                <td class="px-4 py-3 text-ms border">
+                  <a class="underline text-blue-500" href="{{ asset('storage/datahistory/formaleducation/' . $fehdata->file) }}">{{$fehdata->file}}</a>
+                </td>
+                <td class="px-4 py-3 text-sm border">
+                  <a href="{{ url ('/teacher/personaldata/formaleducation/destroy', array("$fehdata->id")) }}" class="text-red-600 hover:text-red-400 mr-2">
+                    <i class="material-icons-outlined text-2xl">delete</i>
+                  </a>
+                </td>
+              </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
       </div>
 
+      <h1 class="text-left text-base text-black text-gray-900 font-bold">2. Pendidikan Non-Formal</h1>
       <div class="w-48">
         <div class="my-2 flex sm:flex-row flex-col">
           <div class="block relative">
-            <a class="text-white" href="/teacher/leavepermission/create">
+            <a class="text-white" href="/teacher/personaldata/nonformaleducation/create">
               <div class="flex items-center p-4 bg-green-500 rounded-lg shadow-xs cursor-pointer hover:bg-green-400 hover:text-gray-100">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -179,7 +192,6 @@
           </div>
         </div>
       </div>
-      <h1 class="text-left text-base text-black text-gray-900 font-bold">2. Pendidikan Non-Formal</h1>
       <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
         <div class="w-full overflow-x-auto">
           <table class="w-full">
@@ -195,20 +207,33 @@
               </tr>
             </thead>
             <tbody class="bg-white">
-
+              @foreach($nfehdatas as $nfehdata)
               <tr class="text-gray-700 text-center">
-                <td class="px-4 py-3 text-ms border font-semibold">1</td>
-                <td class="px-4 py-3 text-ms border">content</td>
-
-              </tbody>
+                <td class="px-4 py-3 text-ms border font-semibold">{{$loop->iteration}}</td>
+                <td class="px-4 py-3 text-ms border">{{$nfehdata->name}}</td>
+                <td class="px-4 py-3 text-ms border">{{$nfehdata->graduation_date->isoFormat('DD MMMM YYYY')}}</td>
+                <td class="px-4 py-3 text-ms border">{{$nfehdata->place}}</td>
+                <td class="px-4 py-3 text-ms border">{{$nfehdata->certificate_number}}</td>
+                <td class="px-4 py-3 text-ms border">
+                  <a class="underline text-blue-500" href="{{ asset('storage/datahistory/nonformaleducation/' . $nfehdata->file) }}">{{$nfehdata->file}}</a>
+                </td>
+                <td class="px-4 py-3 text-sm border">
+                  <a href="{{ url ('/teacher/personaldata/nonformaleducation/destroy', array("$nfehdata->id")) }}" class="text-red-600 hover:text-red-400 mr-2">
+                    <i class="material-icons-outlined text-2xl">delete</i>
+                  </a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
             </table>
           </div>
         </div>
 
+        <h1 class="text-left text-base text-black text-gray-900 font-bold">3. Riwayat Kepangkatan</h1>
         <div class="w-48">
           <div class="my-2 flex sm:flex-row flex-col">
             <div class="block relative">
-              <a class="text-white" href="/teacher/leavepermission/create">
+              <a class="text-white" href="/teacher/personaldata/rank/create">
                 <div class="flex items-center p-4 bg-green-500 rounded-lg shadow-xs cursor-pointer hover:bg-green-400 hover:text-gray-100">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -223,7 +248,6 @@
             </div>
           </div>
         </div>
-        <h1 class="text-left text-base text-black text-gray-900 font-bold">3. Riwayat Kepangkatan</h1>
         <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
           <div class="w-full overflow-x-auto">
             <table class="w-full">
@@ -239,20 +263,34 @@
                 </tr>
               </thead>
               <tbody class="bg-white">
-
+                @foreach($rhdatas as $rhdata)
                 <tr class="text-gray-700 text-center">
-                  <td class="px-4 py-3 text-ms border font-semibold">1</td>
-                  <td class="px-4 py-3 text-ms border">content</td>
-
+                  <td class="px-4 py-3 text-ms border font-semibold">{{$loop->iteration}}</td>
+                  <td class="px-4 py-3 text-ms border">{{$rhdata->last_rank}}</td>
+                  <td class="px-4 py-3 text-ms border">{{$rhdata->last_group}}</td>
+                  <td class="px-4 py-3 text-ms border">{{$rhdata->starting_from_date->isoFormat('DD MMMM YYYY')}}</td>
+                  <td class="px-4 py-3 text-ms border">{{$rhdata->number_of_decree}}</td>
+                  <td class="px-4 py-3 text-ms border">{{$rhdata->decree_date->isoFormat('DD MMMM YYYY')}}</td>
+                  <td class="px-4 py-3 text-ms border">
+                    <a class="underline text-blue-500" href="{{ asset('storage/datahistory/rank/' . $rhdata->file) }}">{{$rhdata->file}}</a>
+                  </td>
+                  <td class="px-4 py-3 text-sm border">
+                    <a href="{{ url ('/teacher/personaldata/rank/destroy', array("$rhdata->id")) }}" class="text-red-600 hover:text-red-400 mr-2">
+                      <i class="material-icons-outlined text-2xl">delete</i>
+                    </a>
+                  </td>
+                </tr>
+                @endforeach
                 </tbody>
               </table>
             </div>
           </div>
 
+          <h1 class="text-left text-base text-black text-gray-900 font-bold">4. Riwayat Jabatan</h1>
           <div class="w-48">
             <div class="my-2 flex sm:flex-row flex-col">
               <div class="block relative">
-                <a class="text-white" href="/teacher/leavepermission/create">
+                <a class="text-white" href="/teacher/personaldata/positionhistory/create">
                   <div class="flex items-center p-4 bg-green-500 rounded-lg shadow-xs cursor-pointer hover:bg-green-400 hover:text-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -267,7 +305,6 @@
               </div>
             </div>
           </div>
-          <h1 class="text-left text-base text-black text-gray-900 font-bold">4. RIwayat Jabatan</h1>
           <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
             <div class="w-full overflow-x-auto">
               <table class="w-full">
@@ -276,28 +313,42 @@
                     <th class="px-4 py-3">No</th>
                     <th class="px-4 py-3">Nama Jabatan</th>
                     <th class="px-4 py-3">Mulai - Sampai</th>
-                    <th class="px-4 py-3">Eselon</th>
-                    <th class="px-4 py-3">T.N.T</th>
+                    <th class="px-4 py-3">Jenis Jabatan</th>
+                    <th class="px-4 py-3">T.M.T</th>
                     <th class="px-4 py-3">Nomor SK</th>
                     <th class="px-4 py-3">File</th>
                     <th class="px-4 py-3">Aksi</th>
                   </tr>
                 </thead>
                 <tbody class="bg-white">
-
+                  @foreach($phdatas as $phdata)
                   <tr class="text-gray-700 text-center">
-                    <td class="px-4 py-3 text-ms border font-semibold">1</td>
-                    <td class="px-4 py-3 text-ms border">content</td>
-
+                    <td class="px-4 py-3 text-ms border font-semibold">{{$loop->iteration}}</td>
+                    <td class="px-4 py-3 text-ms border">{{$phdata->position}}</td>
+                    <td class="px-4 py-3 text-ms border">{{$phdata->start_date->isoFormat('DD MMMM YYYY')}} - {{$phdata->end_date->isoFormat('DD MMMM YYYY')}}</td>
+                    <td class="px-4 py-3 text-ms border">{{$phdata->referencePosition->name}}</td>
+                    <td class="px-4 py-3 text-ms border">{{$phdata->starting_from_date->isoFormat('DD MMMM YYYY')}}</td>
+                    <td class="px-4 py-3 text-ms border">{{$phdata->number_of_decree}}</td>
+                    <td class="px-4 py-3 text-ms border">
+                      <a class="underline text-blue-500" href="{{ asset('storage/datahistory/position/' . $phdata->file) }}">{{$phdata->file}}</a>
+                    </td>
+                    <td class="px-4 py-3 text-sm border">
+                      <a href="{{ url ('/teacher/personaldata/positionhistory/destroy', array("$phdata->id")) }}" class="text-red-600 hover:text-red-400 mr-2">
+                        <i class="material-icons-outlined text-2xl">delete</i>
+                      </a>
+                    </td>
+                  </tr>
+                  @endforeach
                   </tbody>
                 </table>
               </div>
             </div>
 
+            <h1 class="text-left text-base text-black text-gray-900 font-bold">5. Riwayat Kenaikan Gaji Berkala</h1>
             <div class="w-48">
               <div class="my-2 flex sm:flex-row flex-col">
                 <div class="block relative">
-                  <a class="text-white" href="/teacher/leavepermission/create">
+                  <a class="text-white" href="/teacher/personaldata/salaryincreasehistory/create">
                     <div class="flex items-center p-4 bg-green-500 rounded-lg shadow-xs cursor-pointer hover:bg-green-400 hover:text-gray-100">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -312,7 +363,6 @@
                 </div>
               </div>
             </div>
-            <h1 class="text-left text-base text-black text-gray-900 font-bold">5. Riwayat Kenaikan Gaji Berkala</h1>
             <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
               <div class="w-full overflow-x-auto">
                 <table class="w-full">
@@ -329,20 +379,34 @@
                     </tr>
                   </thead>
                   <tbody class="bg-white">
-
+                    @foreach($sihdatas as $sihdata)
                     <tr class="text-gray-700 text-center">
-                      <td class="px-4 py-3 text-ms border font-semibold">1</td>
-                      <td class="px-4 py-3 text-ms border">content</td>
-
+                      <td class="px-4 py-3 text-ms border font-semibold">{{$loop->iteration}}</td>
+                      <td class="px-4 py-3 text-ms border">{{$sihdata->number_of_decree}}</td>
+                      <td class="px-4 py-3 text-ms border">{{$sihdata->starting_from_date->isoFormat('DD MMMM YYYY')}}</td>
+                      <td class="px-4 py-3 text-ms border">{{$sihdata->last_rank}}</td>
+                      <td class="px-4 py-3 text-ms border">{{$sihdata->last_salary}}</td>
+                      <td class="px-4 py-3 text-ms border">{{$sihdata->new_salary}}</td>
+                      <td class="px-4 py-3 text-ms border">
+                        <a class="underline text-blue-500" href="{{ asset('storage/datahistory/salaryincrease/' . $sihdata->file) }}">{{$sihdata->file}}</a>
+                      </td>
+                      <td class="px-4 py-3 text-sm border">
+                        <a href="{{ url ('/teacher/personaldata/salaryincreasehistory/destroy', array("$sihdata->id")) }}" class="text-red-600 hover:text-red-400 mr-2">
+                          <i class="material-icons-outlined text-2xl">delete</i>
+                        </a>
+                      </td>
+                    </tr>
+                    @endforeach
                     </tbody>
                   </table>
                 </div>
               </div>
 
+              <h1 class="text-left text-base text-black text-gray-900 font-bold">6. Riwayat Penghargaan</h1>
               <div class="w-48">
                 <div class="my-2 flex sm:flex-row flex-col">
                   <div class="block relative">
-                    <a class="text-white" href="/teacher/leavepermission/create">
+                    <a class="text-white" href="/teacher/personaldata/appreciationhistory/create">
                       <div class="flex items-center p-4 bg-green-500 rounded-lg shadow-xs cursor-pointer hover:bg-green-400 hover:text-gray-100">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -357,7 +421,6 @@
                   </div>
                 </div>
               </div>
-              <h1 class="text-left text-base text-black text-gray-900 font-bold">6. Riwayat Penghargaan</h1>
               <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
                 <div class="w-full overflow-x-auto">
                   <table class="w-full">
@@ -372,16 +435,26 @@
                       </tr>
                     </thead>
                     <tbody class="bg-white">
-
+                      @foreach($ahdatas as $ahdata)
                       <tr class="text-gray-700 text-center">
-                        <td class="px-4 py-3 text-ms border font-semibold">1</td>
-                        <td class="px-4 py-3 text-ms border">content</td>
-
+                        <td class="px-4 py-3 text-ms border font-semibold">{{$loop->iteration}}</td>
+                        <td class="px-4 py-3 text-ms border">{{$ahdata->name}}</td>
+                        <td class="px-4 py-3 text-ms border">{{$ahdata->year}}</td>
+                        <td class="px-4 py-3 text-ms border">{{$ahdata->issued_by}}</td>
+                        <td class="px-4 py-3 text-ms border">
+                          <a class="underline text-blue-500" href="{{ asset('storage/datahistory/appreciation/' . $ahdata->file) }}">{{$ahdata->file}}</a>
+                        </td>
+                        <td class="px-4 py-3 text-sm border">
+                          <a href="{{ url ('/teacher/personaldata/appreciationhistory/destroy', array("$ahdata->id")) }}" class="text-red-600 hover:text-red-400 mr-2">
+                            <i class="material-icons-outlined text-2xl">delete</i>
+                          </a>
+                        </td>
+                      </tr>
+                      @endforeach
                       </tbody>
                     </table>
                   </div>
                 </div>
-
               </div>
             </div>
             @endsection

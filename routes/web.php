@@ -14,6 +14,12 @@ use App\Http\Controllers\TeacherPromotionController;
 use App\Http\Controllers\TeacherSalaryIncreaseController;
 use App\Http\Controllers\TeacherSolutionCornerController;
 use App\Http\Controllers\TeacherPersonalDataController;
+use App\Http\Controllers\TeacherDataAppreciationHistoryController;
+use App\Http\Controllers\TeacherDataFormalEducationHistoryController;
+use App\Http\Controllers\TeacherDataNonFormalEducationHistoryController;
+use App\Http\Controllers\TeacherDataPositionHistoryController;
+use App\Http\Controllers\TeacherDataRankHistoryController;
+use App\Http\Controllers\TeacherDataSalaryIncreaseHistoryController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\PrincipalLeavePermissionController;
 use App\Http\Controllers\PrincipalPerformanceController;
@@ -158,7 +164,31 @@ Route::post('/teacher/solutioncorner/feedback/{id}', [TeacherSolutionCornerContr
 
 //Teacher Personal Data Routes
 Route::get('/teacher/personaldata', [TeacherPersonalDataController::class, 'index'])->middleware('can:isTeacher')->name('teacherpd');
-
+//Teacher Data History Routes
+//Formal Education History Routes
+Route::get('/teacher/personaldata/formaleducation/create', [TeacherDataFormalEducationHistoryController::class, 'create'])->middleware('can:isTeacher')->name('teacherpdfehcr');
+Route::post('/teacher/personaldata/formaleducation/store', [TeacherDataFormalEducationHistoryController::class, 'store'])->middleware('can:isTeacher')->name('teacherpdfehstore');
+Route::get('/teacher/personaldata/formaleducation/destroy/{id}', [TeacherDataFormalEducationHistoryController::class, 'destroy'])->middleware('can:isTeacher')->name('teacherpdfehds');
+//Non-Formal Education History Routes
+Route::get('/teacher/personaldata/nonformaleducation/create', [TeacherDataNonFormalEducationHistoryController::class, 'create'])->middleware('can:isTeacher')->name('teacherpdnfehcr');
+Route::post('/teacher/personaldata/nonformaleducation/store', [TeacherDataNonFormalEducationHistoryController::class, 'store'])->middleware('can:isTeacher')->name('teacherpdnfehstore');
+Route::get('/teacher/personaldata/nonformaleducation/destroy/{id}', [TeacherDataNonFormalEducationHistoryController::class, 'destroy'])->middleware('can:isTeacher')->name('teacherpdnfehds');
+//Rank History Routes
+Route::get('/teacher/personaldata/rank/create', [TeacherDataRankHistoryController::class, 'create'])->middleware('can:isTeacher')->name('teacherpdrhcr');
+Route::post('/teacher/personaldata/rank/store', [TeacherDataRankHistoryController::class, 'store'])->middleware('can:isTeacher')->name('teacherpdrhstore');
+Route::get('/teacher/personaldata/rank/destroy/{id}', [TeacherDataRankHistoryController::class, 'destroy'])->middleware('can:isTeacher')->name('teacherpdrhds');
+//Position History Routes
+Route::get('/teacher/personaldata/positionhistory/create', [TeacherDataPositionHistoryController::class, 'create'])->middleware('can:isTeacher')->name('teacherpdphcr');
+Route::post('/teacher/personaldata/positionhistory/store', [TeacherDataPositionHistoryController::class, 'store'])->middleware('can:isTeacher')->name('teacherpdphstore');
+Route::get('/teacher/personaldata/positionhistory/destroy/{id}', [TeacherDataPositionHistoryController::class, 'destroy'])->middleware('can:isTeacher')->name('teacherpdphds');
+//Salary Increase History Routes
+Route::get('/teacher/personaldata/salaryincreasehistory/create', [TeacherDataSalaryIncreaseHistoryController::class, 'create'])->middleware('can:isTeacher')->name('teacherpdsihcr');
+Route::post('/teacher/personaldata/salaryincreasehistory/store', [TeacherDataSalaryIncreaseHistoryController::class, 'store'])->middleware('can:isTeacher')->name('teacherpdsihstore');
+Route::get('/teacher/personaldata/salaryincreasehistory/destroy/{id}', [TeacherDataSalaryIncreaseHistoryController::class, 'destroy'])->middleware('can:isTeacher')->name('teacherpdsihds');
+//Appreciation History Routes
+Route::get('/teacher/personaldata/appreciationhistory/create', [TeacherDataAppreciationHistoryController::class, 'create'])->middleware('can:isTeacher')->name('teacherpdahcr');
+Route::post('/teacher/personaldata/appreciationhistory/store', [TeacherDataAppreciationHistoryController::class, 'store'])->middleware('can:isTeacher')->name('teacherpdahstore');
+Route::get('/teacher/personaldata/appreciationhistory/destroy/{id}', [TeacherDataAppreciationHistoryController::class, 'destroy'])->middleware('can:isTeacher')->name('teacherpdahds');
 
 //PRINCIPAL ROUTES
 Route::get('/principal', [PrincipalController::class, 'index'])->middleware('can:isPrincipal')->name('principal');

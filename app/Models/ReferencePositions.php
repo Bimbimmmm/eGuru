@@ -22,4 +22,9 @@ class ReferencePositions extends Model
     {
       return $this->hasMany('App\Models\PersonalData', 'id');
     }
+
+    public function dataPositionHistory()
+    {
+      return $this->hasMany('App\Models\DataPositionHistory', 'id');
+    }
 }

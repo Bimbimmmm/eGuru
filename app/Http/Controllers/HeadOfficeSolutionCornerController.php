@@ -21,7 +21,7 @@ class HeadOfficeSolutionCornerController extends Controller
     {
       $user_id = auth()->user()->id;
       $datas=SolutionCorner::where(['handles_id' => $user_id, 'is_deleted' => FALSE, 'is_finish' => FALSE])->get();
-      $finished=SolutionCorner::where(['handles_id' => $user_id, 'is_deleted' => FALSE, 'is_finish' => TRUE])->get();
+      $finished=SolutionCorner::where(['is_deleted' => FALSE, 'is_finish' => TRUE])->get();
       return view('head_office/solutioncorner/index', compact('datas', 'finished'));
     }
 

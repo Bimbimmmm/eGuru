@@ -100,4 +100,34 @@ class User extends Authenticatable
       return $this->hasMany('App\Models\SolutionCorner', 'id');
     }
 
+    public function dataAppreciationHistory()
+    {
+      return $this->hasMany('App\Models\DataAppreciationHistory', 'id');
+    }
+
+    public function dataFormalEducationHistory()
+    {
+      return $this->hasMany('App\Models\DataFormalEducationHistory', 'id');
+    }
+
+    public function dataNonFormalEducationHistory()
+    {
+      return $this->hasMany('App\Models\DataNonFormalEducationHistory', 'id');
+    }
+
+    public function dataPositionHistory()
+    {
+      return $this->hasMany('App\Models\DataPositionHistory', 'id');
+    }
+
+    public function dataRankHistory()
+    {
+      return $this->hasMany('App\Models\DataRankHistory', 'id');
+    }
+
+    public function dataSalaryIncreaseHistory()
+    {
+      return $this->hasMany('App\Models\DataSalaryIncreaseHistory', 'id');
+    }
+
 }
