@@ -24,6 +24,13 @@ use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\PrincipalLeavePermissionController;
 use App\Http\Controllers\PrincipalPerformanceController;
 use App\Http\Controllers\PrincipalPerformanceWorkBehaviorController;
+use App\Http\Controllers\PrincipalPersonalDataController;
+use App\Http\Controllers\PrincipalDataAppreciationHistoryController;
+use App\Http\Controllers\PrincipalDataFormalEducationHistoryController;
+use App\Http\Controllers\PrincipalDataNonFormalEducationHistoryController;
+use App\Http\Controllers\PrincipalDataPositionHistoryController;
+use App\Http\Controllers\PrincipalDataRankHistoryController;
+use App\Http\Controllers\PrincipalDataSalaryIncreaseHistoryController;
 use App\Http\Controllers\HeadDivisionController;
 use App\Http\Controllers\DivisionHeadLeavePermissionController;
 use App\Http\Controllers\DivisionHeadPerformanceController;
@@ -207,6 +214,33 @@ Route::post('/principal/performance/scoreact/{id}/{idpt}', [PrincipalPerformance
 Route::post('/principal/performance/workbehavior/create/{id}', [PrincipalPerformanceWorkBehaviorController::class, 'create'])->middleware('can:isPrincipal')->name('principalptwbcreate');
 Route::get('/principal/performance/workbehavior/show/{id}/{idpt}', [PrincipalPerformanceWorkBehaviorController::class, 'show'])->middleware('can:isPrincipal')->name('principalptwbshow');
 Route::post('/principal/performance/workbehavior/score/{id}/{idpt}', [PrincipalPerformanceWorkBehaviorController::class, 'score'])->middleware('can:isPrincipal')->name('principalptwbscore');
+//Principal Personal Data Routes
+Route::get('/principal/personaldata', [PrincipalPersonalDataController::class, 'index'])->middleware('can:isPrincipal')->name('principalpd');
+//Principal Data History Routes
+//Formal Education History Routes
+Route::get('/principal/personaldata/formaleducation/create', [PrincipalDataFormalEducationHistoryController::class, 'create'])->middleware('can:isPrincipal')->name('principalpdfehcr');
+Route::post('/principal/personaldata/formaleducation/store', [PrincipalDataFormalEducationHistoryController::class, 'store'])->middleware('can:isPrincipal')->name('principalpdfehstore');
+Route::get('/principal/personaldata/formaleducation/destroy/{id}', [PrincipalDataFormalEducationHistoryController::class, 'destroy'])->middleware('can:isPrincipal')->name('principalpdfehds');
+//Non-Formal Education History Routes
+Route::get('/principal/personaldata/nonformaleducation/create', [PrincipalDataNonFormalEducationHistoryController::class, 'create'])->middleware('can:isPrincipal')->name('principalpdnfehcr');
+Route::post('/principal/personaldata/nonformaleducation/store', [PrincipalDataNonFormalEducationHistoryController::class, 'store'])->middleware('can:isPrincipal')->name('principalpdnfehstore');
+Route::get('/principal/personaldata/nonformaleducation/destroy/{id}', [PrincipalDataNonFormalEducationHistoryController::class, 'destroy'])->middleware('can:isPrincipal')->name('principalpdnfehds');
+//Rank History Routes
+Route::get('/principal/personaldata/rank/create', [PrincipalDataRankHistoryController::class, 'create'])->middleware('can:isPrincipal')->name('principalpdrhcr');
+Route::post('/principal/personaldata/rank/store', [PrincipalDataRankHistoryController::class, 'store'])->middleware('can:isPrincipal')->name('principalpdrhstore');
+Route::get('/principal/personaldata/rank/destroy/{id}', [PrincipalDataRankHistoryController::class, 'destroy'])->middleware('can:isPrincipal')->name('principalpdrhds');
+//Position History Routes
+Route::get('/principal/personaldata/positionhistory/create', [PrincipalDataPositionHistoryController::class, 'create'])->middleware('can:isPrincipal')->name('principalpdphcr');
+Route::post('/principal/personaldata/positionhistory/store', [PrincipalDataPositionHistoryController::class, 'store'])->middleware('can:isPrincipal')->name('principalpdphstore');
+Route::get('/principal/personaldata/positionhistory/destroy/{id}', [PrincipalDataPositionHistoryController::class, 'destroy'])->middleware('can:isPrincipal')->name('principalpdphds');
+//Salary Increase History Routes
+Route::get('/principal/personaldata/salaryincreasehistory/create', [PrincipalDataSalaryIncreaseHistoryController::class, 'create'])->middleware('can:isPrincipal')->name('principalpdsihcr');
+Route::post('/principal/personaldata/salaryincreasehistory/store', [PrincipalDataSalaryIncreaseHistoryController::class, 'store'])->middleware('can:isPrincipal')->name('principalpdsihstore');
+Route::get('/principal/personaldata/salaryincreasehistory/destroy/{id}', [PrincipalDataSalaryIncreaseHistoryController::class, 'destroy'])->middleware('can:isPrincipal')->name('principalpdsihds');
+//Appreciation History Routes
+Route::get('/principal/personaldata/appreciationhistory/create', [PrincipalDataAppreciationHistoryController::class, 'create'])->middleware('can:isPrincipal')->name('principalpdahcr');
+Route::post('/principal/personaldata/appreciationhistory/store', [PrincipalDataAppreciationHistoryController::class, 'store'])->middleware('can:isPrincipal')->name('principalpdahstore');
+Route::get('/principal/personaldata/appreciationhistory/destroy/{id}', [PrincipalDataAppreciationHistoryController::class, 'destroy'])->middleware('can:isPrincipal')->name('principalpdahds');
 
 //DIVISION HEAD ROUTES
 Route::get('/divisionhead', [HeadDivisionController::class, 'index'])->middleware('can:isDivisionHead')->name('divisionhead');

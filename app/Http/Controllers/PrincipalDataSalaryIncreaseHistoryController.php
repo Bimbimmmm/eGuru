@@ -8,7 +8,7 @@ use App\Models\ReferenceRanks;
 use Validator;
 use Alert;
 
-class TeacherDataSalaryIncreaseHistoryController extends Controller
+class PrincipalDataSalaryIncreaseHistoryController extends Controller
 {
   /**
    * Show the form for creating a new resource.
@@ -18,7 +18,7 @@ class TeacherDataSalaryIncreaseHistoryController extends Controller
   public function create()
   {
       $ranks=ReferenceRanks::all();
-      return view('teacher/personaldata/datahistory/salaryincrease/create', compact('ranks'));
+      return view('principal/personaldata/datahistory/salaryincrease/create', compact('ranks'));
   }
 
   /**
@@ -79,10 +79,10 @@ class TeacherDataSalaryIncreaseHistoryController extends Controller
 
       if($save){
         Alert::success('Berhasil', 'Riwayat KGB Berhasil Disimpan');
-        return redirect()->route('teacherpd');
+        return redirect()->route('principalpd');
       } else {
         Alert::error('Gagal', 'Gagal Menyimpan Riwayat KGB! Silahkan Ulangi Beberapa Saat Lagi');
-        return redirect()->route('teacherpdsihcr');
+        return redirect()->route('principalpdsihcr');
       }
   }
 

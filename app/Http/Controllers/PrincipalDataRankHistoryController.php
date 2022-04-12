@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\DataSalaryIncreaseHistory;
+use App\Models\DataRankHistory;
 use App\Models\ReferenceRanks;
 use Validator;
 use Alert;
 
-class TeacherDataSalaryIncreaseHistoryController extends Controller
+class PrincipalDataRankHistoryController extends Controller
 {
   /**
    * Show the form for creating a new resource.
@@ -18,7 +18,7 @@ class TeacherDataSalaryIncreaseHistoryController extends Controller
   public function create()
   {
       $ranks=ReferenceRanks::all();
-      return view('teacher/personaldata/datahistory/salaryincrease/create', compact('ranks'));
+      return view('principal/personaldata/datahistory/rank/create', compact('ranks'));
   }
 
   /**
@@ -30,22 +30,20 @@ class TeacherDataSalaryIncreaseHistoryController extends Controller
   public function store(Request $request)
   {
       $rules = [
-        'number_of_decree'    => 'required',
-        'starting_from_date'  => 'required',
         'last_rank'           => 'required',
-        'last_salary'         => 'required',
-        'new_salary'          => 'required',
-        'issued_by'           => 'required',
+        'last_group'          => 'required',
+        'starting_from_date'  => 'required',
+        'number_of_decree'    => 'required',
+        'decree_date'         => 'required',
         'file.*'              => 'mimes:pdf|max:2048'
       ];
 
       $messages = [
-        'number_of_decree.required'     => 'Nomor SK Wajib Diisi',
+        'last_rank.required'            => 'Pangkat Wajib Diisi',
+        'last_group.required'           => 'Golongan Wajib Diisi',
         'starting_from_date.required'   => 'T.M.T Wajib Diisi',
-        'last_rank.required'            => 'Pangkat/Golongan Wajib Diisi',
-        'last_salary.required'          => 'Gaji Lama Wajib Diisi',
-        'new_salary.required'           => 'Gaji Baru Wajib Diisi',
-        'issued_by.required'            => 'Nama Instansi Wajib Diisi',
+        'number_of_decree.required'     => 'Nomor SK Wajib Diisi',
+        'decree_date.required'          => 'Tanggal SK Wajib Diisi',
         'file.required'                 => 'File SK Wajib Diupload',
         'file.mimes'                    => 'File SK Wajib Berekstensi .pdf'
       ];
@@ -57,32 +55,32 @@ class TeacherDataSalaryIncreaseHistoryController extends Controller
       }
 
       $starting_from_date = date("Y-m-d", strtotime($request->starting_from_date));
+      $decree_date = date("Y-m-d", strtotime($request->decree_date));
 
       $original_name = $request->file->getClientOriginalName();
-      $file = 'file_kgb_' . time() . '_' . $original_name;
-      $request->file->move(public_path('storage/datahistory/salaryincrease'), $file);
+      $file = 'file_kenaikan_pangkat_' . time() . '_' . $original_name;
+      $request->file->move(public_path('storage/datahistory/rank'), $file);
 
 
       $user_id = auth()->user()->id;
 
-      $data = new DataSalaryIncreaseHistory;
-      $data->number_of_decree = $request->number_of_decree;
-      $data->starting_from_date = $starting_from_date;
+      $data = new DataRankHistory;
       $data->last_rank = $request->last_rank;
-      $data->last_salary = $request->last_salary;
-      $data->new_salary = $request->new_salary;
-      $data->issued_by = $request->issued_by;
+      $data->last_group = $request->last_group;
+      $data->starting_from_date = $starting_from_date;
+      $data->number_of_decree = $request->number_of_decree;
+      $data->decree_date = $decree_date;
       $data->file = $file;
       $data->user_id = $user_id;
       $data->is_deleted = FALSE;
       $save = $data->save();
 
       if($save){
-        Alert::success('Berhasil', 'Riwayat KGB Berhasil Disimpan');
-        return redirect()->route('teacherpd');
+        Alert::success('Berhasil', 'Riwayat Kepangkatan Berhasil Disimpan');
+        return redirect()->route('principalpd');
       } else {
-        Alert::error('Gagal', 'Gagal Menyimpan Riwayat KGB! Silahkan Ulangi Beberapa Saat Lagi');
-        return redirect()->route('teacherpdsihcr');
+        Alert::error('Gagal', 'Gagal Menyimpan Riwayat Kepangkatan! Silahkan Ulangi Beberapa Saat Lagi');
+        return redirect()->route('principalpdrhcr');
       }
   }
 
@@ -94,7 +92,7 @@ class TeacherDataSalaryIncreaseHistoryController extends Controller
    */
   public function destroy($id)
   {
-      $data = DataSalaryIncreaseHistory::findOrFail($id);
+      $data = DataRankHistory::findOrFail($id);
       $data->update([
           'is_deleted' => TRUE
       ]);

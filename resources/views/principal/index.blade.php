@@ -18,7 +18,7 @@
     <h1 class="mb-12 text-center text-4xl text-gray-500 font-bold">Fitur-Fitur E-Guru</h1>
     <div class="flex flex-wrap">
 
-      <a href="/principal/leavepermission" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 mb-4 transition duration-500 transform hover:translate-y-3 cursor-pointer">
+      <a href="/principal/personaldata" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 mb-4 transition duration-500 transform hover:translate-y-3 cursor-pointer">
         <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-3 xl:mb-0 shadow-lg">
           <div class="flex-auto p-4">
             <div class="flex flex-wrap">
