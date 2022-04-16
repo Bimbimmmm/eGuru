@@ -22,18 +22,18 @@ class TeacherController extends Controller
     {
         $user_id = auth()->user()->id;
         $is_integration=User::where(['id' => $user_id, 'personal_data_id' => NULL])->count();
-        $leavepermission=LeavePermissions::where('user_id', $user_id)->count();
-        $leavepermissionall=LeavePermissions::all()->count();
+        $leavepermission=LeavePermissions::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
+        $leavepermissionall=LeavePermissions::where('is_deleted', FALSE)->count();
         $performancetarget=PerformanceTarget::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
-        $performancetargetall=PerformanceTarget::all()->count();
+        $performancetargetall=PerformanceTarget::where('is_deleted', FALSE)->count();
         $creditscore=AssesmentCredit::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
-        $creditscoreall=AssesmentCredit::all()->count();
+        $creditscoreall=AssesmentCredit::where('is_deleted', FALSE)->count();
         $promotion=Promotion::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
-        $promotionall=Promotion::all()->count();
+        $promotionall=Promotion::where('is_deleted', FALSE)->count();
         $salaryincrease=SalaryIncrease::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
-        $salaryincreaseall=SalaryIncrease::all()->count();
+        $salaryincreaseall=SalaryIncrease::where('is_deleted', FALSE)->count();
         $solutioncorner=SolutionCorner::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
-        $solutioncornerall=SolutionCorner::all()->count();
+        $solutioncornerall=SolutionCorner::where('is_deleted', FALSE)->count();
         return view('teacher/index', compact(
         'is_integration', 'leavepermission', 'leavepermissionall',
         'performancetarget', 'performancetargetall', 'creditscore',

@@ -24,7 +24,7 @@ class TeacherLeavePermissionController extends Controller
   public function index()
   {
     $user_id = auth()->user()->id;
-    $datas=LeavePermissions::where('user_id', $user_id)->latest()->get();
+    $datas=LeavePermissions::where(['user_id' => $user_id, 'is_deleted' => FALSE])->latest()->get();
     return view('teacher/leavepermission/index', compact('datas'));
   }
 
@@ -109,12 +109,13 @@ class TeacherLeavePermissionController extends Controller
       }
     }
 
-    if($weekend_days > 1 ){
+    /*if($weekend_days > 1 ){
       $weekend=$weekend_days/2;
     }else{
       $weekend=$weekend_days;
-    }
-    $leave_duration=$day_on+$weekend;
+    }*/
+
+    $leave_duration=$day_on;
 
     $start_date = date("Y-m-d", strtotime($request->start_date));
     $end_date = date("Y-m-d", strtotime($request->end_date));

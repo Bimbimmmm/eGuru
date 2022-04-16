@@ -26,79 +26,73 @@
         <table class="min-w-full leading-normal">
           <thead>
             <tr>
-              <th
-              class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-              Nama
-            </th>
-            <th
-            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-            NIP
-          </th>
-          <th
-          class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-          Email
-        </th>
-        <th
-        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-        Role
-      </th>
-      <th
-      class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-      Aksi
-    </th>
-  </tr>
-</thead>
-<tbody>
-  @foreach($datas as $data)
-  <tr>
-    @if($data->personal_data_id != null)
-    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-      <div class="flex items-center">
-        <div class="ml-3">
-          <p class="text-gray-900 whitespace-no-wrap">
-            {{$data->personalData->name}}
-          </p>
-        </div>
-      </div>
-    </td>
-    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-      <p class="text-gray-900 whitespace-no-wrap">
-        {{$data->personalData->registration_number}}
-      </p>
-    </td>
-    @else
-    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center" colspan="2">
-      <p class="text-gray-900 whitespace-no-wrap">
-        <span class="inline-block rounded-full text-white bg-red-500 px-2 py-1 text-xs font-bold mr-3">Belum Mengisi Data Diri</span>
-      </p>
-    </td>
-    @endif
-    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-      <p class="text-gray-900 whitespace-no-wrap">
-        {{$data->email}}
-      </p>
-    </td>
-    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-      <p class="text-gray-900 whitespace-no-wrap">
-        {{$data->role->name}}
-      </p>
-    </td>
-    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-      <a href="{{ url ('/administrator/user/show', array("$data->id")) }}" class="text-green-600 hover:text-green-400 mr-2">
-        <i class="material-icons-outlined text-base">visibility</i>
-      </a>
-      <a href="#" class="text-red-600 hover:text-red-400    ml-2">
-        <i class="material-icons-round text-base">delete_outline</i>
-      </a>
-    </td>
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                Nama
+              </th>
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                NIP
+              </th>
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                Email
+              </th>
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                Role
+              </th>
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                Aksi
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($datas as $data)
+            <tr>
+              @if($data->personal_data_id != null)
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <div class="flex items-center">
+                  <div class="ml-3">
+                    <p class="text-gray-900 whitespace-no-wrap">
+                      {{$data->personalData->name}}
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {{$data->personalData->registration_number}}
+                </p>
+              </td>
+              @else
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center" colspan="2">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  <span class="inline-block rounded-full text-white bg-red-500 px-2 py-1 text-xs font-bold mr-3">Belum Mengisi Data Diri</span>
+                </p>
+              </td>
+              @endif
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {{$data->email}}
+                </p>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {{$data->role->name}}
+                </p>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <a href="{{ url ('/administrator/user/show', array("$data->id")) }}" class="text-green-600 hover:text-green-400 mr-2">
+                  <i class="material-icons-outlined text-base">visibility</i>
+                </a>
+                <a href="#" class="text-red-600 hover:text-red-400    ml-2">
+                  <i class="material-icons-round text-base">delete_outline</i>
+                </a>
+              </td>
+            </div>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
   </div>
-</td>
-</tr>
-@endforeach
-</tbody>
-</table>
-</div>
-</div>
 </div>
 </div>
 @endsection

@@ -5,6 +5,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminSchoolOfficialController;
+use App\Http\Controllers\AdminCreditScoreController;
+use App\Http\Controllers\AdminLeavePermissionController;
+use App\Http\Controllers\AdminPerformanceController;
+use App\Http\Controllers\AdminPromotionController;
+use App\Http\Controllers\AdminSalaryIncreaseController;
+use App\Http\Controllers\AdminSchoolMappingController;
+use App\Http\Controllers\AdminSolutionCornerController;
+use App\Http\Controllers\AdminReferenceSchoolController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TeacherLeavePermissionController;
 use App\Http\Controllers\TeacherCreditScoreController;
@@ -88,12 +96,31 @@ Route::get('/administrator', [AdministratorController::class, 'index'])->middlew
 Route::get('/administrator/users', [AdminUserController::class, 'index'])->middleware('can:isAdmin')->name('adminuserindex');
 Route::get('/administrator/users/create', [AdminUserController::class, 'create'])->middleware('can:isAdmin')->name('adminusercreate');
 Route::post('/administrator/users/store', [AdminUserController::class, 'store'])->middleware('can:isAdmin')->name('adminuserstore');
+//Admin Leave Permission Routes
+Route::get('/administrator/leavepermission', [AdminLeavePermissionController::class, 'index'])->middleware('can:isAdmin')->name('adminlp');
+Route::get('/administrator/leavepermission/destroy/{id}', [AdminLeavePermissionController::class, 'destroy'])->middleware('can:isAdmin')->name('adminlpdestroy');
+//Admin Credit Score Routes
+Route::get('/administrator/creditscore', [AdminCreditScoreController::class, 'index'])->middleware('can:isAdmin')->name('admincs');
+Route::get('/administrator/creditscore/destroy/{id}', [AdminCreditScoreController::class, 'destroy'])->middleware('can:isAdmin')->name('admincsdestroy');
+//Admin Promotion Routes
+Route::get('/administrator/promotion', [AdminPromotionController::class, 'index'])->middleware('can:isAdmin')->name('adminp');
+Route::get('/administrator/promotion/destroy/{id}', [AdminPromotionController::class, 'destroy'])->middleware('can:isAdmin')->name('adminpdestroy');
+//Admin Salary Increase Routes
+Route::get('/administrator/salaryincrease', [AdminSalaryIncreaseController::class, 'index'])->middleware('can:isAdmin')->name('adminsi');
+Route::get('/administrator/salaryincrease/destroy/{id}', [AdminSalaryIncreaseController::class, 'destroy'])->middleware('can:isAdmin')->name('adminsidestroy');
+//Admin Solution Corner Routes
+Route::get('/administrator/solutioncorner', [AdminSolutionCornerController::class, 'index'])->middleware('can:isAdmin')->name('adminsc');
+Route::get('/administrator/solutioncorner/destroy/{id}', [AdminSolutionCornerController::class, 'destroy'])->middleware('can:isAdmin')->name('adminscdestroy');
 //ADMIN RFERENCE ROUTES
 //Admin Reference School Official Routes
 Route::get('/administrator/reference/schoolofficial', [AdminSchoolOfficialController::class, 'index'])->middleware('can:isAdmin')->name('adminschoff');
 Route::get('/administrator/reference/schoolofficial/create', [AdminSchoolOfficialController::class, 'create'])->middleware('can:isAdmin')->name('adminschoffcreate');
 Route::post('/administrator/reference/schoolofficial/store', [AdminSchoolOfficialController::class, 'store'])->middleware('can:isAdmin')->name('adminschoffstore');
-
+//Admin Reference Work Unit Routes
+Route::get('/administrator/reference/workunit', [AdminReferenceSchoolController::class, 'index'])->middleware('can:isAdmin')->name('adminrefwo');
+Route::get('/administrator/reference/workunit/create', [AdminReferenceSchoolController::class, 'create'])->middleware('can:isAdmin')->name('adminrefwocreate');
+Route::post('/administrator/reference/workunit/store', [AdminReferenceSchoolController::class, 'store'])->middleware('can:isAdmin')->name('adminrefwostore');
+Route::get('/administrator/reference/workunit/destroy/{id}', [AdminReferenceSchoolController::class, 'destroy'])->middleware('can:isAdmin')->name('adminrefwodestroy');
 
 //TEACHER ROUTES
 Route::get('/teacher', [TeacherController::class, 'index'])->middleware('can:isTeacher')->name('teacher');

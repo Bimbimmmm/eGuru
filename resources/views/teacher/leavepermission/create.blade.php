@@ -189,6 +189,7 @@ $( function() {
   $( "#start_date" ).datepicker({
     dateFormat: "dd-mm-yy",
     changeMonth: true,
+    changeYear: true,
   });
 });
 </script>
@@ -197,6 +198,7 @@ $( function() {
   $( "#end_date" ).datepicker({
     dateFormat: "dd-mm-yy",
     changeMonth: true,
+    changeYear: true,
   });
 });
 </script>
