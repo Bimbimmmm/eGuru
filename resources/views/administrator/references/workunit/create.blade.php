@@ -83,7 +83,7 @@
             <button class="shadow bg-green-600 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
               Submit
             </button>
-            <button onclick="window.location='{{ url ('/administrator/reference/schoolofficial') }}'" class="shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+            <button onclick="window.location='{{ url ('/administrator/reference/workunit') }}'" class="shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
               Cancel
             </button>
           </div>

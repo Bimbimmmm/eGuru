@@ -197,6 +197,18 @@
               <span class="ml-2 text-sm tracking-wide truncate">Pejabat Sekolah</span>
             </a>
           </li>
+          <li>
+            <a href="/administrator/reference/subject" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6">
+              <span class="inline-flex justify-center items-center ml-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                </svg>
+              </span>
+              <span class="ml-2 text-sm tracking-wide truncate">Mata Pelajaran</span>
+            </a>
+          </li>
           <li class="px-5 hidden md:block">
             <div class="flex flex-row items-center mt-5 h-8">
               <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Settings</div>

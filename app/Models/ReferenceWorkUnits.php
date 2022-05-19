@@ -41,4 +41,9 @@ class ReferenceWorkUnits extends Model
     {
       return $this->hasMany('App\Models\PositionMapping', 'id');
     }
+
+    public function principalMapping()
+    {
+      return $this->hasMany('App\Models\PrincialMapping', 'id');
+    }
 }

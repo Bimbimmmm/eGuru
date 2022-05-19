@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminSalaryIncreaseController;
 use App\Http\Controllers\AdminSchoolMappingController;
 use App\Http\Controllers\AdminSolutionCornerController;
 use App\Http\Controllers\AdminReferenceSchoolController;
+use App\Http\Controllers\AdminReferenceSubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TeacherLeavePermissionController;
 use App\Http\Controllers\TeacherCreditScoreController;
@@ -39,6 +40,7 @@ use App\Http\Controllers\PrincipalDataNonFormalEducationHistoryController;
 use App\Http\Controllers\PrincipalDataPositionHistoryController;
 use App\Http\Controllers\PrincipalDataRankHistoryController;
 use App\Http\Controllers\PrincipalDataSalaryIncreaseHistoryController;
+use App\Http\Controllers\PrincipalMappingController;
 use App\Http\Controllers\HeadDivisionController;
 use App\Http\Controllers\DivisionHeadLeavePermissionController;
 use App\Http\Controllers\DivisionHeadPerformanceController;
@@ -121,6 +123,11 @@ Route::get('/administrator/reference/workunit', [AdminReferenceSchoolController:
 Route::get('/administrator/reference/workunit/create', [AdminReferenceSchoolController::class, 'create'])->middleware('can:isAdmin')->name('adminrefwocreate');
 Route::post('/administrator/reference/workunit/store', [AdminReferenceSchoolController::class, 'store'])->middleware('can:isAdmin')->name('adminrefwostore');
 Route::get('/administrator/reference/workunit/destroy/{id}', [AdminReferenceSchoolController::class, 'destroy'])->middleware('can:isAdmin')->name('adminrefwodestroy');
+//Admin Reference Subject Routes
+Route::get('/administrator/reference/subject', [AdminReferenceSubjectController::class, 'index'])->middleware('can:isAdmin')->name('adminrefs');
+Route::get('/administrator/reference/subject/create', [AdminReferenceSubjectController::class, 'create'])->middleware('can:isAdmin')->name('adminrefscreate');
+Route::post('/administrator/reference/subject/store', [AdminReferenceSubjectController::class, 'store'])->middleware('can:isAdmin')->name('adminrefsstore');
+Route::get('/administrator/reference/subject/destroy/{id}', [AdminReferenceSubjectController::class, 'destroy'])->middleware('can:isAdmin')->name('adminrefsdestroy');
 
 //TEACHER ROUTES
 Route::get('/teacher', [TeacherController::class, 'index'])->middleware('can:isTeacher')->name('teacher');
@@ -241,6 +248,18 @@ Route::post('/principal/performance/scoreact/{id}/{idpt}', [PrincipalPerformance
 Route::post('/principal/performance/workbehavior/create/{id}', [PrincipalPerformanceWorkBehaviorController::class, 'create'])->middleware('can:isPrincipal')->name('principalptwbcreate');
 Route::get('/principal/performance/workbehavior/show/{id}/{idpt}', [PrincipalPerformanceWorkBehaviorController::class, 'show'])->middleware('can:isPrincipal')->name('principalptwbshow');
 Route::post('/principal/performance/workbehavior/score/{id}/{idpt}', [PrincipalPerformanceWorkBehaviorController::class, 'score'])->middleware('can:isPrincipal')->name('principalptwbscore');
+//Principal Mapping Routes
+Route::get('/principal/mapping', [PrincipalMappingController::class, 'index'])->middleware('can:isPrincipal')->name('principalmp');
+Route::get('/principal/mapping/create', [PrincipalMappingController::class, 'create'])->middleware('can:isPrincipal')->name('principalmpcreate');
+Route::get('/principal/mapping/show/{id}', [PrincipalMappingController::class, 'show'])->middleware('can:isPrincipal')->name('principalmpshow');
+Route::post('/principal/mapping/store', [PrincipalMappingController::class, 'store'])->middleware('can:isPrincipal')->name('principalmpstore');
+Route::get('/principal/mapping/subject/create/{id}', [PrincipalMappingController::class, 'createsubject'])->middleware('can:isPrincipal')->name('principalmpcreatesub');
+Route::post('/principal/mapping/subject/store/{id}', [PrincipalMappingController::class, 'storesubject'])->middleware('can:isPrincipal')->name('principalmpstoresub');
+Route::get('/principal/mapping/subject/show/{id}/{ids}', [PrincipalMappingController::class, 'showsubject'])->middleware('can:isPrincipal')->name('principalmpshowsub');
+Route::get('/principal/mapping/subject/teacher/create/{id}/{ids}', [PrincipalMappingController::class, 'createteacher'])->middleware('can:isPrincipal')->name('principalmpcreatetc');
+Route::post('/principal/mapping/subject/teacher/store/{id}/{ids}', [PrincipalMappingController::class, 'storeteacher'])->middleware('can:isPrincipal')->name('principalmpstoretc');
+Route::post('/principal/mapping/finish/{id}', [PrincipalMappingController::class, 'finish'])->middleware('can:isPrincipal')->name('principalmpfinish');
+
 //Principal Personal Data Routes
 Route::get('/principal/personaldata', [PrincipalPersonalDataController::class, 'index'])->middleware('can:isPrincipal')->name('principalpd');
 //Principal Data History Routes

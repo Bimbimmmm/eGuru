@@ -130,4 +130,14 @@ class User extends Authenticatable
       return $this->hasMany('App\Models\DataSalaryIncreaseHistory', 'id');
     }
 
+    public function principalMapping()
+    {
+      return $this->hasMany('App\Models\PrincialMapping', 'id');
+    }
+
+    public function PrincipalMappingTeacher()
+    {
+      return $this->hasMany('App\Models\PrincipalMappingTeacher', 'id');
+    }
+
 }
