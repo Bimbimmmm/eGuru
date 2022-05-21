@@ -1,10 +1,17 @@
-@extends('layouts.teacher')
+@extends('layouts.principal')
 @section('content')
-<div class="min-h-screen bg-white py-14">
+<div class="min-h-screen bg-white py-3">
+  <a href="/principal/leavepermission">
+    <button class="block text-green-500 rounded-sm font-bold py-4 px-6 mr-2 flex items-center hover:bg-green-500 hover:text-white">
+      <svg class="h-5 w-5 mr-2 fill-current" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-49 141 512 512" style="enable-background:new -49 141 512 512;" xml:space="preserve">
+        <path id="XMLID_10_" d="M438,372H36.355l72.822-72.822c9.763-9.763,9.763-25.592,0-35.355c-9.763-9.764-25.593-9.762-35.355,0 l-115.5,115.5C-46.366,384.01-49,390.369-49,397s2.634,12.989,7.322,17.678l115.5,115.5c9.763,9.762,25.593,9.763,35.355,0 c9.763-9.763,9.763-25.592,0-35.355L36.355,422H438c13.808,0,25-11.193,25-25S451.808,372,438,372z"></path>
+      </svg>
+    </button>
+  </a>
   <div class="px-5 mx-auto max-w-7x1">
     <h1 class="mb-12 text-center text-4xl text-black font-bold">Form Pengajuan Cuti</h1>
     <div class="md:flex md:justify-center md:space-x-8 md:px-14">
-      <form action="/teacher/leavepermission/store" method="POST" class="w-full max-w-lg" enctype="multipart/form-data">
+      <form action="/principal/myleavepermission/store" method="POST" class="w-full max-w-lg" enctype="multipart/form-data">
         @csrf
         @if(session('errors'))
         @foreach ($errors->all() as $error)
@@ -34,7 +41,7 @@
             <label class="block dark:text-white uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
               Tahun Cuti <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
-            <input name="leave_year" placeholder="Masukkan Tahun Cuti"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+            <input name="leave_year" placeholder="Masukkan Tahun Cuti" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -174,7 +181,7 @@
             <button class="shadow bg-green-600 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
               Submit
             </button>
-            <button onclick="window.location='{{ url ('/teacher/leavepermission') }}'" class="shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
+            <button onclick="window.location='{{ url ('/principal/leavepermission') }}'" class="shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
               Cancel
             </button>
           </div>

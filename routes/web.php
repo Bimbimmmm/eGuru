@@ -31,6 +31,7 @@ use App\Http\Controllers\TeacherDataRankHistoryController;
 use App\Http\Controllers\TeacherDataSalaryIncreaseHistoryController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\PrincipalLeavePermissionController;
+use App\Http\Controllers\PrincipalMyLeavePermissionController;
 use App\Http\Controllers\PrincipalPerformanceController;
 use App\Http\Controllers\PrincipalPerformanceWorkBehaviorController;
 use App\Http\Controllers\PrincipalPersonalDataController;
@@ -45,6 +46,7 @@ use App\Http\Controllers\PrincipalSolutionCornerController;
 use App\Http\Controllers\PrincipalMappingController;
 use App\Http\Controllers\HeadDivisionController;
 use App\Http\Controllers\DivisionHeadLeavePermissionController;
+use App\Http\Controllers\DivisionHeadPrincipalLeavePermissionController;
 use App\Http\Controllers\DivisionHeadPerformanceController;
 use App\Http\Controllers\DivisionHeadCreditScoreController;
 use App\Http\Controllers\DivisionHeadSolutionCornerController;
@@ -55,6 +57,7 @@ use App\Http\Controllers\HeadOfficeController;
 use App\Http\Controllers\HeadOfficePromotionController;
 use App\Http\Controllers\HeadOfficeSalaryIncreaseController;
 use App\Http\Controllers\HeadOfficeSolutionCornerController;
+use App\Http\Controllers\HeadOfficeLeavePermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -240,6 +243,11 @@ Route::get('/principal/leavepermission', [PrincipalLeavePermissionController::cl
 Route::get('/principal/leavepermission/show/{id}', [PrincipalLeavePermissionController::class, 'show'])->middleware('can:isPrincipal')->name('principallpshow');
 Route::post('/principal/leavepermission/approve/{id}', [PrincipalLeavePermissionController::class, 'approve'])->middleware('can:isPrincipal')->name('principallpapprove');
 Route::post('/principal/leavepermission/reject/{id}', [PrincipalLeavePermissionController::class, 'reject'])->middleware('can:isPrincipal')->name('principallpreject');
+//Principal My Leave Permission Routes
+Route::get('/principal/myleavepermission/create', [PrincipalMyLeavePermissionController::class, 'create'])->middleware('can:isPrincipal')->name('principalmylpcreate');
+Route::post('/principal/myleavepermission/store', [PrincipalMyLeavePermissionController::class, 'store'])->middleware('can:isPrincipal')->name('principalmylpstore');
+Route::get('/principal/myleavepermission/show/{id}', [PrincipalMyLeavePermissionController::class, 'show'])->middleware('can:isPrincipal')->name('principalmylpshow');
+Route::get('/principal/myleavepermission/pdf/{id}', [PrincipalMyLeavePermissionController::class, 'pdf'])->middleware('can:isPrincipal')->name('principalmylppdf');
 //Principal Performance Target Routes
 Route::get('/principal/performance', [PrincipalPerformanceController::class, 'index'])->middleware('can:isPrincipal')->name('principalpt');
 Route::get('/principal/performance/show/{id}', [PrincipalPerformanceController::class, 'show'])->middleware('can:isPrincipal')->name('principalptshow');
@@ -313,6 +321,10 @@ Route::get('/divisionhead/leavepermission', [DivisionHeadLeavePermissionControll
 Route::get('/divisionhead/leavepermission/show/{id}', [DivisionHeadLeavePermissionController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadlpshow');
 Route::post('/divisionhead/leavepermission/approve/{id}', [DivisionHeadLeavePermissionController::class, 'approve'])->middleware('can:isDivisionHead')->name('divheadlpapprove');
 Route::post('/divisionhead/leavepermission/reject/{id}', [DivisionHeadLeavePermissionController::class, 'reject'])->middleware('can:isDivisionHead')->name('divheadlpreject');
+//Division Head Principal Leave Permission Routes
+Route::get('/divisionhead/principal/leavepermission/show/{id}', [DivisionHeadPrincipalLeavePermissionController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadprlpshow');
+Route::post('/divisionhead/principal/leavepermission/approve/{id}', [DivisionHeadPrincipalLeavePermissionController::class, 'approve'])->middleware('can:isDivisionHead')->name('divheadprlpapprove');
+Route::post('/divisionhead/principal/leavepermission/reject/{id}', [DivisionHeadPrincipalLeavePermissionController::class, 'reject'])->middleware('can:isDivisionHead')->name('divheadprlpreject');
 //Division Head Performance Routes
 Route::get('/divisionhead/performance', [DivisionHeadPerformanceController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadpt');
 Route::get('/divisionhead/performance/show/{id}', [DivisionHeadPerformanceController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadptshow');
@@ -328,20 +340,24 @@ Route::post('/divisionhead/solutioncorner/done/{id}', [DivisionHeadSolutionCorne
 
 //OFFICE HEAD ROUTES
 Route::get('/officehead', [HeadOfficeController::class, 'index'])->middleware('can:isOfficeHead')->name('officehead');
-//Head Office Promotion
+//Head Office Promotion Routes
 Route::get('/officehead/promotion', [HeadOfficePromotionController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadpr');
 Route::get('/officehead/promotion/show/{id}', [HeadOfficePromotionController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadprshow');
 Route::post('/officehead/promotion/approve/{id}', [HeadOfficePromotionController::class, 'approve'])->middleware('can:isOfficeHead')->name('officeheadprapprove');
-//Head Office Salary Increase
+//Head Office Salary Increase Routes
 Route::get('/officehead/salaryincrease', [HeadOfficeSalaryIncreaseController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadsi');
 Route::get('/officehead/salaryincrease/show/{id}', [HeadOfficeSalaryIncreaseController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadsishow');
 Route::post('/officehead/salaryincrease/approve/{id}', [HeadOfficeSalaryIncreaseController::class, 'approve'])->middleware('can:isOfficeHead')->name('officeheadsiapprove');
 Route::post('/officehead/salaryincrease/reject/{id}', [HeadOfficeSalaryIncreaseController::class, 'reject'])->middleware('can:isOfficeHead')->name('officeheadsireject');
-//Head Office Salary Increase
+//Head Office Salary Increase Routes
 Route::get('/officehead/solutioncorner', [HeadOfficeSolutionCornerController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadsc');
 Route::get('/officehead/solutioncorner/show/{id}', [HeadOfficeSolutionCornerController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadscshow');
 Route::post('/officehead/solutioncorner/done/{id}', [HeadOfficeSolutionCornerController::class, 'update'])->middleware('can:isOfficeHead')->name('officeheadscupdate');
-
+//Head Office Leave Permission Routes
+Route::get('/officehead/leavepermission', [HeadOfficeLeavePermissionController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadlp');
+Route::get('/officehead/leavepermission/show/{id}', [HeadOfficeLeavePermissionController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadlpshow');
+Route::post('/officehead/leavepermission/approve/{id}', [HeadOfficeLeavePermissionController::class, 'approve'])->middleware('can:isOfficeHead')->name('officeheadlpapprove');
+Route::post('/officehead/leavepermission/reject/{id}', [HeadOfficeLeavePermissionController::class, 'reject'])->middleware('can:isOfficeHead')->name('officeheadlpreject');
 //OPERATOR ROUTES
 
 //ASSESOR ROUTES

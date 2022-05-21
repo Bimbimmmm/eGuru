@@ -20,8 +20,9 @@ class PrincipalLeavePermissionController extends Controller
   {
     $user_id = auth()->user()->id;
     $myoffical=PositionMapping::where('principal_id', $user_id)->first();
-    $datas=LeavePermissions::where(['position_mapping_id' => $myoffical->id, 'is_direct_supervisor_approve' => FALSE, 'is_deleted' => FALSE])->latest()->get();
-    return view('principal/leavepermission/index', compact('datas'));
+    $datas=LeavePermissions::where(['position_mapping_id' => $myoffical->id, 'is_direct_supervisor_approve' => FALSE, 'is_rejected' => FALSE, 'is_deleted' => FALSE])->latest()->get();
+    $mydatas=LeavePermissions::where(['user_id' => $user_id, 'is_deleted' => FALSE])->latest()->get();
+    return view('principal/leavepermission/index', compact('datas', 'mydatas', 'user_id'));
   }
 
   /**

@@ -21,8 +21,9 @@ class DivisionHeadLeavePermissionController extends Controller
     {
       $user_id = auth()->user()->id;
       $myoffical=PositionMapping::where('supervisor_id', $user_id)->first();
-      $datas=LeavePermissions::where(['position_mapping_id' => $myoffical->id, 'is_direct_supervisor_approve' => TRUE, 'is_official_approve' => FALSE])->latest()->get();
-      return view('head_division/leavepermission/index', compact('datas'));
+      $datas=LeavePermissions::where(['position_mapping_id' => $myoffical->id, 'is_direct_supervisor_approve' => TRUE, 'is_official_approve' => FALSE, 'is_rejected' => FALSE])->latest()->get();
+      $principals=LeavePermissions::where(['position_mapping_id' => $myoffical->id, 'is_direct_supervisor_approve' => FALSE, 'is_official_approve' => FALSE, 'is_rejected' => FALSE])->latest()->get();
+      return view('head_division/leavepermission/index', compact('datas', 'principals'));
     }
 
 
