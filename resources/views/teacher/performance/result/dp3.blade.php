@@ -3,7 +3,7 @@
 <head>
     <title>Sasaran Kinerja Pegawai (SKP) {{$getdatas->user->personalData->name}}</title>
 
-    <link rel="shortcut icon" href="/image/kaltara.png" />
+    <link rel="shortcut icon" href="/images/logo.png" />
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href= "/css/simacan/bulma.min.css">
     <link rel="stylesheet" type="text/css" href= "/css/simacan/bulma.css">

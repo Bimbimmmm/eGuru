@@ -3,7 +3,7 @@
 <head>
   <title>Berkas Usulan Kenaikan Gaji Berkala {{$data->user->personalData->name}}</title>
 
-  <link rel="shortcut icon" href="/image/kaltara.png" />
+  <link rel="shortcut icon" href="/images/logo.png" />
 
 
   <!-- Styles -->
