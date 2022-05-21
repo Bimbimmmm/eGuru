@@ -40,6 +40,7 @@ use App\Http\Controllers\PrincipalDataNonFormalEducationHistoryController;
 use App\Http\Controllers\PrincipalDataPositionHistoryController;
 use App\Http\Controllers\PrincipalDataRankHistoryController;
 use App\Http\Controllers\PrincipalDataSalaryIncreaseHistoryController;
+use App\Http\Controllers\PrincipalSalaryIncreaseController;
 use App\Http\Controllers\PrincipalSolutionCornerController;
 use App\Http\Controllers\PrincipalMappingController;
 use App\Http\Controllers\HeadDivisionController;
@@ -249,6 +250,15 @@ Route::post('/principal/performance/scoreact/{id}/{idpt}', [PrincipalPerformance
 Route::post('/principal/performance/workbehavior/create/{id}', [PrincipalPerformanceWorkBehaviorController::class, 'create'])->middleware('can:isPrincipal')->name('principalptwbcreate');
 Route::get('/principal/performance/workbehavior/show/{id}/{idpt}', [PrincipalPerformanceWorkBehaviorController::class, 'show'])->middleware('can:isPrincipal')->name('principalptwbshow');
 Route::post('/principal/performance/workbehavior/score/{id}/{idpt}', [PrincipalPerformanceWorkBehaviorController::class, 'score'])->middleware('can:isPrincipal')->name('principalptwbscore');
+//Principal Salary Increase Routes
+Route::get('/principal/salaryincrease', [PrincipalSalaryIncreaseController::class, 'index'])->middleware('can:isPrincipal')->name('principalsi');
+Route::get('/principal/salaryincrease/create', [PrincipalSalaryIncreaseController::class, 'create'])->middleware('can:isPrincipal')->name('principalsicreate');
+Route::post('/principal/salaryincrease/store', [PrincipalSalaryIncreaseController::class, 'store'])->middleware('can:isPrincipal')->name('principalsistore');
+Route::get('/principal/salaryincrease/show/{id}', [PrincipalSalaryIncreaseController::class, 'show'])->middleware('can:isPrincipal')->name('principalsishow');
+Route::get('/principal/salaryincrease/pdf/{id}', [PrincipalSalaryIncreaseController::class, 'pdf'])->middleware('can:isPrincipal')->name('principalsipdf');
+Route::get('/principal/salaryincrease/upload/{id}/{siid}', [PrincipalSalaryIncreaseController::class, 'upload'])->middleware('can:isPrincipal')->name('principalsiupload');
+Route::post('/principal/salaryincrease/uploadfile/{id}/{siid}', [PrincipalSalaryIncreaseController::class, 'uploadfile'])->middleware('can:isPrincipal')->name('principalsiuploadfile');
+Route::post('/principal/salaryincrease/lock/{id}', [PrincipalSalaryIncreaseController::class, 'lock'])->middleware('can:isPrincipal')->name('principalsilock');
 //Principal Solution Corner Routes
 Route::get('/principal/solutioncorner', [PrincipalSolutionCornerController::class, 'index'])->middleware('can:isPrincipal')->name('principalsc');
 Route::get('/principal/solutioncorner/create', [PrincipalSolutionCornerController::class, 'create'])->middleware('can:isPrincipal')->name('principalsccreate');

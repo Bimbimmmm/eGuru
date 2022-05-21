@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\LeavePermissions;
 use App\Models\PrincipalMapping;
 use App\Models\SolutionCorner;
+use App\Models\SalaryIncrease;
 
 class PrincipalController extends Controller
 {
@@ -22,7 +23,8 @@ class PrincipalController extends Controller
       $leavepermission=LeavePermissions::where('user_id', $user_id)->count();
       $mapping=PrincipalMapping::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
       $solutioncorner=SolutionCorner::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
-      return view('principal/index', compact('is_integration', 'leavepermission', 'mapping', 'solutioncorner'));
+      $salaryincrease=SalaryIncrease::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
+      return view('principal/index', compact('is_integration', 'leavepermission', 'mapping', 'solutioncorner', 'salaryincrease'));
     }
 
     /**
