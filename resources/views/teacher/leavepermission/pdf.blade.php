@@ -4,7 +4,7 @@
   @foreach($datas as $data)
   <title>Berkas Usulan Cuti {{$data->user->personalData->name}}</title>
   @endforeach
-  <link rel="shortcut icon" href="/image/kaltara.png" />
+  <link rel="shortcut icon" href="/images/logo.png" />
 
 
   <!-- Styles -->

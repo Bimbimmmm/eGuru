@@ -213,7 +213,7 @@
                 </p>
               </td>
               @else
-              <td colspan="2" class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+              <td colspan="3" class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <span class="inline-block rounded-full text-white bg-red-500 px-2 py-1 text-xs font-bold mr-3">Belum Memberikan Feedback</span>
               </td>
               @endif

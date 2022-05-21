@@ -178,7 +178,7 @@
                         <div class="flex flex-wrap">
                           <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                             <h5 class="text-blueGray-400 uppercase font-bold text-xl">PERTEMUAN PS3</h5>
-                            <span class="font-semibold text-xl text-blueGray-700">51 </span>
+                            <span class="font-semibold text-xl text-blueGray-700">{{$solutioncorner}}</span>
                           </div>
                           <div class="relative w-auto pl-4 flex-initial">
                             <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-purple-500">
@@ -203,7 +203,7 @@
                           <div class="flex flex-wrap">
                             <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                               <h5 class="text-blueGray-400 uppercase font-bold text-xl">PEMEETAAN GURU</h5>
-                              <span class="font-semibold text-xl text-blueGray-700">51 </span>
+                              <span class="font-semibold text-xl text-blueGray-700">{{$mapping}}</span>
                             </div>
                             <div class="relative w-auto pl-4 flex-initial">
                               <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-gray-500">

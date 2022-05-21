@@ -147,8 +147,7 @@
     @else
     <div class="flex items-center justify-center mt-10">
       <div class="w-full max-w-md mr-4">
-        <form action="{{ route('principalmpfinish', $data->id)}}" method="POST" class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border-2 border-green-500">
-          @csrf
+        <div class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border-2 border-green-500">
           <div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2">
             Download PDF Pemetaan
           </div>
@@ -156,11 +155,11 @@
             Pemetaan Telah Selesai Dan Sudah Tidak Dapat Diubah Kembali, Silahkan Mendownload Hasil Pemetaan Dengan Mengklik Tombol Download Di Bawah
           </div>
           <div class="flex items-center justify-center">
-            <button class="shadow bg-green-600 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+            <button onclick="window.location='{{ route("principalmppdf",[$data->id]) }}'" class="shadow bg-green-600 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
               Download
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
     @endif

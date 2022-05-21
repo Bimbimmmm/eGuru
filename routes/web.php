@@ -40,6 +40,7 @@ use App\Http\Controllers\PrincipalDataNonFormalEducationHistoryController;
 use App\Http\Controllers\PrincipalDataPositionHistoryController;
 use App\Http\Controllers\PrincipalDataRankHistoryController;
 use App\Http\Controllers\PrincipalDataSalaryIncreaseHistoryController;
+use App\Http\Controllers\PrincipalSolutionCornerController;
 use App\Http\Controllers\PrincipalMappingController;
 use App\Http\Controllers\HeadDivisionController;
 use App\Http\Controllers\DivisionHeadLeavePermissionController;
@@ -248,6 +249,12 @@ Route::post('/principal/performance/scoreact/{id}/{idpt}', [PrincipalPerformance
 Route::post('/principal/performance/workbehavior/create/{id}', [PrincipalPerformanceWorkBehaviorController::class, 'create'])->middleware('can:isPrincipal')->name('principalptwbcreate');
 Route::get('/principal/performance/workbehavior/show/{id}/{idpt}', [PrincipalPerformanceWorkBehaviorController::class, 'show'])->middleware('can:isPrincipal')->name('principalptwbshow');
 Route::post('/principal/performance/workbehavior/score/{id}/{idpt}', [PrincipalPerformanceWorkBehaviorController::class, 'score'])->middleware('can:isPrincipal')->name('principalptwbscore');
+//Principal Solution Corner Routes
+Route::get('/principal/solutioncorner', [PrincipalSolutionCornerController::class, 'index'])->middleware('can:isPrincipal')->name('principalsc');
+Route::get('/principal/solutioncorner/create', [PrincipalSolutionCornerController::class, 'create'])->middleware('can:isPrincipal')->name('principalsccreate');
+Route::get('/principal/solutioncorner/show/{id}', [PrincipalSolutionCornerController::class, 'show'])->middleware('can:isPrincipal')->name('principalscshow');
+Route::post('/principal/solutioncorner/store', [PrincipalSolutionCornerController::class, 'store'])->middleware('can:isPrincipal')->name('principalscstore');
+Route::post('/principal/solutioncorner/feedback/{id}', [PrincipalSolutionCornerController::class, 'feedback'])->middleware('can:isPrincipal')->name('principalscfeedback');
 //Principal Mapping Routes
 Route::get('/principal/mapping', [PrincipalMappingController::class, 'index'])->middleware('can:isPrincipal')->name('principalmp');
 Route::get('/principal/mapping/create', [PrincipalMappingController::class, 'create'])->middleware('can:isPrincipal')->name('principalmpcreate');
@@ -259,6 +266,7 @@ Route::get('/principal/mapping/subject/show/{id}/{ids}', [PrincipalMappingContro
 Route::get('/principal/mapping/subject/teacher/create/{id}/{ids}', [PrincipalMappingController::class, 'createteacher'])->middleware('can:isPrincipal')->name('principalmpcreatetc');
 Route::post('/principal/mapping/subject/teacher/store/{id}/{ids}', [PrincipalMappingController::class, 'storeteacher'])->middleware('can:isPrincipal')->name('principalmpstoretc');
 Route::post('/principal/mapping/finish/{id}', [PrincipalMappingController::class, 'finish'])->middleware('can:isPrincipal')->name('principalmpfinish');
+Route::get('/principal/mapping/pdf/{id}', [PrincipalMappingController::class, 'pdf'])->middleware('can:isPrincipal')->name('principalmppdf');
 
 //Principal Personal Data Routes
 Route::get('/principal/personaldata', [PrincipalPersonalDataController::class, 'index'])->middleware('can:isPrincipal')->name('principalpd');

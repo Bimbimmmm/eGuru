@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\LeavePermissions;
+use App\Models\PrincipalMapping;
+use App\Models\SolutionCorner;
 
 class PrincipalController extends Controller
 {
@@ -18,7 +20,9 @@ class PrincipalController extends Controller
       $user_id = auth()->user()->id;
       $is_integration=User::where(['id' => $user_id, 'personal_data_id' => NULL])->count();
       $leavepermission=LeavePermissions::where('user_id', $user_id)->count();
-      return view('principal/index', compact('is_integration', 'leavepermission'));
+      $mapping=PrincipalMapping::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
+      $solutioncorner=SolutionCorner::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
+      return view('principal/index', compact('is_integration', 'leavepermission', 'mapping', 'solutioncorner'));
     }
 
     /**

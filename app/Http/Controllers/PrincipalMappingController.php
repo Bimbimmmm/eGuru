@@ -337,26 +337,11 @@ class PrincipalMappingController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function pdf($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $detail=PrincipalMapping::where('id', $id)->first();
+        $datas=PrincipalMappingFinish::where('principal_mapping_id', $id)->get();
+        $userqrcode="Nama : {$detail->user->personalData->name}\nNIP : {$detail->user->personalData->registration_number}\nUnit Kerja : {$detail->user->personalData->workUnit->name}";
+        return view('principal/mapping/pdf', compact('detail', 'datas', 'userqrcode'));
     }
 }
