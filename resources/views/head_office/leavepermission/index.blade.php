@@ -9,7 +9,7 @@
     </button>
   </a>
   <div class="px-5 mx-auto max-w-7x1">
-    <h1 class="mb-12 text-center text-4xl text-black font-bold">Pengajuan Cuti</h1>
+    <h1 class="mb-12 text-center text-4xl text-black font-bold">Pengajuan Cuti Menunggu Diperiksa</h1>
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
     <div class="w-full overflow-x-auto">
       <table class="w-full">
@@ -48,6 +48,55 @@
       </table>
     </div>
   </div>
+  <h1 class="mb-12 text-center text-4xl text-black font-bold">Daftar Pengajuan Cuti</h1>
+  <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+  <div class="w-full overflow-x-auto">
+    <table class="w-full">
+      <thead>
+        <tr class="text-md text-center font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+          <th class="px-4 py-3">No</th>
+          <th class="px-4 py-3">Nama</th>
+          <th class="px-4 py-3">Unit Kerja</th>
+          <th class="px-4 py-3">Jenis Cuti</th>
+          <th class="px-4 py-3">Lama Cuti</th>
+          <th class="px-4 py-3">Tanggal Cuti</th>
+          <th class="px-4 py-3">Alasan</th>
+          <th class="px-4 py-3">Status</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white">
+        @foreach($all_datas as $all_data)
+        <tr class="text-gray-700 text-center">
+          <td class="px-4 py-3 text-ms border font-semibold">{{$loop->iteration}}</td>
+          <td class="px-4 py-3 text-ms border">{{$all_data->user->personalData->name}}</td>
+          <td class="px-4 py-3 text-ms border">{{$all_data->user->personalData->position->name}} - {{$all_data->user->personalData->workUnit->name}}</td>
+          <td class="px-4 py-3 text-ms border">{{$all_data->leaveType->name}}</td>
+          <td class="px-4 py-3 text-ms border">{{$all_data->leave_duration}} Hari</td>
+          <td class="px-4 py-3 text-ms border">{{$all_data->start_date->formatLocalized("%d/%m/%Y")}} - {{$all_data->end_date->formatLocalized("%d/%m/%Y")}}</td>
+          <td class="px-4 py-3 text-ms border">{!! $all_data->leave_excuse !!}</td>
+          @if($all_data->is_direct_supervisor_approve == FALSE)
+          <td class="px-4 py-3 text-sm border">
+            <span class="inline-block rounded-full text-white bg-yellow-500 px-2 py-1 text-xs font-bold mr-3">Belum Disetujui Kepala Sekolah</span>
+          </td>
+          @elseif($all_data->is_direct_supervisor_approve == TRUE && $all_data->is_official_approve == FALSE && $all_data->is_rejected == FALSE)
+          <td class="px-4 py-3 text-sm border">
+            <span class="inline-block rounded-full text-white bg-indigo-500 px-2 py-1 text-xs font-bold mr-3">Menunggu Persetujuan Kepala Bidang</span>
+          </td>
+          @elseif($all_data->is_direct_supervisor_approve == TRUE && $all_data->is_official_approve == TRUE)
+          <td class="px-4 py-3 text-sm border">
+            <span class="inline-block rounded-full text-white bg-green-500 px-2 py-1 text-xs font-bold mr-3">Pengajuan Disetujui</span>
+          </td>
+          @elseif($all_data->is_rejected == TRUE)
+          <td class="px-4 py-3 text-sm border">
+            <span class="inline-block rounded-full text-white bg-red-500 px-2 py-1 text-xs font-bold mr-3">Pengajuan Ditolak</span>
+          </td>
+          @endif
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
+</div>
   </div>
 </div>
 @endsection

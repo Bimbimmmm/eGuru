@@ -17,7 +17,8 @@ class HeadOfficeLeavePermissionController extends Controller
   {
     $user_id = auth()->user()->id;
     $datas=LeavePermissions::where(['is_direct_supervisor_approve' => TRUE, 'is_official_approve' => FALSE, 'is_rejected' => FALSE])->latest()->get();
-    return view('head_office/leavepermission/index', compact('datas'));
+    $all_datas=LeavePermissions::where(['is_deleted' => FALSE])->latest()->get();
+    return view('head_office/leavepermission/index', compact('datas', 'all_datas'));
   }
 
 

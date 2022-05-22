@@ -58,21 +58,9 @@ use App\Http\Controllers\HeadOfficePromotionController;
 use App\Http\Controllers\HeadOfficeSalaryIncreaseController;
 use App\Http\Controllers\HeadOfficeSolutionCornerController;
 use App\Http\Controllers\HeadOfficeLeavePermissionController;
+use App\Http\Controllers\HeadOfficePersonalDataController;
+use App\Http\Controllers\HeadOfficeMappingController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-
-Route::get('public/news', [PublicNewsController::class, 'index'])->name('publicnewsindex');
-Route::get('public/news/view/{idEn}', [PublicNewsController::class, 'show'])->name('publicnewsshow');
-Route::post('/public/news/store', [PublicNewsController::class, 'store'])->middleware('can:isGuest')->name('usernewscomment');
-*/
 
 Route::get('/', function () {
     return view('auth/login');
@@ -358,6 +346,13 @@ Route::get('/officehead/leavepermission', [HeadOfficeLeavePermissionController::
 Route::get('/officehead/leavepermission/show/{id}', [HeadOfficeLeavePermissionController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadlpshow');
 Route::post('/officehead/leavepermission/approve/{id}', [HeadOfficeLeavePermissionController::class, 'approve'])->middleware('can:isOfficeHead')->name('officeheadlpapprove');
 Route::post('/officehead/leavepermission/reject/{id}', [HeadOfficeLeavePermissionController::class, 'reject'])->middleware('can:isOfficeHead')->name('officeheadlpreject');
+//Head Office Leave Permission Routes
+Route::get('/officehead/personaldata', [HeadOfficePersonalDataController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadpd');
+Route::get('/officehead/personaldata/show/{id}', [HeadOfficePersonalDataController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadpdshow');
+//Head Office Mapping Routes
+Route::get('/officehead/mapping', [HeadOfficeMappingController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadmp');
+Route::get('/officehead/mapping/pdf/{id}', [HeadOfficeMappingController::class, 'pdf'])->middleware('can:isOfficeHead')->name('officeheadmppdf');
+
 //OPERATOR ROUTES
 
 //ASSESOR ROUTES

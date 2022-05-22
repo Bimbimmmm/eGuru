@@ -1,6 +1,6 @@
 @extends('layouts.headoffice')
 @section('content')
-<div class="min-h-screen bg-gray-100 py-14">
+<div class="min-h-screen bg-gray-100 py-3">
   <div class="px-5 mx-auto max-w-7x1">
     <a href="/officehead">
       <button class="block text-green-500 rounded-sm font-bold py-4 px-6 mr-2 flex items-center hover:bg-green-500 hover:text-white">
@@ -9,7 +9,7 @@
         </svg>
       </button>
     </a>
-    <h1 class="mb-12 text-center text-4xl text-gray-500 font-bold">Kenaikan Gaji Berkala</h1>
+    <h1 class="mb-3 text-center text-4xl text-gray-500 font-bold">Kenaikan Gaji Berkala</h1>
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
     <div class="w-full overflow-x-auto">
       <table class="w-full">
@@ -44,6 +44,54 @@
       </table>
     </div>
   </div>
+  <h1 class="mb-3 mt-12 text-center text-4xl text-gray-500 font-bold">Daftar Kenaikan Gaji Berkala</h1>
+  <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+  <div class="w-full overflow-x-auto">
+    <table class="w-full">
+      <thead>
+        <tr class="text-md text-center font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+          <th class="px-4 py-3">No</th>
+          <th class="px-4 py-3">Nama</th>
+          <th class="px-4 py-3">NIP</th>
+          <th class="px-4 py-3">Unit Kerja</th>
+          <th class="px-4 py-3">Tahun Pengajuan</th>
+          <th class="px-4 py-3">Tipe Kenaikan Gaji Berkala</th>
+          <th class="px-4 py-3">Status</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white">
+        @foreach($all_datas as $all_data)
+        <tr class="text-gray-700 text-center">
+          <td class="px-4 py-3 text-ms border font-semibold">{{$loop->iteration}}</td>
+          <td class="px-4 py-3 text-ms border">{{$all_data->user->personalData->name}}</td>
+          <td class="px-4 py-3 text-ms border">{{$all_data->user->personalData->registration_number}}</td>
+          <td class="px-4 py-3 text-ms border">{{$all_data->user->personalData->workUnit->name}}</td>
+          <td class="px-4 py-3 text-ms border">{{$all_data->year}}</td>
+          <td class="px-4 py-3 text-ms border">{{$all_data->type}}</td>
+          @if($all_data->is_locked == FALSE)
+          <td class="px-4 py-3 text-sm border">
+            <span class="inline-block rounded-full text-white bg-yellow-500 px-2 py-1 text-xs font-bold mr-3">Belum Dikunci</span>
+          </td>
+          @elseif($all_data->is_locked == TRUE && $all_data->is_finish == FALSE && $all_data->is_rejected == FALSE)
+          <td class="px-4 py-3 text-sm border">
+            <span class="inline-block rounded-full text-white bg-indigo-500 px-2 py-1 text-xs font-bold mr-3">Menunggu Persetujuan</span>
+          </td>
+          @elseif($all_data->is_finish == TRUE && $all_data->is_rejected == FALSE)
+          <td class="px-4 py-3 text-sm border">
+            <span class="inline-block rounded-full text-white bg-green-500 px-2 py-1 text-xs font-bold mr-3">Sudah Disetujui</span>
+          </td>
+          @elseif($all_data->is_rejected == TRUE)
+          <td class="px-4 py-3 text-sm border">
+            <span class="inline-block rounded-full text-white bg-red-500 px-2 py-1 text-xs font-bold mr-3">Ditolak</span>
+            <span class="inline-block rounded-full text-white bg-red-500 px-2 py-1 text-xs font-bold mr-3">Dengan Alasan {{$all_data->rejected_reason}}</span>
+          </td>
+          @endif
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
+</div>
   </div>
 </div>
 @endsection

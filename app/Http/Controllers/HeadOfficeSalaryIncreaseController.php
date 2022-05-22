@@ -22,7 +22,8 @@ class HeadOfficeSalaryIncreaseController extends Controller
   public function index()
   {
     $datas=SalaryIncrease::where(['is_locked' => TRUE, 'is_finish' => FALSE, 'is_rejected' => FALSE, 'is_deleted' => FALSE])->get();
-    return view('head_office/salaryincrease/index', compact('datas'));
+    $all_datas=SalaryIncrease::where(['is_deleted' => FALSE])->get();
+    return view('head_office/salaryincrease/index', compact('datas', 'all_datas'));
   }
 
   /**
