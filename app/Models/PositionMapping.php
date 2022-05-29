@@ -47,4 +47,9 @@ class PositionMapping extends Model
     {
       return $this->hasMany('App\Models\PositionMapping', 'id');
     }
+
+    public function newperformanceTarget()
+    {
+      return $this->hasMany('App\Models\NewPerformanceTarget', 'id');
+    }
 }

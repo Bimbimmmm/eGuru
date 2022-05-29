@@ -140,4 +140,9 @@ class User extends Authenticatable
       return $this->hasMany('App\Models\PrincipalMappingTeacher', 'id');
     }
 
+    public function newperformanceTarget()
+    {
+      return $this->hasMany('App\Models\NewPerformanceTarget', 'id');
+    }
+
 }

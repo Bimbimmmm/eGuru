@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\LeavePermissions;
 use App\Models\PerformanceTarget;
+use App\Models\NewPerformanceTarget;
 use App\Models\AssesmentCredit;
 use App\Models\Promotion;
 use App\Models\SalaryIncrease;
@@ -24,8 +25,8 @@ class TeacherController extends Controller
         $is_integration=User::where(['id' => $user_id, 'personal_data_id' => NULL])->count();
         $leavepermission=LeavePermissions::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
         $leavepermissionall=LeavePermissions::where('is_deleted', FALSE)->count();
-        $performancetarget=PerformanceTarget::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
-        $performancetargetall=PerformanceTarget::where('is_deleted', FALSE)->count();
+        $performancetarget=NewPerformanceTarget::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
+        $performancetargetall=NewPerformanceTarget::where('is_deleted', FALSE)->count();
         $creditscore=AssesmentCredit::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
         $creditscoreall=AssesmentCredit::where('is_deleted', FALSE)->count();
         $promotion=Promotion::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();

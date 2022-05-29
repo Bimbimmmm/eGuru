@@ -29,6 +29,8 @@ use App\Http\Controllers\TeacherDataNonFormalEducationHistoryController;
 use App\Http\Controllers\TeacherDataPositionHistoryController;
 use App\Http\Controllers\TeacherDataRankHistoryController;
 use App\Http\Controllers\TeacherDataSalaryIncreaseHistoryController;
+use App\Http\Controllers\TeacherNewPerformanceActivityController;
+use App\Http\Controllers\TeacherNewPerformanceTargetController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\PrincipalLeavePermissionController;
 use App\Http\Controllers\PrincipalMyLeavePermissionController;
@@ -131,6 +133,8 @@ Route::post('/teacher/leavepermission/store', [TeacherLeavePermissionController:
 Route::get('/teacher/leavepermission/show/{id}', [TeacherLeavePermissionController::class, 'show'])->middleware('can:isTeacher')->name('teacherlpshow');
 Route::get('/teacher/leavepermission/pdf/{id}', [TeacherLeavePermissionController::class, 'pdf'])->middleware('can:isTeacher')->name('teacherlppdf');
 //Teacher Performance Routes
+//THIS WAS OLD PERFORMANCE ROUTES
+/*
 Route::get('/teacher/performance', [TeacherPerformanceController::class, 'index'])->middleware('can:isTeacher')->name('teacherpt');
 Route::get('/teacher/performance/create', [TeacherPerformanceController::class, 'create'])->middleware('can:isTeacher')->name('teacherptcreate');
 Route::post('/teacher/performance/store', [TeacherPerformanceController::class, 'store'])->middleware('can:isTeacher')->name('teacherptstore');
@@ -151,7 +155,32 @@ Route::get('/teacher/performance/activity/create/up/{id}', [TeacherPerformanceAc
 Route::get('/teacher/performance/activity/show/{id}/{idpt}', [TeacherPerformanceActivityController::class, 'show'])->middleware('can:isTeacher')->name('teacherptactshow');
 Route::post('/teacher/performance/activity/store/{id}/{idpt}', [TeacherPerformanceActivityController::class, 'uploadproof'])->middleware('can:isTeacher')->name('teacherptproof');
 Route::get('/teacher/performance/activity/delete/{id}', [TeacherPerformanceActivityController::class, 'delete'])->middleware('can:isTeacher')->name('teacherptactdelete');
+*/
+//THIS WAS NEW PERFORMANCE ROUTES
+//Teacher Performance Routes
+Route::get('/teacher/newperformance', [TeacherNewPerformanceTargetController::class, 'index'])->middleware('can:isTeacher')->name('teachernpt');
+Route::get('/teacher/newperformance/create', [TeacherNewPerformanceTargetController::class, 'create'])->middleware('can:isTeacher')->name('teachernptcreate');
+Route::post('/teacher/newperformance/store', [TeacherNewPerformanceTargetController::class, 'store'])->middleware('can:isTeacher')->name('teachernptstore');
+Route::get('/teacher/newperformance/show/{id}', [TeacherNewPerformanceTargetController::class, 'show'])->middleware('can:isTeacher')->name('teachernptshow');
+Route::post('/teacher/newperformance/lock/{id}', [TeacherNewPerformanceTargetController::class, 'lock'])->middleware('can:isTeacher')->name('teachernptlock');
+Route::get('/teacher/newperformance/destroy/{id}', [TeacherNewPerformanceTargetController::class, 'destroy'])->middleware('can:isTeacher')->name('teachernptdestroy');
+//Teacher Performance Files Routes
+Route::get('/teacher/newperformance/show/planning/{id}', [TeacherNewPerformanceTargetController::class, 'showplanning'])->middleware('can:isTeacher')->name('teachernptshowplan');
+Route::get('/teacher/newperformance/show/realization/{id}', [TeacherNewPerformanceTargetController::class, 'showrealization'])->middleware('can:isTeacher')->name('teachernptshowreal');
+Route::get('/teacher/newperformance/show/dp3/{id}', [TeacherNewPerformanceTargetController::class, 'showdp3'])->middleware('can:isTeacher')->name('teachernptshowdp3');
 
+//Teacher Performance Activity Routes
+Route::get('/teacher/newperformance/activity/create/main/{id}', [TeacherNewPerformanceActivityController::class, 'createmain'])->middleware('can:isTeacher')->name('teachernptastorepbt');
+Route::post('/teacher/newperformance/activity/create/store/main/{id}', [TeacherNewPerformanceActivityController::class, 'storemain'])->middleware('can:isTeacher')->name('teachernptastoremain');
+Route::get('/teacher/newperformance/activity/create/additional/{id}', [TeacherNewPerformanceActivityController::class, 'createadditional'])->middleware('can:isTeacher')->name('teachernptaap');
+Route::post('/teacher/newperformance/activity/create/store/additional/{id}', [TeacherNewPerformanceActivityController::class, 'storeaddittional'])->middleware('can:isTeacher')->name('teachernptastoreadditional');
+Route::get('/teacher/newperformance/activity/show/{id}/{idpt}', [TeacherNewPerformanceActivityController::class, 'show'])->middleware('can:isTeacher')->name('teachernptactshow');
+Route::post('/teacher/newperformance/activity/store/{id}/{idpt}', [TeacherNewPerformanceActivityController::class, 'uploadproof'])->middleware('can:isTeacher')->name('teachernptproof');
+Route::get('/teacher/newperformance/activity/delete/{id}', [TeacherNewPerformanceActivityController::class, 'destroy'])->middleware('can:isTeacher')->name('teachernptactdelete');
+Route::get('getActivity/{id}', function ($id) {
+    $element = App\Models\ReferencePerformanceTargetElement::where('id',$id)->first();
+    return response()->json($element);
+});
 //Teacher Credit Score Routes
 Route::get('/teacher/creditscore', [TeacherCreditScoreController::class, 'index'])->middleware('can:isTeacher')->name('teachercs');
 Route::get('/teacher/creditscore/create', [TeacherCreditScoreController::class, 'create'])->middleware('can:isTeacher')->name('teachercscreate');

@@ -46,4 +46,9 @@ class ReferenceWorkUnits extends Model
     {
       return $this->hasMany('App\Models\PrincialMapping', 'id');
     }
+
+    public function newperformanceTarget()
+    {
+      return $this->hasMany('App\Models\NewPerformanceTarget', 'id');
+    }
 }

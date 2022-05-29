@@ -72,7 +72,7 @@
           </div>
         </a>
 
-        <a href="/teacher/performance" class=" mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 transition duration-500 transform hover:translate-y-3 cursor-pointer">
+        <a href="/teacher/newperformance" class=" mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 transition duration-500 transform hover:translate-y-3 cursor-pointer">
           <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-4 xl:mb-0 shadow-lg">
             <div class="flex-auto p-4">
               <div class="flex flex-wrap">
