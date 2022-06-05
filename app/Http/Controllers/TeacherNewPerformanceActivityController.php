@@ -186,10 +186,45 @@ class TeacherNewPerformanceActivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+     public function show($id, $idpt){
+       $data=NewPerformanceTargetScore::where(['id' => $id, 'is_deleted' => FALSE])->first();
+       return view('teacher/performance/new/activity/show', compact('id', 'idpt', 'data'));
+     }
+
+     public function uploadproof(Request $request, $id, $idpt){
+       $rules = [
+           'file'    => 'required',
+           'file.*'  => 'mimes:pdf|max:2048'
+       ];
+
+       $messages = [
+           'file.required'   => 'File Bukti Wajib Diisi',
+           'file.mimes'      => 'File Bukti Wajib Berekstensi .pdf'
+       ];
+
+       $validator = Validator::make($request->all(), $rules, $messages);
+
+       if($validator->fails()){
+           return redirect()->back()->withErrors($validator)->withInput($request->all);
+       }
+
+       $original_name = $request->file->getClientOriginalName();
+       $file = 'file_bukti_kegiatan_skp_' . time() . '_' . $original_name;
+       $request->file->move(public_path('storage/performancetarget/activity'), $file);
+
+       $data = NewPerformanceTargetScore::findOrFail($id);
+       $data->update([
+           'file'            => $file
+       ]);
+
+       if($data){
+             Alert::success('Berhasil', 'File Bukti Sudah Diupload');
+             return redirect()->route('teachernptshow', $idpt);
+       } else {
+             Alert::error('Gagal', 'Gagal Mengupload File Bukti! Silahkan Ulangi Beberapa Saat Lagi');
+             return redirect()->back();
+       }
+     }
 
     /**
      * Show the form for editing the specified resource.

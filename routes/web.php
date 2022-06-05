@@ -36,6 +36,8 @@ use App\Http\Controllers\PrincipalLeavePermissionController;
 use App\Http\Controllers\PrincipalMyLeavePermissionController;
 use App\Http\Controllers\PrincipalPerformanceController;
 use App\Http\Controllers\PrincipalPerformanceWorkBehaviorController;
+use App\Http\Controllers\PrincipalNewPerformanceTargetController;
+use App\Http\Controllers\PrincipalNewPerformanceWorkBehaviorController;
 use App\Http\Controllers\PrincipalPersonalDataController;
 use App\Http\Controllers\PrincipalDataAppreciationHistoryController;
 use App\Http\Controllers\PrincipalDataFormalEducationHistoryController;
@@ -265,6 +267,7 @@ Route::get('/principal/myleavepermission/create', [PrincipalMyLeavePermissionCon
 Route::post('/principal/myleavepermission/store', [PrincipalMyLeavePermissionController::class, 'store'])->middleware('can:isPrincipal')->name('principalmylpstore');
 Route::get('/principal/myleavepermission/show/{id}', [PrincipalMyLeavePermissionController::class, 'show'])->middleware('can:isPrincipal')->name('principalmylpshow');
 Route::get('/principal/myleavepermission/pdf/{id}', [PrincipalMyLeavePermissionController::class, 'pdf'])->middleware('can:isPrincipal')->name('principalmylppdf');
+/*
 //Principal Performance Target Routes
 Route::get('/principal/performance', [PrincipalPerformanceController::class, 'index'])->middleware('can:isPrincipal')->name('principalpt');
 Route::get('/principal/performance/show/{id}', [PrincipalPerformanceController::class, 'show'])->middleware('can:isPrincipal')->name('principalptshow');
@@ -275,6 +278,17 @@ Route::post('/principal/performance/scoreact/{id}/{idpt}', [PrincipalPerformance
 Route::post('/principal/performance/workbehavior/create/{id}', [PrincipalPerformanceWorkBehaviorController::class, 'create'])->middleware('can:isPrincipal')->name('principalptwbcreate');
 Route::get('/principal/performance/workbehavior/show/{id}/{idpt}', [PrincipalPerformanceWorkBehaviorController::class, 'show'])->middleware('can:isPrincipal')->name('principalptwbshow');
 Route::post('/principal/performance/workbehavior/score/{id}/{idpt}', [PrincipalPerformanceWorkBehaviorController::class, 'score'])->middleware('can:isPrincipal')->name('principalptwbscore');
+*/
+//Principal New Performance Target Routes
+Route::get('/principal/newperformance', [PrincipalNewPerformanceTargetController::class, 'index'])->middleware('can:isPrincipal')->name('principalnpt');
+Route::get('/principal/newperformance/show/{id}', [PrincipalNewPerformanceTargetController::class, 'show'])->middleware('can:isPrincipal')->name('principalnptshow');
+Route::post('/principal/newperformance/done/{id}', [PrincipalNewPerformanceTargetController::class, 'done'])->middleware('can:isPrincipal')->name('principalnptdone');
+Route::get('/principal/newperformance/score/{id}/{idpt}', [PrincipalNewPerformanceTargetController::class, 'score'])->middleware('can:isPrincipal')->name('principalnptscore');
+Route::post('/principal/newperformance/scoreact/{id}/{idpt}', [PrincipalNewPerformanceTargetController::class, 'scoreact'])->middleware('can:isPrincipal')->name('principalnptscoreact');
+//Principal New Performance Target Work Behavior Routes
+Route::post('/principal/newperformance/workbehavior/create/{id}', [PrincipalNewPerformanceWorkBehaviorController::class, 'create'])->middleware('can:isPrincipal')->name('principalnptwbcreate');
+Route::get('/principal/newperformance/workbehavior/show/{id}/{idpt}', [PrincipalNewPerformanceWorkBehaviorController::class, 'show'])->middleware('can:isPrincipal')->name('principalnptwbshow');
+Route::post('/principal/newperformance/workbehavior/score/{id}/{idpt}', [PrincipalNewPerformanceWorkBehaviorController::class, 'score'])->middleware('can:isPrincipal')->name('principalnptwbscore');
 //Principal Salary Increase Routes
 Route::get('/principal/salaryincrease', [PrincipalSalaryIncreaseController::class, 'index'])->middleware('can:isPrincipal')->name('principalsi');
 Route::get('/principal/salaryincrease/create', [PrincipalSalaryIncreaseController::class, 'create'])->middleware('can:isPrincipal')->name('principalsicreate');

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ReferenceNewWorkBehaviour extends Model
 {
     use HasFactory;
-    protected $table = 'reference_new_work_behavior';
+    protected $table = 'reference_new_work_behaviour';
     protected $casts = [
       'id' => 'string',
       ];

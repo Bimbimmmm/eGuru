@@ -9,7 +9,7 @@ class NewPerformanceTargetWorkBehaviour extends Model
 {
     use HasFactory;
     use HasFactory;
-    protected $table = 'new_performance_target_work_behavior';
+    protected $table = 'new_performance_target_work_behaviour';
     protected $casts = [
       'id' => 'string',
     ];
@@ -18,7 +18,7 @@ class NewPerformanceTargetWorkBehaviour extends Model
 
     protected $fillable = [
         'new_performance_target_id',
-        'reference_new_work_behavior_id',
+        'reference_new_work_behaviour_id',
         'score',
         'is_deleted'
     ];
@@ -30,6 +30,6 @@ class NewPerformanceTargetWorkBehaviour extends Model
 
     public function refNewWorkBehavior()
     {
-      return $this->belongsTo('App\Models\ReferenceNewWorkBehaviour', 'reference_new_work_behavior_id');
+      return $this->belongsTo('App\Models\ReferenceNewWorkBehaviour', 'reference_new_work_behaviour_id');
     }
 }

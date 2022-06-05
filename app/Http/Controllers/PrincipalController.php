@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\PositionMapping;
 use App\Models\LeavePermissions;
 use App\Models\PrincipalMapping;
 use App\Models\SolutionCorner;
 use App\Models\SalaryIncrease;
+use App\Models\NewPerformanceTarget;
 
 class PrincipalController extends Controller
 {
@@ -19,12 +21,14 @@ class PrincipalController extends Controller
     public function index()
     {
       $user_id = auth()->user()->id;
+      $position_mapping=PositionMapping::where(['principal_id' => $user_id, 'is_active' => TRUE])->first();
       $is_integration=User::where(['id' => $user_id, 'personal_data_id' => NULL])->count();
       $leavepermission=LeavePermissions::where('user_id', $user_id)->count();
+      $performancetarget=NewPerformanceTarget::where(['position_mapping_id' => $position_mapping->id, 'is_ready' => TRUE, 'is_direct_supervisor_approve' => FALSE, 'is_deleted' => FALSE])->count();
       $mapping=PrincipalMapping::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
       $solutioncorner=SolutionCorner::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
       $salaryincrease=SalaryIncrease::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
-      return view('principal/index', compact('is_integration', 'leavepermission', 'mapping', 'solutioncorner', 'salaryincrease'));
+      return view('principal/index', compact('is_integration', 'leavepermission', 'mapping', 'solutioncorner', 'salaryincrease', 'performancetarget'));
     }
 
     /**

@@ -138,27 +138,19 @@ class TeacherNewPerformanceTargetController extends Controller
       return view('teacher/performance/new/show', compact('data', 'count', 'activities'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    public function lock($id){
+      $data = NewPerformanceTarget::findOrFail($id);
+      $data->update([
+          'is_ready'            => TRUE
+      ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+      if($data){
+            Alert::success('Berhasil', 'SKP Berhasil Dikunci');
+            return redirect()->back();
+      } else {
+            Alert::error('Gagal', 'Gagal Mengunci SKP! Silahkan ulangi beberapa saat lagi');
+            return redirect()->back();
+      }
     }
 
     /**

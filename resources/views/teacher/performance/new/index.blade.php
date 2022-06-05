@@ -37,19 +37,19 @@
         <table class="min-w-full leading-normal">
           <thead>
             <tr>
-              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 No
               </th>
-              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 Tahun SKP / Periode
               </th>
-              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 Pangkat / Golongan
               </th>
-              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 Status
               </th>
-              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 Aksi
               </th>
             </tr>
@@ -62,17 +62,17 @@
                   {{$loop->iteration}}
                 </p>
               </td>
-              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <p class="text-gray-900 whitespace-no-wrap">
                   {{$data->assessment_year}} - {{$data->period}}
                 </p>
               </td>
-              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <p class="text-gray-900 whitespace-no-wrap">
                   {{$data->rank->group}} / {{$data->rank->rank}}
                 </p>
               </td>
-              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <p class="text-gray-900 whitespace-no-wrap">
                   @if($data->is_ready == FALSE)
                   <span class="inline-block rounded-full text-gray-600 bg-gray-100 px-2 py-1 text-xs font-bold mr-3">Belum Dikunci</span>
@@ -87,7 +87,7 @@
                   @endif
                 </p>
               </td>
-              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <a href="/teacher/newperformance/show/{{$data->id}}" class="text-green-600 hover:text-green-400 ml-2">
                   <i class="material-icons-round text-base">visibility</i>
                 </a>
