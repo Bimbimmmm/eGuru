@@ -15,48 +15,48 @@
         <table class="min-w-full leading-normal">
           <thead>
             <tr>
-              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 Nama
               </th>
-              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 Angka Kredit
               </th>
-              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 Jumlah
               </th>
-              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 File
               </th>
-              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
                 Aksi
               </th>
             </tr>
           </thead>
           <tbody>
             @foreach($filedatas as $filedata)
-            @if($getforif->activity_item == $filedata->refActivityCreditScore->activity_item)
+            @if($filedata->refPerformanceElement->code >= $code_low && $filedata->refPerformanceElement->code < $code_up)
             <tr>
-              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <p class="text-gray-900 whitespace-no-wrap">
-                  {{$filedata->refActivityCreditScore->grain_item}} {{$filedata->refActivityCreditScore->sub_grain_item}}
+                  {{$filedata->refPerformanceElement->performance_plan}} -> {{$filedata->refPerformanceElement->activity_item}}
                 </p>
               </td>
-              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <p class="text-gray-900 whitespace-no-wrap">
                   {{$filedata->realization_credit_score}}
                 </p>
               </td>
-              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <p class="text-gray-900 whitespace-no-wrap">
                   {{$filedata->realization_qty}}
                 </p>
               </td>
-              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <a href="{{ asset('storage/performancetarget/activity/' . $filedata->file) }}"class="text-gray-900 whitespace-no-wrap">
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+                <a href="{{ asset('storage/performancetarget/activity/' . $filedata->file) }}"class="text-blue-500 underline whitespace-no-wrap">
                   {{$filedata->file}}
                 </a>
               </td>
-              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <a href="/assesor/creditscore/reject/{{$filedata->id}}/{{$data->id}}/{{$data2->id}}" class="text-green-600 hover:text-green-400 ml-2">
                   <i class="material-icons-round text-base">visibility</i>
                 </a>
@@ -100,12 +100,12 @@
               Form Penilaian
             </div>
             <div class="mb-6 text-center">
-              <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
+              <label class="block text-gray-700 text-sm text-center font-normal mb-2" for="password">
                 Jika Pengajuan Sudah Dikunci, Perubahan Sudah Tidak Dapat Dilakukan
               </label>
             </div>
             <div class="mb-6">
-              <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
+              <label class="block text-gray-700 text-sm text-center font-normal mb-2" for="password">
                 Nilai Penilai
               </label>
               <input name="new_evaluator_credit_score" type="number" step=".0001" value="{{$total_evaluator_credit_score}}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"/>

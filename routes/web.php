@@ -17,6 +17,7 @@ use App\Http\Controllers\AdminReferenceSubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TeacherLeavePermissionController;
 use App\Http\Controllers\TeacherCreditScoreController;
+use App\Http\Controllers\TeacherNewCreditScoreController;
 use App\Http\Controllers\TeacherPerformanceController;
 use App\Http\Controllers\TeacherPerformanceActivityController;
 use App\Http\Controllers\TeacherPromotionController;
@@ -184,6 +185,7 @@ Route::get('getActivity/{id}', function ($id) {
     $element = App\Models\ReferencePerformanceTargetElement::where('id',$id)->first();
     return response()->json($element);
 });
+/*
 //Teacher Credit Score Routes
 Route::get('/teacher/creditscore', [TeacherCreditScoreController::class, 'index'])->middleware('can:isTeacher')->name('teachercs');
 Route::get('/teacher/creditscore/create', [TeacherCreditScoreController::class, 'create'])->middleware('can:isTeacher')->name('teachercscreate');
@@ -195,7 +197,18 @@ Route::get('/teacher/creditscore/create/oldactivity/{id}', [TeacherCreditScoreCo
 Route::post('/teacher/creditscore/create/oldactivity/store/{id}', [TeacherCreditScoreController::class, 'storeold'])->middleware('can:isTeacher')->name('teachercscrstoreold');
 Route::post('/teacher/creditscore/lock/{id}', [TeacherCreditScoreController::class, 'lock'])->middleware('can:isTeacher')->name('teachercslock');
 Route::get('/teacher/creditscore/pdf/{id}', [TeacherCreditScoreController::class, 'pdf'])->middleware('can:isTeacher')->name('teachercspdf');
-
+*/
+//Teacher New Credit Score Routes
+Route::get('/teacher/newcreditscore', [TeacherNewCreditScoreController::class, 'index'])->middleware('can:isTeacher')->name('teacherncs');
+Route::get('/teacher/newcreditscore/create', [TeacherNewCreditScoreController::class, 'create'])->middleware('can:isTeacher')->name('teacherncscreate');
+Route::post('/teacher/newcreditscore/store', [TeacherNewCreditScoreController::class, 'store'])->middleware('can:isTeacher')->name('teacherncsstore');
+Route::get('/teacher/newcreditscore/show/{id}', [TeacherNewCreditScoreController::class, 'show'])->middleware('can:isTeacher')->name('teacherncsshow');
+Route::get('/teacher/newcreditscore/edit/{id}/{idc}', [TeacherNewCreditScoreController::class, 'edit'])->middleware('can:isTeacher')->name('teacherncsedit');
+Route::post('/teacher/newcreditscore/update/{id}/{idc}', [TeacherNewCreditScoreController::class, 'update'])->middleware('can:isTeacher')->name('teacherncsupdate');
+Route::get('/teacher/newcreditscore/create/oldactivity/{id}', [TeacherNewCreditScoreController::class, 'createold'])->middleware('can:isTeacher')->name('teacherncscrold');
+Route::post('/teacher/newcreditscore/create/oldactivity/store/{id}', [TeacherNewCreditScoreController::class, 'storeold'])->middleware('can:isTeacher')->name('teacherncscrstoreold');
+Route::post('/teacher/newcreditscore/lock/{id}', [TeacherNewCreditScoreController::class, 'lock'])->middleware('can:isTeacher')->name('teacherncslock');
+Route::get('/teacher/newcreditscore/pdf/{id}', [TeacherNewCreditScoreController::class, 'pdf'])->middleware('can:isTeacher')->name('teacherncspdf');
 //Teacher Promotion Routes
 Route::get('/teacher/promotion', [TeacherPromotionController::class, 'index'])->middleware('can:isTeacher')->name('teacherpm');
 Route::get('/teacher/promotion/create', [TeacherPromotionController::class, 'create'])->middleware('can:isTeacher')->name('teacherpmcreate');

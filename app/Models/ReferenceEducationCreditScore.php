@@ -25,4 +25,9 @@ class ReferenceEducationCreditScore extends Model
     {
       return $this->hasMany('App\Models\AssesmentCredit', 'id');
     }
+
+    public function newAssesmentCredit()
+    {
+      return $this->hasMany('App\Models\NewAssesmentCredit', 'id');
+    }
 }

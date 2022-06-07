@@ -65,7 +65,7 @@
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <p class="text-gray-900 whitespace-no-wrap">
-                  {{$data->performanceTarget->assessment_year}}
+                  {{$data->newPerformanceTarget->assessment_year}}
                 </p>
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">

@@ -145,4 +145,9 @@ class User extends Authenticatable
       return $this->hasMany('App\Models\NewPerformanceTarget', 'id');
     }
 
+    public function newAssesmentCredit()
+    {
+      return $this->hasMany('App\Models\NewAssesmentCredit', 'id');
+    }
+
 }

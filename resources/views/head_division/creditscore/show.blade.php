@@ -28,7 +28,7 @@
             </tr>
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold">SKP Tahun Berjalan</td>
-              <td class="px-4 py-3 text-ms border">{{$assesment->performanceTarget->assessment_year}} - {{$assesment->performanceTarget->period}}</td>
+              <td class="px-4 py-3 text-ms border">{{$assesment->newPerformanceTarget->assessment_year}} - {{$assesment->newPerformanceTarget->period}}</td>
             </tr>
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold">Masa Kerja Lama - Masa Kerja Baru</td>
@@ -45,7 +45,7 @@
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold">File PAK Tahun Lalu</td>
               <td class="px-4 py-3 text-ms border">
-                <a href="{{ asset('storage/creditscore/' . $assesment->file) }}">
+                <a class="text-blue-500 underline" href="{{ asset('storage/creditscore/' . $assesment->file) }}">
                   {{$assesment->file}}
                 </a>
               </td>

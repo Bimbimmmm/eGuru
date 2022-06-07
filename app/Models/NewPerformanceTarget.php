@@ -69,4 +69,14 @@ class NewPerformanceTarget extends Model
       return $this->hasMany('App\Models\NewPerformanceTargetWorkBehavior', 'id');
     }
 
+    public function newAssesmentCredit()
+    {
+      return $this->hasMany('App\Models\NewAssesmentCredit', 'id');
+    }
+
+    public function newAssesmentCreditScoreRejected()
+    {
+      return $this->hasMany('App\Models\NewAssesmentCreditScoreRejected', 'id');
+    }
+
 }

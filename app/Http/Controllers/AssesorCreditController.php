@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\AssesmentCredit;
-use App\Models\AssesmentCreditScore;
-use App\Models\AssesmentCreditScoreRejected;
+use App\Models\NewAssesmentCredit;
+use App\Models\NewAssesmentCreditScore;
+use App\Models\NewAssesmentCreditScoreRejected;
 use App\Models\ReferenceAssesmentCreditScoreActivity;
 use App\Models\ReferenceEducationCreditScore;
-use App\Models\PerformanceTarget;
-use App\Models\PerformanceTargetScore;
+use App\Models\NewPerformanceTarget;
+use App\Models\NewPerformanceTargetScore;
 use App\Models\ReferenceActivityCreditScore;
 use Validator;
 use Alert;
@@ -24,7 +24,7 @@ class AssesorCreditController extends Controller
      */
     public function index()
     {
-        $datas=AssesmentCredit::where(['is_ready' => TRUE, 'is_finished' => FALSE])->get();
+        $datas=NewAssesmentCredit::where(['is_ready' => TRUE, 'is_finished' => FALSE])->get();
         return view('assesor/creditscore/index', compact('datas'));
     }
 
@@ -57,27 +57,56 @@ class AssesorCreditController extends Controller
      */
     public function show($id)
     {
-      $assesment=AssesmentCredit::where('id', $id)->first();
-      $datas=AssesmentCreditScore::where('assesment_credit_id' , $id)->orderBy('reference_assesment_credit_score_activity_id', 'asc')->get();
+      $assesment=NewAssesmentCredit::where('id', $id)->first();
+      $datas=NewAssesmentCreditScore::where('new_assesment_credit_id' , $id)->orderBy('reference_assesment_credit_score_activity_id', 'asc')->get();
       return view('assesor/creditscore/show', compact('assesment', 'datas'));
     }
 
     public function score($id, $idc)
     {
-      $data=AssesmentCreditScore::where('id', $id)->first();
+      $data=NewAssesmentCreditScore::where('id', $id)->first();
       if($data->total_evaluator_credit_score != null){
         Alert::error('Gagal', 'Penilaian Sudah Dikunci');
         return redirect()->back();
       }else{
         $reject=0;
+        $code_low=0;
+        $code_up=0;
         $getforif=ReferenceAssesmentCreditScoreActivity::where('id', $data->reference_assesment_credit_score_activity_id)->first();
-        $data2=AssesmentCredit::where('id', $idc)->first();
-        $filedatas=PerformanceTargetScore::where(['performance_target_id' => $data2->performance_target_id, 'is_deleted' => FALSE])->get();
+
+        if($getforif->activity_item == "Melaksanakan proses pembelajaran"){
+          $code_low=1;
+          $code_up=16;
+        }elseif($getforif->activity_item == "Melaksanakan tugas lain yang relevan dengan fungsi sekolah"){
+          $code_low=16;
+          $code_up=28;
+        }elseif($getforif->activity_item == "Melaksanakan pengembangan diri"){
+          $code_low=28;
+          $code_up=38;
+        }elseif($getforif->activity_item == "Melaksanakan publikasi ilmiah"){
+          $code_low=38;
+          $code_up=59;
+        }elseif($getforif->activity_item == "Melaksanakan karya inovatif"){
+          $code_low=59;
+          $code_up=71;
+        }elseif($getforif->activity_item == "Memperoleh gelar/ijazah yang tidak sesuai dengan bidang yang diampuhnya"){
+          $code_low=71;
+          $code_up=74;
+        }elseif($getforif->activity_item == "Melaksanakan kegiatan yang mendukung tugas guru"){
+          $code_low=74;
+          $code_up=85;
+        }elseif($getforif->activity_item == "Perolehan penghargaan/tanda jasa Satya Lancana Karya Satya"){
+          $code_low=75;
+          $code_up=89;
+        }
+
+        $data2=NewAssesmentCredit::where('id', $idc)->first();
+        $filedatas=NewPerformanceTargetScore::where(['new_performance_target_id' => $data2->new_performance_target_id, 'is_deleted' => FALSE])->get();
         foreach($filedatas as $filedata) {
-          $rejected=AssesmentCreditScoreRejected::where([
-            'assesment_credit_id' => $idc,
-            'assesment_credit_score_id' => $id,
-            'performance_target_score_id' => $filedata->id
+          $rejected=NewAssesmentCreditScoreRejected::where([
+            'new_assesment_credit_id' => $idc,
+            'new_assesment_credit_score_id' => $id,
+            'new_performance_target_score_id' => $filedata->id
             ])->first();
           if($rejected != null){
             $point=$filedata->refActivityCreditScore->credit_score*$rejected->qty;
@@ -87,7 +116,7 @@ class AssesorCreditController extends Controller
 
         $total_evaluator_credit_score=$data->new_user_credit_score-$reject;
 
-        return view('assesor/creditscore/score', compact('id', 'idc', 'data', 'getforif', 'data2', 'filedatas', 'reject', 'total_evaluator_credit_score'));
+        return view('assesor/creditscore/score', compact('id', 'idc', 'data', 'code_up', 'code_low', 'data2', 'filedatas', 'reject', 'total_evaluator_credit_score'));
       }
     }
 
@@ -99,8 +128,8 @@ class AssesorCreditController extends Controller
      */
     public function reject($idperformancescore, $idassesmentscore, $idassesment)
     {
-        $performancetargetscore=PerformanceTargetScore::where('id', $idperformancescore)->first();
-        $assesmentscore=AssesmentCreditScore::where('id', $idassesmentscore)->first();
+        $performancetargetscore=NewPerformanceTargetScore::where('id', $idperformancescore)->first();
+        $assesmentscore=NewAssesmentCreditScore::where('id', $idassesmentscore)->first();
         return view('assesor/creditscore/reject', compact('performancetargetscore', 'assesmentscore', 'idassesment' ,'idassesmentscore'));
     }
 
@@ -131,15 +160,15 @@ class AssesorCreditController extends Controller
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
 
-        $check=PerformanceTargetScore::where('id', $idperformancescore)->first();
+        $check=NewPerformanceTargetScore::where('id', $idperformancescore)->first();
         if($check->realization_qty < $request->qty){
           Alert::error('Gagal', 'Jumlah Kegiatan Yang Ditolak Lebih Banyak Daripada Kegiatan Yang Ada!');
           return redirect()->back();
         }else{
-          $data = new AssesmentCreditScoreRejected;
-          $data->assesment_credit_id = $idassesment;
-          $data->assesment_credit_score_id = $idassesmentscore;
-          $data->performance_target_score_id = $idperformancescore;
+          $data = new NewAssesmentCreditScoreRejected;
+          $data->new_assesment_credit_id = $idassesment;
+          $data->new_assesment_credit_score_id = $idassesmentscore;
+          $data->new_performance_target_score_id = $idperformancescore;
           $data->qty = $request->qty;
           $data->reason = $request->reason;
           $data->suggestion = $request->suggestion;
@@ -177,10 +206,10 @@ class AssesorCreditController extends Controller
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
-        $check=AssesmentCreditScore::where('id' , $id)->first();
+        $check=NewAssesmentCreditScore::where('id' , $id)->first();
         $total=$check->old_credit_score+$request->new_evaluator_credit_score;
 
-        $data = AssesmentCreditScore::findOrFail($id);
+        $data = NewAssesmentCreditScore::findOrFail($id);
         $data->update([
             'new_evaluator_credit_score'    => $request->new_evaluator_credit_score,
             'total_evaluator_credit_score'  => $total
@@ -197,14 +226,14 @@ class AssesorCreditController extends Controller
 
     public function lock(Request $request, $id)
     {
-      $gets = AssesmentCreditScore::where('assesment_credit_id', $id)->get();
+      $gets = NewAssesmentCreditScore::where('new_assesment_credit_id', $id)->get();
       $total_assessment_credit_score=0;
       foreach($gets as $get){
         $total_assessment_credit_score=$total_assessment_credit_score+$get->total_evaluator_credit_score;
       }
       $date = Carbon::now();
       $user = auth()->user()->personalData->name;
-      $data = AssesmentCredit::findOrFail($id);
+      $data = NewAssesmentCredit::findOrFail($id);
       $data->update([
           'is_finished'    => TRUE,
           'assessment_date'  => $date,
@@ -213,10 +242,10 @@ class AssesorCreditController extends Controller
       ]);
 
       if($data){
-            Alert::success('Berhasil', 'Kegiatan Sudah Dinilai');
+            Alert::success('Berhasil', 'PAK Sudah Dinilai');
             return redirect()->route('assesorcr');
       } else {
-            Alert::error('Gagal', 'Gagal Menilai Kegiatan! Silahkan ulangi beberapa saat lagi');
+            Alert::error('Gagal', 'Gagal Menilai PAK! Silahkan ulangi beberapa saat lagi');
             return redirect()->back();
       }
     }

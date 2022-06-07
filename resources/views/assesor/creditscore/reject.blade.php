@@ -17,7 +17,7 @@
             <tbody class="bg-white">
               <tr class="text-gray-700 text-center">
                 <td class="px-4 py-3 text-ms border font-semibold">Nama Kegiatan</td>
-                <td class="px-4 py-3 text-ms border">{{$performancetargetscore->refActivityCreditScore->activity_item}} {{$performancetargetscore->refActivityCreditScore->grain_item}} {{$performancetargetscore->refActivityCreditScore->sub_grain_item}}</td>
+                <td class="px-4 py-3 text-ms border">{{$performancetargetscore->refPerformanceElement->performance_plan}} -> {{$performancetargetscore->refPerformanceElement->activity_item}}</td>
               </tr>
               <tr class="text-gray-700 text-center">
                 <td class="px-4 py-3 text-ms border font-semibold">Nilai AK</td>
@@ -34,21 +34,21 @@
               ))}}" method="POST">
                 @csrf
               <tr class="text-gray-700 text-center">
-                <td class="px-4 py-3 text-ms border font-semibold">Jumlah Kegiatan Yang Ditolak</td>
+                <td class="px-4 py-3 text-ms border font-semibold">Jumlah Kegiatan Yang Ditolak <span class="text-xs text-red-500"><i>*required</i></td>
                 <td class="px-4 py-3 text-ms border">
-                  <input name="qty" type="number" min="0" max="{{$performancetargetscore->realization_qty}}" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required>
+                  <input name="qty" type="number" min="0" max="{{$performancetargetscore->realization_qty}}" placeholder="Masukkan Jumlah Kegiatan Yang Ditolak"class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required>
                 </td>
               </tr>
               <tr class="text-gray-700 text-center">
-                <td class="px-4 py-3 text-ms border font-semibold">Alasan Penolakan</td>
+                <td class="px-4 py-3 text-ms border font-semibold">Alasan Penolakan <span class="text-xs text-red-500"><i>*required</i></td>
                 <td class="px-4 py-3 text-ms border">
-                  <textarea name="reason" id="reason" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required></textarea>
+                  <textarea name="reason" id="reason" type="text" placeholder="Masukkan Alasan Penolakan" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required></textarea>
                 </td>
               </tr>
               <tr class="text-gray-700 text-center">
-                <td class="px-4 py-3 text-ms border font-semibold">Saran Perbaikan</td>
+                <td class="px-4 py-3 text-ms border font-semibold">Saran Perbaikan <span class="text-xs text-red-500"><i>*required</i></td>
                 <td class="px-4 py-3 text-ms border">
-                  <textarea name="suggestion" id="suggestion" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required></textarea>
+                  <textarea name="suggestion" id="suggestion" type="text" placeholder="Masukkan Saran Perbaikan" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required></textarea>
                 </td>
               </tr>
             </tbody>
