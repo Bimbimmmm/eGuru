@@ -73,11 +73,11 @@
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 <p class="text-gray-900 whitespace-no-wrap">
-                  {{$data->assementCredit->performanceTarget->assessment_year}} - {{$data->promotion_period}}
+                  {{$data->newAssementCredit->newPerformanceTarget->assessment_year}} - {{$data->promotion_period}}
                 </p>
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-                <a href="{{ asset('storage/promotion/' . $data->file) }}" class="text-blue-900 underline hover:text-blue-800">
+                <a href="{{ asset('storage/promotion/' . $data->file) }}" class="text-blue-500 underline hover:text-blue-800">
                   {{$data->file}}
                 </a>
               </td>

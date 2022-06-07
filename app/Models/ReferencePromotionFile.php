@@ -20,4 +20,9 @@ class ReferencePromotionFile extends Model
     {
       return $this->hasMany('App\Models\PromotionFile', 'id');
     }
+
+    public function newPromotionFile()
+    {
+      return $this->hasMany('App\Models\NewPromotionFile', 'id');
+    }
 }

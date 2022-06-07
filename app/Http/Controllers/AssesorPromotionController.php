@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Promotion;
-use App\Models\PromotionScore;
-use App\Models\PromotionFile;
+use App\Models\NewPromotion;
+use App\Models\NewPromotionScore;
+use App\Models\NewPromotionFile;
 use App\Models\ReferencePromotionCreditScore;
 use App\Models\ReferencePromotionFile;
 use App\Models\ReferenceAssesmentCreditScoreActivity;
@@ -24,7 +24,7 @@ class AssesorPromotionController extends Controller
      */
     public function index()
     {
-      $datas=Promotion::where(['is_locked' => TRUE, 'is_assesed' => FALSE, 'is_finish' => FALSE, 'is_rejected' => FALSE, 'is_deleted' => FALSE])->get();
+      $datas=NewPromotion::where(['is_locked' => TRUE, 'is_assesed' => FALSE, 'is_finish' => FALSE, 'is_rejected' => FALSE, 'is_deleted' => FALSE])->get();
       return view('assesor/promotion/index', compact('datas'));
     }
 
@@ -57,9 +57,9 @@ class AssesorPromotionController extends Controller
      */
     public function show($id)
     {
-        $data=Promotion::where('id', $id)->first();
-        $scores=PromotionScore::where('promotion_id', $id)->get();
-        $files=PromotionFile::where('promotion_id', $id)->get();
+        $data=NewPromotion::where('id', $id)->first();
+        $scores=NewPromotionScore::where('new_promotion_id', $id)->get();
+        $files=NewPromotionFile::where('new_promotion_id', $id)->get();
         $count_credit_score=ReferencePromotionCreditScore::where('id', $data->reference_promotion_credit_score_id)->first();
 
         //Count Unsur Utama
@@ -162,7 +162,7 @@ class AssesorPromotionController extends Controller
 
         $name=auth()->user()->personalData->name;
 
-        DB::table('promotion')->whereId($id)->update([
+        DB::table('new_promotion')->whereId($id)->update([
           'new_work_year'    => $request->new_work_year,
           'is_assesed'       => TRUE,
           'asseseed_by'      => $name
@@ -176,7 +176,7 @@ class AssesorPromotionController extends Controller
     {
         $name=auth()->user()->personalData->name;
 
-        DB::table('promotion')->whereId($id)->update([
+        DB::table('new_promotion')->whereId($id)->update([
           'is_assesed'       => TRUE,
           'is_rejected'      => TRUE,
           'asseseed_by'      => $name,

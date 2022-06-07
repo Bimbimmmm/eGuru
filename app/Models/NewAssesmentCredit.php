@@ -59,4 +59,9 @@ class NewAssesmentCredit extends Model
   {
     return $this->hasMany('App\Models\NewAssesmentCreditScoreRejected', 'id');
   }
+
+  public function newPromotion()
+  {
+    return $this->hasMany('App\Models\NewPromotion', 'id');
+  }
 }

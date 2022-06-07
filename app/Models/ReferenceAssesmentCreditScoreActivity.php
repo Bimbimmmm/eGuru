@@ -32,4 +32,9 @@ class ReferenceAssesmentCreditScoreActivity extends Model
     {
       return $this->hasMany('App\Models\NewAssesmentCreditScore', 'id');
     }
+
+    public function newPromotionScore()
+    {
+      return $this->hasMany('App\Models\NewPromotionScore', 'id');
+    }
 }

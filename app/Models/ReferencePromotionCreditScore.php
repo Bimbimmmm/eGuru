@@ -26,4 +26,9 @@ class ReferencePromotionCreditScore extends Model
     {
       return $this->hasMany('App\Models\Promotion', 'id');
     }
+
+    public function newPromotion()
+    {
+      return $this->hasMany('App\Models\NewPromotion', 'id');
+    }
 }

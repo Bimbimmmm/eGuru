@@ -8,7 +8,7 @@ use App\Models\LeavePermissions;
 use App\Models\PerformanceTarget;
 use App\Models\NewPerformanceTarget;
 use App\Models\NewAssesmentCredit;
-use App\Models\Promotion;
+use App\Models\NewPromotion;
 use App\Models\SalaryIncrease;
 use App\Models\SolutionCorner;
 
@@ -29,8 +29,8 @@ class TeacherController extends Controller
         $performancetargetall=NewPerformanceTarget::where('is_deleted', FALSE)->count();
         $creditscore=NewAssesmentCredit::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
         $creditscoreall=NewAssesmentCredit::where('is_deleted', FALSE)->count();
-        $promotion=Promotion::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
-        $promotionall=Promotion::where('is_deleted', FALSE)->count();
+        $promotion=NewPromotion::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
+        $promotionall=NewPromotion::where('is_deleted', FALSE)->count();
         $salaryincrease=SalaryIncrease::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
         $salaryincreaseall=SalaryIncrease::where('is_deleted', FALSE)->count();
         $solutioncorner=SolutionCorner::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();

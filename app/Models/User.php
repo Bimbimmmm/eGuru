@@ -150,4 +150,9 @@ class User extends Authenticatable
       return $this->hasMany('App\Models\NewAssesmentCredit', 'id');
     }
 
+    public function newPromotion()
+    {
+      return $this->hasMany('App\Models\NewPromotion', 'id');
+    }
+
 }

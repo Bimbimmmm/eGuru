@@ -32,7 +32,7 @@
             </tr>
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold">Tahun dan Periode Pengajuan</td>
-              <td class="px-4 py-3 text-ms border">{{$data->assementCredit->performanceTarget->assessment_year}} - {{$data->promotion_period}}</td>
+              <td class="px-4 py-3 text-ms border">{{$data->newAssementCredit->newPerformanceTarget->assessment_year}} - {{$data->promotion_period}}</td>
             </tr>
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold">Jumlah Angka Kredit PAK KENPA Terakhir</td>
@@ -45,7 +45,7 @@
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold">File PAK KENPA Terakhir</td>
               <td class="px-4 py-3 text-ms border">
-                <a href="{{ asset('storage/promotion/' . $data->file) }}">
+                <a class="text-blue-500 underline" href="{{ asset('storage/promotion/' . $data->file) }}">
                   {{$data->file}}
                 </a>
               </td>
@@ -83,7 +83,7 @@
               </p>
             </td>
             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-              <a href="{{ asset('storage/promotion/completeness/' . $file->file) }}" class="text-blue-900 underline whitespace-no-wrap">
+              <a href="{{ asset('storage/promotion/completeness/' . $file->file) }}" class="text-blue-500 underline whitespace-no-wrap">
                 {{$file->file}}
               </a>
             </td>
