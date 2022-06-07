@@ -52,6 +52,7 @@ use App\Http\Controllers\HeadDivisionController;
 use App\Http\Controllers\DivisionHeadLeavePermissionController;
 use App\Http\Controllers\DivisionHeadPrincipalLeavePermissionController;
 use App\Http\Controllers\DivisionHeadPerformanceController;
+use App\Http\Controllers\DivisionHeadNewPerformanceController;
 use App\Http\Controllers\DivisionHeadCreditScoreController;
 use App\Http\Controllers\DivisionHeadSolutionCornerController;
 use App\Http\Controllers\AssesorController;
@@ -356,10 +357,16 @@ Route::post('/divisionhead/leavepermission/reject/{id}', [DivisionHeadLeavePermi
 Route::get('/divisionhead/principal/leavepermission/show/{id}', [DivisionHeadPrincipalLeavePermissionController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadprlpshow');
 Route::post('/divisionhead/principal/leavepermission/approve/{id}', [DivisionHeadPrincipalLeavePermissionController::class, 'approve'])->middleware('can:isDivisionHead')->name('divheadprlpapprove');
 Route::post('/divisionhead/principal/leavepermission/reject/{id}', [DivisionHeadPrincipalLeavePermissionController::class, 'reject'])->middleware('can:isDivisionHead')->name('divheadprlpreject');
+/*
 //Division Head Performance Routes
 Route::get('/divisionhead/performance', [DivisionHeadPerformanceController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadpt');
 Route::get('/divisionhead/performance/show/{id}', [DivisionHeadPerformanceController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadptshow');
 Route::post('/divisionhead/performance/done/{id}', [DivisionHeadPerformanceController::class, 'done'])->middleware('can:isDivisionHead')->name('divheadptdone');
+*/
+//Division Head New Performance Routes
+Route::get('/divisionhead/newperformance', [DivisionHeadNewPerformanceController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadnpt');
+Route::get('/divisionhead/newperformance/show/{id}', [DivisionHeadNewPerformanceController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadnptshow');
+Route::post('/divisionhead/newperformance/done/{id}', [DivisionHeadNewPerformanceController::class, 'done'])->middleware('can:isDivisionHead')->name('divheadnptdone');
 //Division Head Credit Score Routes
 Route::get('/divisionhead/creditscore', [DivisionHeadCreditScoreController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadcr');
 Route::get('/divisionhead/creditscore/show/{id}', [DivisionHeadCreditScoreController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadcrshow');

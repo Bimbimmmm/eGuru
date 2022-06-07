@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\NewPerformanceTarget;
 use App\Models\NewPerformanceTargetScore;
-use App\Models\NewPerformanceTargetWorkBehavior;
+use App\Models\NewPerformanceTargetWorkBehaviour;
 use App\Models\ReferenceNewWorkBehaviour;
 use App\Models\ReferencePerformanceTargetElement;
 use App\Models\PositionMapping;
@@ -163,4 +163,78 @@ class TeacherNewPerformanceTargetController extends Controller
     {
         //
     }
+
+    public function showdp3($id){
+      $user_id = auth()->user()->id;
+      $getdatas=NewPerformanceTarget::where('id', $id)->first();
+      $getboss=PositionMapping::where('id', $getdatas->position_mapping_id)->first();
+
+      $get1=ReferenceNewWorkBehaviour::where('name', 'Orientasi Pelayanan')->first();
+      $get2=ReferenceNewWorkBehaviour::where('name', 'Komitmen')->first();
+      $get3=ReferenceNewWorkBehaviour::where('name', 'Inisiatif Kerja')->first();
+      $get4=ReferenceNewWorkBehaviour::where('name', 'Kerjasama')->first();
+
+      $scoreget1=NewPerformanceTargetWorkBehaviour::where(['new_performance_target_id' => $id, 'reference_new_work_behaviour_id'=> $get1->id])->first();
+      $scoreget2=NewPerformanceTargetWorkBehaviour::where(['new_performance_target_id' => $id, 'reference_new_work_behaviour_id'=> $get2->id])->first();
+      $scoreget3=NewPerformanceTargetWorkBehaviour::where(['new_performance_target_id' => $id, 'reference_new_work_behaviour_id'=> $get3->id])->first();
+      $scoreget4=NewPerformanceTargetWorkBehaviour::where(['new_performance_target_id' => $id, 'reference_new_work_behaviour_id'=> $get4->id])->first();
+
+      $final= $scoreget1->score + $scoreget2->score + $scoreget3->score + $scoreget4->score;
+      $average=$final/4;
+      $wb40=$average*40/100;
+
+      $count=NewPerformanceTargetScore::where(['new_performance_target_id' => $id, 'is_deleted' => FALSE])->count();
+      $getperformancetargetscores=NewPerformanceTargetScore::where(['new_performance_target_id' => $id, 'is_deleted' => FALSE])->get();
+      $getwbscores=NewPerformanceTargetWorkBehaviour::where(['new_performance_target_id' => $id, 'is_deleted' => FALSE])->get();
+      $countwb=NewPerformanceTargetWorkBehaviour::where(['new_performance_target_id' => $id, 'is_deleted' => FALSE])->count();
+
+      (float)$score=0;
+      (float)$adt_score=0;
+      foreach ($getperformancetargetscores as $getperformancetargetscore) {
+        if($getperformancetargetscore->refPerformanceElement->code < 71){
+          $score=$score+$getperformancetargetscore->weighted_value;
+        }else{
+          $adt_score=$adt_score+$getperformancetargetscore->weighted_value;
+        }
+      }
+
+      (float)$scorewb=0;
+      foreach ($getwbscores as $getwbscore) {
+          $scorewb=$scorewb+$getwbscore->score;
+      }
+      (float)$finalscore=(($score/$count)+$adt_score)*60/100;
+      (float)$finalskpscore=($score/$count);
+      (float)$secondscore=($scorewb/$countwb)*40/100;
+      (float)$finalwbscore=($scorewb/$countwb);
+
+      $selfdatas=User::where('id', $user_id)->first();
+      $directsup=User::where('id', $getboss->principal_id)->first();
+      $official=User::where('id', $getboss->supervisor_id)->first();
+
+      $userqrcode="Nama : {$selfdatas->personalData->name}\nNIP : {$selfdatas->personalData->registration_number}\nUnit Kerja : {$selfdatas->personalData->workUnit->name}";
+      $directspvqrcode="Nama : {$directsup->personalData->name}\nNIP : {$directsup->personalData->registration_number}\nJabatan : {$directsup->personalData->position->name}\nUnit Kerja : {$directsup->personalData->workUnit->name}";
+      $officialqrcode="Nama : {$official->personalData->name}\nNIP : {$official->personalData->registration_number}\nJabatan : {$official->personalData->position->name}\nUnit Kerja : {$official->personalData->workUnit->name}";
+
+      return view ('teacher/performance/new/result/dp3', compact(
+        'getdatas',
+        'userqrcode',
+        'directspvqrcode',
+        'officialqrcode',
+        'directsup',
+        'official',
+        'selfdatas',
+        'finalskpscore',
+        'finalscore',
+        'finalwbscore',
+        'finalwbscore',
+        'scoreget1',
+        'scoreget2',
+        'scoreget3',
+        'scoreget4',
+        'final',
+        'average',
+        'wb40'
+      ));
+    }
+
 }

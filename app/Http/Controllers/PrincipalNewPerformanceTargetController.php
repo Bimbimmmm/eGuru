@@ -229,23 +229,35 @@ class PrincipalNewPerformanceTargetController extends Controller
       $getwbscores=NewPerformanceTargetWorkBehaviour::where(['new_performance_target_id' => $idpt, 'is_deleted' => FALSE])->get();
       $countwb=NewPerformanceTargetWorkBehaviour::where(['new_performance_target_id' => $idpt, 'is_deleted' => FALSE])->count();
       (float)$score=0;
+      (float)$adt_score=0;
       foreach ($getperformancetargetscores as $getperformancetargetscore) {
-          $score=$score+$getperformancetargetscore->performance_value;
+        if($getperformancetargetscore->refPerformanceElement->code < 71){
+          $score=$score+$getperformancetargetscore->weighted_value;
+        }else{
+          $adt_score=$adt_score+$getperformancetargetscore->weighted_value;
+        }
       }
+
       (float)$scorewb=0;
       foreach ($getwbscores as $getwbscore) {
           $scorewb=$scorewb+$getwbscore->score;
       }
-      (float)$finalscore=($score/$count)*60/100;
+      (float)$finalscore=(($score/$count)+$adt_score)*60/100;
       (float)$secondscore=($scorewb/$countwb)*40/100;
       (float)$new_performance_score=$finalscore+$secondscore;
 
+      if($new_performance_score > 120){
+        $new_performance_score=120;
+      }else{
+        $new_performance_score=$new_performance_score;
+      }
+
       date_default_timezone_set('Asia/Makassar');
       $date=date('Y-m-d');
-
+      
       $data = NewPerformanceTarget::findOrFail($idpt);
       $data->update([
-        'new_performance_score' => $new_performance_score,
+        'performance_score' => $new_performance_score,
         'is_direct_supervisor_approve' => TRUE,
         'direct_supervisor_asseseed_time' => $date
       ]);

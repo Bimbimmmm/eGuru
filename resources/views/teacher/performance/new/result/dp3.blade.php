@@ -234,117 +234,102 @@
                         <tr>
                             <td>1. Orientasi Pelayanan</td>
                             <td>{{$scoreget1->score}}</td>
-                            @if($scoreget1->score <= 50)
+                            @if($scoreget1->score <= 49)
                             <td>Buruk</td>
-                            @elseif($scoreget1->score <= 60)
+                            @elseif($scoreget1->score <= 69)
                             <td>Sedang</td>
-                            @elseif($scoreget1->score<=75)
+                            @elseif($scoreget1->score<=89)
                             <td>Cukup</td>
-                            @elseif($scoreget1->score<=90)
+                            @elseif($scoreget1->score<=109.99)
                             <td>Baik</td>
                             @else
                             <td>Sangat Baik</td>
                             @endif
                         </tr>
                         <tr>
-                            <td>2. Integritas</td>
+                            <td>2. Komitmen</td>
                             <td>{{$scoreget2->score}}</td>
-                            @if($scoreget2->score <= 50)
+                            @if($scoreget2->score <= 49)
                             <td>Buruk</td>
-                            @elseif($scoreget2->score <= 60)
+                            @elseif($scoreget2->score <= 69)
                             <td>Sedang</td>
-                            @elseif($scoreget2->score<=75)
+                            @elseif($scoreget2->score<=89)
                             <td>Cukup</td>
-                            @elseif($scoreget2->score<=90)
+                            @elseif($scoreget2->score<=109.99)
                             <td>Baik</td>
                             @else
                             <td>Sangat Baik</td>
                             @endif
                         </tr>
                         <tr>
-                            <td>3. Komitmen</td>
+                            <td>3. Insiatif Kerja</td>
                             <td>{{$scoreget3->score}}</td>
-                            @if($scoreget3->score <= 50)
+                            @if($scoreget3->score <= 49)
                             <td>Buruk</td>
-                            @elseif($scoreget3->score <= 60)
+                            @elseif($scoreget3->score <= 69)
                             <td>Sedang</td>
-                            @elseif($scoreget3->score<=75)
+                            @elseif($scoreget3->score<=89)
                             <td>Cukup</td>
-                            @elseif($scoreget3->score<=90)
+                            @elseif($scoreget3->score<=109.99)
                             <td>Baik</td>
                             @else
                             <td>Sangat Baik</td>
                             @endif
                         </tr>
                         <tr>
-                            <td>4. Disiplin</td>
+                            <td>4. Kerjasama</td>
                             <td>{{$scoreget4->score}}</td>
-                            @if($scoreget4->score <= 50)
+                            @if($scoreget4->score <= 49)
                             <td>Buruk</td>
-                            @elseif($scoreget4->score <= 60)
+                            @elseif($scoreget4->score <= 69)
                             <td>Sedang</td>
-                            @elseif($scoreget4->score<=75)
+                            @elseif($scoreget4->score<=89)
                             <td>Cukup</td>
-                            @elseif($scoreget4->score<=90)
+                            @elseif($scoreget4->score<=109.99)
                             <td>Baik</td>
                             @else
                             <td>Sangat Baik</td>
                             @endif
                         </tr>
                         <tr>
-                            <td>5. Kerjasama</td>
-                            <td>{{$scoreget5->score}}</td>
-                            @if($scoreget5->score <= 50)
-                            <td>Buruk</td>
-                            @elseif($scoreget5->score <= 60)
-                            <td>Sedang</td>
-                            @elseif($scoreget5->score<=75)
-                            <td>Cukup</td>
-                            @elseif($scoreget5->score<=90)
-                            <td>Baik</td>
-                            @else
-                            <td>Sangat Baik</td>
-                            @endif
-                        </tr>
-                        <tr>
-                            <td>6. Kepemimpinan</td>
+                            <td>5. Kepemimpinan</td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>7. Jumlah</td>
+                            <td>6. Jumlah</td>
                             <td colspan="2">{{$final}}</td>
                         </tr>
                         <tr>
-                            <td>8. Nilai Rata-Rata</td>
+                            <td>7. Nilai Rata-Rata</td>
                             <td>{{$average}}</td>
-                            @if($average <= 50)
+                            @if($average <= 49)
                             <td>Buruk</td>
-                            @elseif($average <= 60)
+                            @elseif($average <= 69)
                             <td>Sedang</td>
-                            @elseif($average<=75)
+                            @elseif($average<=89)
                             <td>Cukup</td>
-                            @elseif($average<=90)
+                            @elseif($average<=109.99)
                             <td>Baik</td>
                             @else
                             <td>Sangat Baik</td>
                             @endif
                         </tr>
                         <tr>
-                            <th>9. Nilai Perilaku Kerja</th>
+                            <th>8. Nilai Perilaku Kerja</th>
                             <th>{{$average}} x 40%</th>
                             <th>={{$wb40}}</th>
                         </tr>
                         <tr>
-                            <th colspan="2">NILAI PRESTASI KERJA</th>
+                            <th>NILAI PRESTASI KERJA</th>
                             <th>{{$getdatas->performance_score}}</th>
-                            @if($getdatas->performance_score <= 50)
+                            @if($getdatas->performance_score <= 49)
                             <th>Buruk</th>
-                            @elseif($getdatas->performance_score <= 60)
+                            @elseif($getdatas->performance_score <= 69)
                             <th>Sedang</th>
-                            @elseif($getdatas->performance_score<=75)
+                            @elseif($getdatas->performance_score<=89)
                             <th>Cukup</th>
-                            @elseif($getdatas->performance_score<=90)
+                            @elseif($getdatas->performance_score<=109.99)
                             <th>Baik</th>
                             @else
                             <th>Sangat Baik</th>

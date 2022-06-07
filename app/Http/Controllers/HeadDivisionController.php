@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\LeavePermissions;
+use App\Models\NewPerformanceTarget;
+use App\Models\PositionMapping;
 
 class HeadDivisionController extends Controller
 {
@@ -16,9 +18,11 @@ class HeadDivisionController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
+        $position_mapping=PositionMapping::where(['supervisor_id' => $user_id, 'is_active' => TRUE])->first();
         $is_integration=User::where(['id' => $user_id, 'personal_data_id' => NULL])->count();
         $leavepermission=LeavePermissions::where(['is_direct_supervisor_approve' => TRUE, 'is_official_approve' => FALSE])->count();
-        return view('head_division/index', compact('is_integration', 'leavepermission'));
+        $performancetarget=NewPerformanceTarget::where(['position_mapping_id' => $position_mapping->id, 'is_deleted' => FALSE, 'is_direct_supervisor_approve' => TRUE, 'is_official_approve' => FALSE])->count();
+        return view('head_division/index', compact('is_integration', 'leavepermission', 'performancetarget'));
     }
 
     /**
