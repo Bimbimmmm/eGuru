@@ -67,7 +67,7 @@
               </td>
               <td colspan="3" class="px-4 py-3 text-ms border font-semibold">
                 <a href="#">
-                  <span class="inline-block rounded-min text-white bg-gray-500 px-2 py-1 text-xs font-bold mr-3">Sementara Belum Tersedia</span>
+                  <span class="inline-block rounded-min text-white bg-green-500 px-2 py-1 text-xs font-bold mr-3">Lihat</span>
                 </a>
               </td>
             </tr>
@@ -77,7 +77,7 @@
               </td>
               <td colspan="3" class="px-4 py-3 text-ms border font-semibold">
                 <a href="#">
-                  <span class="inline-block rounded-min text-white bg-gray-500 px-2 py-1 text-xs font-bold mr-3">Sementara Belum Tersedia</span>
+                  <span class="inline-block rounded-min text-white bg-green-500 px-2 py-1 text-xs font-bold mr-3">Lihat</span>
                 </a>
               </td>
             </tr>

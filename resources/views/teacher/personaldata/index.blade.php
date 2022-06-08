@@ -1,6 +1,6 @@
 @extends('layouts.teacher')
 @section('content')
-<div class="min-h-screen bg-gray-100 py-14">
+<div class="min-h-screen bg-gray-100 py-3">
   <div class="px-5 mx-auto max-w-7x1">
     <a href="/teacher">
       <button class="block text-green-500 rounded-sm font-bold py-4 px-6 mr-2 flex items-center hover:bg-green-500 hover:text-white">

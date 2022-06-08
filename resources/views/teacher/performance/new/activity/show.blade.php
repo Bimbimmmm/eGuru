@@ -32,15 +32,15 @@
             </tr>
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold">Target Kuantitas</td>
-              <td class="px-4 py-3 text-ms border">{{$data->target_qty}}</td>
+              <td class="px-4 py-3 text-ms border">{{$data->target_qty}} {{$data->refPerformanceElement->quantity}}</td>
             </tr>
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold">Target Mutu</td>
-              <td class="px-4 py-3 text-ms border">{{$data->target_quality}}%</td>
+              <td class="px-4 py-3 text-ms border">{{$data->target_quality}}% {{$data->refPerformanceElement->quality}}</td>
             </tr>
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold">Target Waktu</td>
-              <td class="px-4 py-3 text-ms border">{{$data->target_time}} Bulan</td>
+              <td class="px-4 py-3 text-ms border">{{$data->target_time}} Bulan {{$data->refPerformanceElement->time}}</td>
             </tr>
           </tbody>
         </table>
