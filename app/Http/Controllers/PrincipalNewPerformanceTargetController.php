@@ -81,7 +81,7 @@ class PrincipalNewPerformanceTargetController extends Controller
       $realization_credit_score=$gettargetscore->refPerformanceElement->credit_score*$request->realization_qty;
     }
     //Start QTY
-    $ach_qty=$request->realization_qty/$gettargetscore->target_qty*100;
+    $ach_qty=round($request->realization_qty/$gettargetscore->target_qty*100);
     if($ach_qty > 100){
       $cat_qty="Sangat Baik";
       $qtyct=5;
@@ -254,7 +254,7 @@ class PrincipalNewPerformanceTargetController extends Controller
 
       date_default_timezone_set('Asia/Makassar');
       $date=date('Y-m-d');
-      
+
       $data = NewPerformanceTarget::findOrFail($idpt);
       $data->update([
         'performance_score' => $new_performance_score,

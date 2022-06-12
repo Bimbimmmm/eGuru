@@ -50,6 +50,8 @@ use App\Http\Controllers\PrincipalDataSalaryIncreaseHistoryController;
 use App\Http\Controllers\PrincipalSalaryIncreaseController;
 use App\Http\Controllers\PrincipalSolutionCornerController;
 use App\Http\Controllers\PrincipalMappingController;
+use App\Http\Controllers\PrincipalCreditScoreController;
+use App\Http\Controllers\PrincipalPromotionController;
 use App\Http\Controllers\HeadDivisionController;
 use App\Http\Controllers\DivisionHeadLeavePermissionController;
 use App\Http\Controllers\DivisionHeadPrincipalLeavePermissionController;
@@ -57,6 +59,7 @@ use App\Http\Controllers\DivisionHeadPerformanceController;
 use App\Http\Controllers\DivisionHeadNewPerformanceController;
 use App\Http\Controllers\DivisionHeadCreditScoreController;
 use App\Http\Controllers\DivisionHeadSolutionCornerController;
+use App\Http\Controllers\DivisionHeadPersonalDataController;
 use App\Http\Controllers\AssesorController;
 use App\Http\Controllers\AssesorCreditController;
 use App\Http\Controllers\AssesorPromotionController;
@@ -347,6 +350,10 @@ Route::get('/principal/mapping/subject/teacher/create/{id}/{ids}', [PrincipalMap
 Route::post('/principal/mapping/subject/teacher/store/{id}/{ids}', [PrincipalMappingController::class, 'storeteacher'])->middleware('can:isPrincipal')->name('principalmpstoretc');
 Route::post('/principal/mapping/finish/{id}', [PrincipalMappingController::class, 'finish'])->middleware('can:isPrincipal')->name('principalmpfinish');
 Route::get('/principal/mapping/pdf/{id}', [PrincipalMappingController::class, 'pdf'])->middleware('can:isPrincipal')->name('principalmppdf');
+//Principal Credit Score Routes
+Route::get('/principal/creditscore', [PrincipalCreditScoreController::class, 'index'])->middleware('can:isPrincipal')->name('principalcs');
+//Principal Promotion Routes
+Route::get('/principal/promotion', [PrincipalPromotionController::class, 'index'])->middleware('can:isPrincipal')->name('principalpr');
 
 //Principal Personal Data Routes
 Route::get('/principal/personaldata', [PrincipalPersonalDataController::class, 'index'])->middleware('can:isPrincipal')->name('principalpd');
@@ -405,6 +412,9 @@ Route::post('/divisionhead/creditscore/lock/{id}', [DivisionHeadCreditScoreContr
 Route::get('/divisionhead/solutioncorner', [DivisionHeadSolutionCornerController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadsc');
 Route::get('/divisionhead/solutioncorner/show/{id}', [DivisionHeadSolutionCornerController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadscshow');
 Route::post('/divisionhead/solutioncorner/done/{id}', [DivisionHeadSolutionCornerController::class, 'update'])->middleware('can:isDivisionHead')->name('divheadscupdate');
+//Divison Head Personal Data Routes
+Route::get('/divisionhead/personaldata', [DivisionHeadPersonalDataController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadpd');
+Route::get('/divisionhead/personaldata/show/{id}', [DivisionHeadPersonalDataController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadpdshow');
 
 //OFFICE HEAD ROUTES
 Route::get('/officehead', [HeadOfficeController::class, 'index'])->middleware('can:isOfficeHead')->name('officehead');

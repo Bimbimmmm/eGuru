@@ -36,7 +36,7 @@ class DivisionHeadLeavePermissionController extends Controller
     public function show($id)
     {
       $data=LeavePermissions::where('id', $id)->first();
-      $prevleaves=LeavePermissions::where('user_id', $data->user_id)->get();
+      $prevleaves=LeavePermissions::where(['user_id' => $data->user_id, 'is_official_approve' => TRUE, 'is_deleted' => FALSE])->get();
       return view('head_division/leavepermission/show', compact('data', 'prevleaves'));
     }
 

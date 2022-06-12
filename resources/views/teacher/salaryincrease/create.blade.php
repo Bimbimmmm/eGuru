@@ -122,6 +122,7 @@ $( function() {
   $( "#old_decree_date" ).datepicker({
     dateFormat: "dd-mm-yy",
     changeMonth: true,
+    changeYear: true,
   });
 });
 </script>
@@ -130,6 +131,7 @@ $( function() {
   $( "#old_date" ).datepicker({
     dateFormat: "dd-mm-yy",
     changeMonth: true,
+    changeYear: true,
   });
 });
 </script>

@@ -122,7 +122,13 @@ class TeacherNewPromotionController extends Controller
         $proscr = new NewPromotionScore;
         $proscr->new_promotion_id = $get->id;
         $proscr->reference_assesment_credit_score_activity_id = $getasscore->reference_assesment_credit_score_activity_id;
-        $proscr->new_credit_score = $getasscore->total_evaluator_credit_score;
+        if($getasscore->refAsCSActivity->activity_item != "Mengikuti pendidikan dan memperoleh gelar/ijazah/akta"){
+          $proscr->new_credit_score = $getasscore->total_evaluator_credit_score;
+        }else{
+          $proscr->old_credit_score = $getasscore->total_evaluator_credit_score;
+          $proscr->new_credit_score = 0;
+          $proscr->get_credit_score = $getasscore->total_evaluator_credit_score;
+        }
         $save3= $proscr->save();
       }
 

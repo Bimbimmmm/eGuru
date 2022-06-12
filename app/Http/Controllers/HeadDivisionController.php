@@ -8,6 +8,7 @@ use App\Models\LeavePermissions;
 use App\Models\NewPerformanceTarget;
 use App\Models\PositionMapping;
 use App\Models\NewAssesmentCredit;
+use App\Models\PersonalData;
 
 class HeadDivisionController extends Controller
 {
@@ -24,7 +25,8 @@ class HeadDivisionController extends Controller
         $leavepermission=LeavePermissions::where(['is_direct_supervisor_approve' => TRUE, 'is_official_approve' => FALSE, 'is_deleted' => FALSE])->count();
         $performancetarget=NewPerformanceTarget::where(['position_mapping_id' => $position_mapping->id, 'is_deleted' => FALSE, 'is_direct_supervisor_approve' => TRUE, 'is_official_approve' => FALSE, 'is_deleted' => FALSE])->count();
         $assesmentcredit=NewAssesmentCredit::where(['is_finished' => TRUE, 'is_official_approve' => FALSE, 'is_deleted' => FALSE])->count();
-        return view('head_division/index', compact('is_integration', 'leavepermission', 'performancetarget', 'assesmentcredit'));
+        $personaldata=PersonalData::all()->count();
+        return view('head_division/index', compact('is_integration', 'leavepermission', 'performancetarget', 'assesmentcredit', 'personaldata'));
     }
 
     /**

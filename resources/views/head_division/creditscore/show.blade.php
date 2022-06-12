@@ -57,19 +57,19 @@
       @if($assesment->is_official_approve == FALSE)
       <div class="flex items-center justify-center mt-10">
         <div class="w-full max-w-md mr-4">
-          <form action="{{ route('divheadcrlock', array("$assesment->id"))}}" method="POST" class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border-2 border-red-500">
+          <form action="{{ route('divheadcrlock', array("$assesment->id"))}}" method="POST" class="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4 border-2 border-green-500">
             @csrf
             <div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4">
-              Kunci Penilaian
+              Terbitkan PAK
             </div>
             <div class="mb-6 text-center">
               <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
-                Jika Penilaian Sudah Dikunci, Perubahan Sudah Tidak Dapat Dilakukan
+                Jika PAK Sudah Diterbitkan, Perubahan Sudah Tidak Dapat Dilakukan
               </label>
             </div>
             <div class="flex items-center justify-center">
-              <button class="shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-                Kunci
+              <button class="shadow bg-green-600 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+                Terbitkan
               </button>
             </div>
           </form>

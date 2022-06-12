@@ -18,17 +18,13 @@
     <h1 class="mb-12 text-center text-4xl text-gray-500 font-bold">Fitur-Fitur E-Guru</h1>
     <div class="flex flex-wrap">
 
-      <a href="/divisionhead/leavepermission" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 mb-4 transition duration-500 transform hover:translate-y-3 cursor-pointer">
+      <a href="/divisionhead/personaldata" class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 mb-4 transition duration-500 transform hover:translate-y-3 cursor-pointer">
         <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-3 xl:mb-0 shadow-lg">
           <div class="flex-auto p-4">
             <div class="flex flex-wrap">
               <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                 <h5 class="text-blueGray-400 uppercase font-bold text-xl">Data Terpusat</h5>
-                @if($is_integration == 0)
-                <span class="mt-1 inline-block rounded-full text-white bg-green-500 px-2 py-1 text-xs font-bold mr-3">Sudah Integrasi</span>
-                @else
-                <span class="mt-1 inline-block rounded-full text-white bg-red-500 px-2 py-1 text-xs font-bold mr-3">Belum Integrasi</span>
-                @endif
+                <span class="font-semibold text-xl text-blueGray-700">{{$personaldata}}</span>
               </div>
               <div class="relative w-auto pl-4 flex-initial">
                 <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-black">
@@ -41,7 +37,7 @@
               </div>
             </div>
             <p class="text-sm text-blueGray-400 mt-4">
-              <span class="text-emerald-500 mr-2">0</span>
+              <span class="text-emerald-500 mr-2">{{$personaldata}}</span>
               <span class="whitespace-nowrap">Total Data Integrasi</span></p>
             </div>
           </div>

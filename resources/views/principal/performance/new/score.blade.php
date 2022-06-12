@@ -35,7 +35,7 @@
               <td class="px-4 py-3 text-ms border">{{$data->target_qty}}</td>
             </tr>
             <tr class="text-gray-700 text-center">
-              <td class="px-4 py-3 text-ms border font-semibold">Target Kualitas</td>
+              <td class="px-4 py-3 text-ms border font-semibold">Target Mutu</td>
               <td class="px-4 py-3 text-ms border">{{$data->target_quality}}%</td>
             </tr>
             <tr class="text-gray-700 text-center">

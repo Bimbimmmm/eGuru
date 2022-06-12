@@ -9,7 +9,7 @@
     </button>
   </a>
   <div class="px-5 mx-auto max-w-7x1">
-    <h1 class="mb-12 text-center text-4xl text-black font-bold">Sasaran Kinerja Pegawai</h1>
+    <h1 class="mb-12 text-center text-4xl text-black font-bold">Penilaian SKP Bawahan</h1>
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
       <div class="w-full overflow-x-auto">
         <table class="w-full">

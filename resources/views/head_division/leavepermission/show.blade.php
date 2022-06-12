@@ -96,20 +96,20 @@
             </tr>
           </thead>
           <tbody class="bg-white">
+            @if($prevleaves != NULL)
             @foreach($prevleaves as $prevleave)
-            @if($prevleave->id != $data->id)
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold">{{$loop->iteration}}</td>
               <td class="px-4 py-3 text-ms border">{{$prevleave->leaveType->name}}</td>
               <td class="px-4 py-3 text-ms border">{{$data->start_date->formatLocalized('%d/%m/%Y')}} - {{$data->end_date->formatLocalized('%d/%m/%Y')}}</td>
               <td class="px-4 py-3 text-ms border">{{$prevleave->leave_duration}} Hari</td>
             </tr>
+            @endforeach
             @else
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold" colspan="4">Belum Ada Data Cuti</td>
             </tr>
             @endif
-            @endforeach
           </tbody>
         </table>
       </div>
@@ -133,9 +133,9 @@
           </div>
           <div class="mb-6">
             <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
-              Catatan
+              Catatan <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
-            <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="official_note"/></textarea>
+            <textarea placeholder="Masukkan Catatan Mengenai Persetujuan" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="official_note"/></textarea>
           </div>
           <div class="flex items-center justify-center">
             <button class="shadow bg-green-600 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
@@ -152,9 +152,9 @@
           </div>
           <div class="mb-6">
             <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
-              Alasan Penolakan
+              Alasan Penolakan <span class="text-xs text-red-500"><i>*required</i></span>
             </label>
-            <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="official_note"/></textarea>
+            <textarea placeholder="Masukkan Catatan Mengenai Penolakan" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="official_note"/></textarea>
           </div>
           <div class="flex items-center justify-center">
             <button class="shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">

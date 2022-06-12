@@ -10,6 +10,9 @@ use App\Models\PrincipalMapping;
 use App\Models\SolutionCorner;
 use App\Models\SalaryIncrease;
 use App\Models\NewPerformanceTarget;
+use App\Models\NewAssesmentCredit;
+use App\Models\NewPromotion;
+use App\Models\PersonalData;
 
 class PrincipalController extends Controller
 {
@@ -28,7 +31,35 @@ class PrincipalController extends Controller
       $mapping=PrincipalMapping::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
       $solutioncorner=SolutionCorner::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
       $salaryincrease=SalaryIncrease::where(['user_id' => $user_id, 'is_deleted' => FALSE])->count();
-      return view('principal/index', compact('is_integration', 'leavepermission', 'mapping', 'solutioncorner', 'salaryincrease', 'performancetarget'));
+      $data_cs=[];
+      $pdid = auth()->user()->personal_data_id;
+      $i=0;
+      $pd=PersonalData::where('id', $pdid)->first();
+      $datas=NewAssesmentCredit::where(['is_official_approve' => TRUE, 'is_deleted' => FALSE])->get();
+      foreach ($datas as $data) {
+        $dat=$data->user->personal_data_id;
+        $p=PersonalData::where('id', $dat)->first();
+        if($pd->work_unit_id == $p->work_unit_id){
+          $data_cs[$i]=$data;
+        }
+        $i=$i+1;
+      }
+      $data_cs_count=count($data_cs);
+      $data_pr=[];
+      $pdid = auth()->user()->personal_data_id;
+      $i=0;
+      $pd=PersonalData::where('id', $pdid)->first();
+      $datas=NewPromotion::where(['is_finish' => TRUE, 'is_deleted' => FALSE])->get();
+      foreach ($datas as $data) {
+        $dat=$data->user->personal_data_id;
+        $p=PersonalData::where('id', $dat)->first();
+        if($pd->work_unit_id == $p->work_unit_id){
+          $data_pr[$i]=$data;
+        }
+        $i=$i+1;
+      }
+      $data_pr_count=count($data_pr);
+      return view('principal/index', compact('is_integration', 'leavepermission', 'mapping', 'solutioncorner', 'salaryincrease', 'performancetarget', 'data_cs_count', 'data_pr_count'));
     }
 
     /**

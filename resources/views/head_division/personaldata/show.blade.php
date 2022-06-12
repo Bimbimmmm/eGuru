@@ -1,8 +1,8 @@
-@extends('layouts.principal')
+@extends('layouts.divisionhead')
 @section('content')
 <div class="min-h-screen bg-gray-100 py-3">
   <div class="px-5 mx-auto max-w-7x1">
-    <a href="/principal">
+    <a href="/divisionhead/personaldata">
       <button class="block text-green-500 rounded-sm font-bold py-4 px-6 mr-2 flex items-center hover:bg-green-500 hover:text-white">
         <svg class="h-5 w-5 mr-2 fill-current" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-49 141 512 512" style="enable-background:new -49 141 512 512;" xml:space="preserve">
           <path id="XMLID_10_" d="M438,372H36.355l72.822-72.822c9.763-9.763,9.763-25.592,0-35.355c-9.763-9.764-25.593-9.762-35.355,0 l-115.5,115.5C-46.366,384.01-49,390.369-49,397s2.634,12.989,7.322,17.678l115.5,115.5c9.763,9.762,25.593,9.763,35.355,0 c9.763-9.763,9.763-25.592,0-35.355L36.355,422H438c13.808,0,25-11.193,25-25S451.808,372,438,372z"></path>
@@ -11,24 +11,6 @@
     </a>
     <h1 class="mb-12 text-center text-4xl text-gray-500 font-bold">Data Pribadi</h1>
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
-      <div class="w-40">
-        <div class="my-2 flex sm:flex-row flex-col">
-          <div class="block relative">
-            <a class="text-white" href="/principal/leavepermission/create">
-              <div class="flex items-center p-4 bg-yellow-500 rounded-lg shadow-xs cursor-pointer hover:bg-yellow-400 hover:text-gray-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
-                <div>
-                  <p class=" text-xs font-bold ml-2 ">
-                    EDIT DATA
-                  </p>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
       <div class="w-full overflow-x-auto">
         <table class="w-full">
           <tbody class="bg-white">
@@ -118,24 +100,6 @@
     </div>
 
     <h1 class="text-left text-base text-black text-gray-900 font-bold">1. Pendidikan Formal</h1>
-    <div class="w-48">
-      <div class="my-2 flex sm:flex-row flex-col">
-        <div class="block relative">
-          <a class="text-white" href="/principal/personaldata/formaleducation/create">
-            <div class="flex items-center p-4 bg-green-500 rounded-lg shadow-xs cursor-pointer hover:bg-green-400 hover:text-gray-100">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-              </svg>
-              <div>
-                <p class=" text-xs font-bold ml-2 ">
-                  TAMBAH RIWAYAT
-                </p>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
       <div class="w-full overflow-x-auto">
         <table class="w-full">
@@ -147,7 +111,6 @@
               <th class="px-4 py-3">Tahun Lulus</th>
               <th class="px-4 py-3">Nomor Ijazah</th>
               <th class="px-4 py-3">File</th>
-              <th class="px-4 py-3">Aksi</th>
             </tr>
           </thead>
           <tbody class="bg-white">
@@ -161,11 +124,6 @@
                 <td class="px-4 py-3 text-ms border">
                   <a class="underline text-blue-500" href="{{ asset('storage/datahistory/formaleducation/' . $fehdata->file) }}">{{$fehdata->file}}</a>
                 </td>
-                <td class="px-4 py-3 text-sm border">
-                  <a href="{{ url ('/principal/personaldata/formaleducation/destroy', array("$fehdata->id")) }}" class="text-red-600 hover:text-red-400 mr-2">
-                    <i class="material-icons-outlined text-2xl">delete</i>
-                  </a>
-                </td>
               </tr>
               @endforeach
             </tbody>
@@ -174,24 +132,6 @@
       </div>
 
       <h1 class="text-left text-base text-black text-gray-900 font-bold">2. Pendidikan Non-Formal</h1>
-      <div class="w-48">
-        <div class="my-2 flex sm:flex-row flex-col">
-          <div class="block relative">
-            <a class="text-white" href="/principal/personaldata/nonformaleducation/create">
-              <div class="flex items-center p-4 bg-green-500 rounded-lg shadow-xs cursor-pointer hover:bg-green-400 hover:text-gray-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                </svg>
-                <div>
-                  <p class=" text-xs font-bold ml-2 ">
-                    TAMBAH RIWAYAT
-                  </p>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
       <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
         <div class="w-full overflow-x-auto">
           <table class="w-full">
@@ -203,7 +143,6 @@
                 <th class="px-4 py-3">Tahun Lulus</th>
                 <th class="px-4 py-3">Nomor Sertifikat</th>
                 <th class="px-4 py-3">File</th>
-                <th class="px-4 py-3">Aksi</th>
               </tr>
             </thead>
             <tbody class="bg-white">
@@ -217,11 +156,6 @@
                 <td class="px-4 py-3 text-ms border">
                   <a class="underline text-blue-500" href="{{ asset('storage/datahistory/nonformaleducation/' . $nfehdata->file) }}">{{$nfehdata->file}}</a>
                 </td>
-                <td class="px-4 py-3 text-sm border">
-                  <a href="{{ url ('/principal/personaldata/nonformaleducation/destroy', array("$nfehdata->id")) }}" class="text-red-600 hover:text-red-400 mr-2">
-                    <i class="material-icons-outlined text-2xl">delete</i>
-                  </a>
-                </td>
               </tr>
               @endforeach
             </tbody>
@@ -230,24 +164,6 @@
         </div>
 
         <h1 class="text-left text-base text-black text-gray-900 font-bold">3. Riwayat Kepangkatan</h1>
-        <div class="w-48">
-          <div class="my-2 flex sm:flex-row flex-col">
-            <div class="block relative">
-              <a class="text-white" href="/principal/personaldata/rank/create">
-                <div class="flex items-center p-4 bg-green-500 rounded-lg shadow-xs cursor-pointer hover:bg-green-400 hover:text-gray-100">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                  </svg>
-                  <div>
-                    <p class=" text-xs font-bold ml-2 ">
-                      TAMBAH RIWAYAT
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
         <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
           <div class="w-full overflow-x-auto">
             <table class="w-full">
@@ -259,7 +175,6 @@
                   <th class="px-4 py-3">T.M.T</th>
                   <th class="px-4 py-3">Nomor SK</th>
                   <th class="px-4 py-3">File</th>
-                  <th class="px-4 py-3">Aksi</th>
                 </tr>
               </thead>
               <tbody class="bg-white">
@@ -274,11 +189,6 @@
                   <td class="px-4 py-3 text-ms border">
                     <a class="underline text-blue-500" href="{{ asset('storage/datahistory/rank/' . $rhdata->file) }}">{{$rhdata->file}}</a>
                   </td>
-                  <td class="px-4 py-3 text-sm border">
-                    <a href="{{ url ('/principal/personaldata/rank/destroy', array("$rhdata->id")) }}" class="text-red-600 hover:text-red-400 mr-2">
-                      <i class="material-icons-outlined text-2xl">delete</i>
-                    </a>
-                  </td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -287,24 +197,6 @@
           </div>
 
           <h1 class="text-left text-base text-black text-gray-900 font-bold">4. Riwayat Jabatan</h1>
-          <div class="w-48">
-            <div class="my-2 flex sm:flex-row flex-col">
-              <div class="block relative">
-                <a class="text-white" href="/principal/personaldata/positionhistory/create">
-                  <div class="flex items-center p-4 bg-green-500 rounded-lg shadow-xs cursor-pointer hover:bg-green-400 hover:text-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                    </svg>
-                    <div>
-                      <p class=" text-xs font-bold ml-2 ">
-                        TAMBAH RIWAYAT
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
           <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
             <div class="w-full overflow-x-auto">
               <table class="w-full">
@@ -317,7 +209,6 @@
                     <th class="px-4 py-3">T.M.T</th>
                     <th class="px-4 py-3">Nomor SK</th>
                     <th class="px-4 py-3">File</th>
-                    <th class="px-4 py-3">Aksi</th>
                   </tr>
                 </thead>
                 <tbody class="bg-white">
@@ -332,11 +223,6 @@
                     <td class="px-4 py-3 text-ms border">
                       <a class="underline text-blue-500" href="{{ asset('storage/datahistory/position/' . $phdata->file) }}">{{$phdata->file}}</a>
                     </td>
-                    <td class="px-4 py-3 text-sm border">
-                      <a href="{{ url ('/principal/personaldata/positionhistory/destroy', array("$phdata->id")) }}" class="text-red-600 hover:text-red-400 mr-2">
-                        <i class="material-icons-outlined text-2xl">delete</i>
-                      </a>
-                    </td>
                   </tr>
                   @endforeach
                   </tbody>
@@ -345,24 +231,6 @@
             </div>
 
             <h1 class="text-left text-base text-black text-gray-900 font-bold">5. Riwayat Kenaikan Gaji Berkala</h1>
-            <div class="w-48">
-              <div class="my-2 flex sm:flex-row flex-col">
-                <div class="block relative">
-                  <a class="text-white" href="/principal/personaldata/salaryincreasehistory/create">
-                    <div class="flex items-center p-4 bg-green-500 rounded-lg shadow-xs cursor-pointer hover:bg-green-400 hover:text-gray-100">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                      </svg>
-                      <div>
-                        <p class=" text-xs font-bold ml-2 ">
-                          TAMBAH RIWAYAT
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
             <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
               <div class="w-full overflow-x-auto">
                 <table class="w-full">
@@ -375,7 +243,6 @@
                       <th class="px-4 py-3">Gaji Pokok Lama</th>
                       <th class="px-4 py-3">Gaji Pokok Baru</th>
                       <th class="px-4 py-3">File</th>
-                      <th class="px-4 py-3">Aksi</th>
                     </tr>
                   </thead>
                   <tbody class="bg-white">
@@ -390,11 +257,6 @@
                       <td class="px-4 py-3 text-ms border">
                         <a class="underline text-blue-500" href="{{ asset('storage/datahistory/salaryincrease/' . $sihdata->file) }}">{{$sihdata->file}}</a>
                       </td>
-                      <td class="px-4 py-3 text-sm border">
-                        <a href="{{ url ('/principal/personaldata/salaryincreasehistory/destroy', array("$sihdata->id")) }}" class="text-red-600 hover:text-red-400 mr-2">
-                          <i class="material-icons-outlined text-2xl">delete</i>
-                        </a>
-                      </td>
                     </tr>
                     @endforeach
                     </tbody>
@@ -403,24 +265,6 @@
               </div>
 
               <h1 class="text-left text-base text-black text-gray-900 font-bold">6. Riwayat Penghargaan</h1>
-              <div class="w-48">
-                <div class="my-2 flex sm:flex-row flex-col">
-                  <div class="block relative">
-                    <a class="text-white" href="/principal/personaldata/appreciationhistory/create">
-                      <div class="flex items-center p-4 bg-green-500 rounded-lg shadow-xs cursor-pointer hover:bg-green-400 hover:text-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                        </svg>
-                        <div>
-                          <p class=" text-xs font-bold ml-2 ">
-                            TAMBAH RIWAYAT
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
               <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
                 <div class="w-full overflow-x-auto">
                   <table class="w-full">
@@ -431,7 +275,6 @@
                         <th class="px-4 py-3">Tahun</th>
                         <th class="px-4 py-3">Nama Instansi Pemberi Penghargaan</th>
                         <th class="px-4 py-3">File</th>
-                        <th class="px-4 py-3">Aksi</th>
                       </tr>
                     </thead>
                     <tbody class="bg-white">
@@ -443,11 +286,6 @@
                         <td class="px-4 py-3 text-ms border">{{$ahdata->issued_by}}</td>
                         <td class="px-4 py-3 text-ms border">
                           <a class="underline text-blue-500" href="{{ asset('storage/datahistory/appreciation/' . $ahdata->file) }}">{{$ahdata->file}}</a>
-                        </td>
-                        <td class="px-4 py-3 text-sm border">
-                          <a href="{{ url ('/principal/personaldata/appreciationhistory/destroy', array("$ahdata->id")) }}" class="text-red-600 hover:text-red-400 mr-2">
-                            <i class="material-icons-outlined text-2xl">delete</i>
-                          </a>
                         </td>
                       </tr>
                       @endforeach

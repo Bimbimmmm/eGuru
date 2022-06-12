@@ -9,7 +9,7 @@
         </svg>
       </button>
     </a>
-    <h1 class="mb-3 text-center text-2xl text-black font-bold">Pengajuan Cuti Bawaham</h1>
+    <h1 class="mb-3 text-center text-2xl text-black font-bold">Pengajuan Cuti Bawahan</h1>
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
     <div class="w-full overflow-x-auto">
       <table class="w-full">
