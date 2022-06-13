@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Promotion;
+use App\Models\NewPromotion;
 use Validator;
 use Alert;
 
@@ -11,13 +11,13 @@ class AdminPromotionController extends Controller
 {
   public function index()
   {
-    $datas=Promotion::where('is_deleted', FALSE)->get();
+    $datas=NewPromotion::where('is_deleted', FALSE)->get();
     return view('administrator/promotion/index', compact('datas'));
   }
 
   public function destroy($id)
   {
-    $data = Promotion::findOrFail($id);
+    $data = NewPromotion::findOrFail($id);
     $data->update([
         'is_deleted'            => TRUE
     ]);

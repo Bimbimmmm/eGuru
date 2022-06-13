@@ -9,7 +9,7 @@
     </button>
   </a>
   <div class="px-5 mx-auto max-w-7x1">
-    <h1 class="mb-12 text-center text-4xl text-black font-bold">Pengajuan Kenaikan Gaji Berkala</h1>
+    <h1 class="mb-12 text-center text-4xl text-black font-bold">Detail Pengajuan Kenaikan Gaji Berkala</h1>
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
       <div class="w-full overflow-x-auto">
         <table class="w-full">
@@ -101,19 +101,19 @@
           </div>
           <div class="mb-6">
             <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
-              Gaji Pokok Baru
+              Gaji Pokok Baru <span class="text-xs text-red-500"><i>*required</i>
             </label>
             <input name="new_salary" id="new_salary" placeholder="Masukkan Gaji Pokok Baru" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text"></input>
           </div>
           <div class="mb-6">
             <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
-              Masa Kerja Baru
+              Masa Kerja Baru <span class="text-xs text-red-500"><i>*required</i>
             </label>
             <input name="new_work_year" id="new_work_year" placeholder="XX Tahun XX Bulan" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text"></input>
           </div>
           <div class="mb-6">
             <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
-              T.M.T Baru
+              T.M.T Baru <span class="text-xs text-red-500"><i>*required</i>
             </label>
             <input name="new_date" id="new_date" placeholder="Masukkan T.M.T Baru" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text"></input>
           </div>
@@ -142,9 +142,9 @@
           @endif
           <div class="mb-6">
             <label class="block text-gray-700 text-sm font-normal mb-2" for="password">
-              Alasan Penolakan
+              Alasan Penolakan <span class="text-xs text-red-500"><i>*required</i>
             </label>
-            <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="reason"/></textarea>
+            <textarea placeholder="Masukkan Alasan Penolakan" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="reason"/></textarea>
           </div>
           <div class="flex items-center justify-center">
             <button class="shadow bg-red-600 hover:bg-red-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">

@@ -12,7 +12,7 @@ class DivisionHeadCreditScoreController extends Controller
 {
   public function index()
   {
-    $datas=NewAssesmentCredit::where(['is_finished' => TRUE, 'is_official_approve' => FALSE])->get();
+    $datas=NewAssesmentCredit::where(['is_finished' => TRUE, 'is_official_approve' => FALSE, 'is_deleted' => FALSE])->get();
     return view('head_division/creditscore/index', compact('datas'));
   }
 

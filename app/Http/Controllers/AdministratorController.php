@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\LeavePermissions;
-use App\Models\PerformanceTarget;
-use App\Models\AssesmentCredit;
-use App\Models\Promotion;
+use App\Models\NewPerformanceTarget;
+use App\Models\NewAssesmentCredit;
+use App\Models\NewPromotion;
 use App\Models\SalaryIncrease;
 use App\Models\SolutionCorner;
+use App\Models\PrincipalMapping;
 
 class AdministratorController extends Controller
 {
@@ -22,14 +23,15 @@ class AdministratorController extends Controller
     {
         $userall=User::where('is_deleted', FALSE)->count();
         $leavepermissionall=LeavePermissions::where('is_deleted', FALSE)->count();
-        $performancetargetall=PerformanceTarget::where('is_deleted', FALSE)->count();
-        $creditscoreall=AssesmentCredit::where('is_deleted', FALSE)->count();
-        $promotionall=Promotion::where('is_deleted', FALSE)->count();
+        $performancetargetall=NewPerformanceTarget::where('is_deleted', FALSE)->count();
+        $creditscoreall=NewAssesmentCredit::where('is_deleted', FALSE)->count();
+        $promotionall=NewPromotion::where('is_deleted', FALSE)->count();
         $salaryincreaseall=SalaryIncrease::where('is_deleted', FALSE)->count();
         $solutioncornerall=SolutionCorner::where('is_deleted', FALSE)->count();
+        $mappingall=PrincipalMapping::where('is_deleted', FALSE)->count();
         return view('administrator/index', compact(
           'leavepermissionall', 'performancetargetall', 'creditscoreall',
-          'promotionall', 'salaryincreaseall', 'solutioncornerall', 'userall'
+          'promotionall', 'salaryincreaseall', 'solutioncornerall', 'userall', 'mappingall'
         ));
     }
 

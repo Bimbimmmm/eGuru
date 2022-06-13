@@ -23,7 +23,7 @@
       </div>
     </div>
   </a>
-  <a href="#">
+  <a href="/administrator/performance">
     <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
       <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
         <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>
@@ -73,7 +73,7 @@
       </div>
     </div>
   </a>
-  <a href="#">
+  <a href="/administrator/mapping">
     <div class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
       <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -81,7 +81,7 @@
         </svg>
       </div>
       <div class="text-right">
-        <p class="text-2xl">0</p>
+        <p class="text-2xl">{{$mappingall}}</p>
         <p>Pemetaan Guru</p>
       </div>
     </div>

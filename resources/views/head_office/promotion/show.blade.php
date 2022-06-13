@@ -32,7 +32,7 @@
             </tr>
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold">Tahun dan Periode Pengajuan</td>
-              <td class="px-4 py-3 text-ms border">{{$data->assementCredit->performanceTarget->assessment_year}} - {{$data->promotion_period}}</td>
+              <td class="px-4 py-3 text-ms border">{{$data->newAssementCredit->newPerformanceTarget->assessment_year}} - {{$data->promotion_period}}</td>
             </tr>
             <tr class="text-gray-700 text-center">
               <td class="px-4 py-3 text-ms border font-semibold">Jumlah Angka Kredit PAK KENPA Terakhir</td>

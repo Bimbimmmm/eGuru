@@ -10,7 +10,7 @@ use App\Http\Controllers\AdminLeavePermissionController;
 use App\Http\Controllers\AdminPerformanceController;
 use App\Http\Controllers\AdminPromotionController;
 use App\Http\Controllers\AdminSalaryIncreaseController;
-use App\Http\Controllers\AdminSchoolMappingController;
+use App\Http\Controllers\AdminMappingController;
 use App\Http\Controllers\AdminSolutionCornerController;
 use App\Http\Controllers\AdminReferenceSchoolController;
 use App\Http\Controllers\AdminReferenceSubjectController;
@@ -73,6 +73,8 @@ use App\Http\Controllers\HeadOfficeSolutionCornerController;
 use App\Http\Controllers\HeadOfficeLeavePermissionController;
 use App\Http\Controllers\HeadOfficePersonalDataController;
 use App\Http\Controllers\HeadOfficeMappingController;
+use App\Http\Controllers\HeadOfficePerformanceController;
+use App\Http\Controllers\HeadOfficeCreditScoreController;
 
 
 Route::get('/', function () {
@@ -107,6 +109,12 @@ Route::post('/administrator/users/store', [AdminUserController::class, 'store'])
 //Admin Leave Permission Routes
 Route::get('/administrator/leavepermission', [AdminLeavePermissionController::class, 'index'])->middleware('can:isAdmin')->name('adminlp');
 Route::get('/administrator/leavepermission/destroy/{id}', [AdminLeavePermissionController::class, 'destroy'])->middleware('can:isAdmin')->name('adminlpdestroy');
+//Admin Performance Routes
+Route::get('/administrator/performance', [AdminPerformanceController::class, 'index'])->middleware('can:isAdmin')->name('adminp');
+Route::get('/administrator/performance/destroy/{id}', [AdminPerformanceController::class, 'destroy'])->middleware('can:isAdmin')->name('adminpdestroy');
+//Admin Mapping Routes
+Route::get('/administrator/mapping', [AdminMappingController::class, 'index'])->middleware('can:isAdmin')->name('admimp');
+Route::get('/administrator/mapping/destroy/{id}', [AdminMappingController::class, 'destroy'])->middleware('can:isAdmin')->name('adminmpdestroy');
 //Admin Credit Score Routes
 Route::get('/administrator/creditscore', [AdminCreditScoreController::class, 'index'])->middleware('can:isAdmin')->name('admincs');
 Route::get('/administrator/creditscore/destroy/{id}', [AdminCreditScoreController::class, 'destroy'])->middleware('can:isAdmin')->name('admincsdestroy');
@@ -453,6 +461,12 @@ Route::get('/officehead/personaldata/show/{id}', [HeadOfficePersonalDataControll
 //Head Office Mapping Routes
 Route::get('/officehead/mapping', [HeadOfficeMappingController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadmp');
 Route::get('/officehead/mapping/pdf/{id}', [HeadOfficeMappingController::class, 'pdf'])->middleware('can:isOfficeHead')->name('officeheadmppdf');
+//Head Office Performance Routes
+Route::get('/officehead/performance', [HeadOfficePerformanceController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadpf');
+Route::get('/officehead/performance/show/{id}', [HeadOfficePerformanceController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadpfshow');
+//Head Office Credit Score Routes
+Route::get('/officehead/creditscore', [HeadOfficeCreditScoreController::class, 'index'])->middleware('can:isOfficeHead')->name('officeheadcs');
+Route::get('/officehead/creditscore/show/{id}', [HeadOfficeCreditScoreController::class, 'show'])->middleware('can:isOfficeHead')->name('officeheadcsshow');
 
 //OPERATOR ROUTES
 

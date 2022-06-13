@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\AssesmentCredit;
+use App\Models\NewAssesmentCredit;
 use Validator;
 use Alert;
 
@@ -12,13 +12,13 @@ class AdminCreditScoreController extends Controller
 {
   public function index()
   {
-    $datas=AssesmentCredit::where('is_deleted', FALSE)->get();
+    $datas=NewAssesmentCredit::where('is_deleted', FALSE)->get();
     return view('administrator/creditscore/index', compact('datas'));
   }
 
   public function destroy($id)
   {
-    $data = AssesmentCredit::findOrFail($id);
+    $data = NewAssesmentCredit::findOrFail($id);
     $data->update([
         'is_deleted'            => TRUE
     ]);
