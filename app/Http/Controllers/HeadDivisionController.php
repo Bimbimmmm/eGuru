@@ -9,6 +9,10 @@ use App\Models\NewPerformanceTarget;
 use App\Models\PositionMapping;
 use App\Models\NewAssesmentCredit;
 use App\Models\PersonalData;
+use App\Models\NewPromotion;
+use App\Models\SalaryIncrease;
+use App\Models\SolutionCorner;
+use App\Models\PrincipalMapping;
 
 class HeadDivisionController extends Controller
 {
@@ -26,7 +30,13 @@ class HeadDivisionController extends Controller
         $performancetarget=NewPerformanceTarget::where(['position_mapping_id' => $position_mapping->id, 'is_deleted' => FALSE, 'is_direct_supervisor_approve' => TRUE, 'is_official_approve' => FALSE, 'is_deleted' => FALSE])->count();
         $assesmentcredit=NewAssesmentCredit::where(['is_finished' => TRUE, 'is_official_approve' => FALSE, 'is_deleted' => FALSE])->count();
         $personaldata=PersonalData::all()->count();
-        return view('head_division/index', compact('is_integration', 'leavepermission', 'performancetarget', 'assesmentcredit', 'personaldata'));
+        $promotion=NewPromotion::where(['is_assesed' => TRUE, 'is_deleted' => FALSE])->count();
+        $salaryincrease=SalaryIncrease::where(['is_deleted' => FALSE])->count();
+        $solutioncorner=SolutionCorner::where(['handles_id' => $user_id, 'is_deleted' => FALSE, 'is_finish' => FALSE])->count();
+        $solutioncorner_finished=SolutionCorner::where(['handles_id' => $user_id, 'is_deleted' => FALSE])->count();
+        $mapping=PrincipalMapping::where(['is_finish' => TRUE, 'is_deleted' => FALSE])->count();
+        $mapping_all=PrincipalMapping::where('is_deleted', FALSE)->count();
+        return view('head_division/index', compact('mapping', 'mapping_all', 'is_integration', 'leavepermission', 'performancetarget', 'assesmentcredit', 'personaldata', 'promotion', 'salaryincrease', 'solutioncorner', 'solutioncorner_finished'));
     }
 
     /**

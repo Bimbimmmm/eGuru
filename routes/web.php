@@ -60,6 +60,9 @@ use App\Http\Controllers\DivisionHeadNewPerformanceController;
 use App\Http\Controllers\DivisionHeadCreditScoreController;
 use App\Http\Controllers\DivisionHeadSolutionCornerController;
 use App\Http\Controllers\DivisionHeadPersonalDataController;
+use App\Http\Controllers\DivisionHeadPromotionController;
+use App\Http\Controllers\DivisionHeadSalaryIncreaseController;
+use App\Http\Controllers\DivisionHeadMappingController;
 use App\Http\Controllers\AssesorController;
 use App\Http\Controllers\AssesorCreditController;
 use App\Http\Controllers\AssesorPromotionController;
@@ -415,6 +418,14 @@ Route::post('/divisionhead/solutioncorner/done/{id}', [DivisionHeadSolutionCorne
 //Divison Head Personal Data Routes
 Route::get('/divisionhead/personaldata', [DivisionHeadPersonalDataController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadpd');
 Route::get('/divisionhead/personaldata/show/{id}', [DivisionHeadPersonalDataController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadpdshow');
+//Divison Head Promotion Routes
+Route::get('/divisionhead/promotion', [DivisionHeadPromotionController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadpr');
+Route::get('/divisionhead/promotion/show/{id}', [DivisionHeadPromotionController::class, 'show'])->middleware('can:isDivisionHead')->name('divheadprshow');
+//Divison Head Salary Increase Routes
+Route::get('/divisionhead/salaryincrease', [DivisionHeadSalaryIncreaseController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadsi');
+//Divison Head Mapping Routes
+Route::get('/divisionhead/mapping', [DivisionHeadMappingController::class, 'index'])->middleware('can:isDivisionHead')->name('divheadmp');
+Route::get('/divisionhead/mapping/pdf/{id}', [DivisionHeadMappingController::class, 'pdf'])->middleware('can:isDivisionHead')->name('divheadmpshow');
 
 //OFFICE HEAD ROUTES
 Route::get('/officehead', [HeadOfficeController::class, 'index'])->middleware('can:isOfficeHead')->name('officehead');

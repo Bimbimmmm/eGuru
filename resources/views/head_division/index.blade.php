@@ -124,7 +124,7 @@
                     <div class="flex flex-wrap">
                       <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                         <h5 class="text-blueGray-400 uppercase font-bold text-xl">PENGAJUAN KENPA</h5>
-                        <span class="font-semibold text-xl text-blueGray-700">51</span>
+                        <span class="font-semibold text-xl text-blueGray-700">{{$promotion}}</span>
                       </div>
                       <div class="relative w-auto pl-4 flex-initial">
                         <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-emerald-500">
@@ -149,7 +149,7 @@
                       <div class="flex flex-wrap">
                         <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                           <h5 class="text-blueGray-400 uppercase font-bold text-xl">PENGAJUAN KGB</h5>
-                          <span class="font-semibold text-xl text-blueGray-700">51 </span>
+                          <span class="font-semibold text-xl text-blueGray-700">{{$salaryincrease}}</span>
                         </div>
                         <div class="relative w-auto pl-4 flex-initial">
                           <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-yellow-500">
@@ -174,7 +174,7 @@
                         <div class="flex flex-wrap">
                           <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                             <h5 class="text-blueGray-400 uppercase font-bold text-xl">PERTEMUAN PS3</h5>
-                            <span class="font-semibold text-xl text-blueGray-700">51 </span>
+                            <span class="font-semibold text-xl text-blueGray-700">{{$solutioncorner}}</span>
                           </div>
                           <div class="relative w-auto pl-4 flex-initial">
                             <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-purple-500">
@@ -187,7 +187,7 @@
                           </div>
                         </div>
                         <p class="text-sm text-blueGray-400 mt-4">
-                          <span class="text-emerald-500 mr-2">0</span>
+                          <span class="text-emerald-500 mr-2">{{$solutioncorner_finished}}</span>
                           <span class="whitespace-nowrap">Total Pertemuan</span></p>
                         </div>
                       </div>
@@ -199,7 +199,7 @@
                           <div class="flex flex-wrap">
                             <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                               <h5 class="text-blueGray-400 uppercase font-bold text-xl">PEMEETAAN GURU</h5>
-                              <span class="font-semibold text-xl text-blueGray-700">51 </span>
+                              <span class="font-semibold text-xl text-blueGray-700">{{$mapping}}</span>
                             </div>
                             <div class="relative w-auto pl-4 flex-initial">
                               <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-gray-500">
@@ -212,7 +212,7 @@
                             </div>
                           </div>
                           <p class="text-sm text-blueGray-400 mt-4">
-                            <span class="text-emerald-500 mr-2">0</span>
+                            <span class="text-emerald-500 mr-2">{{$mapping_all}}</span>
                             <span class="whitespace-nowrap">Total Pemetaan</span></p>
                           </div>
                         </div>
